@@ -1,0 +1,25 @@
+---
+interface Props {
+  whatsapp: string; // URL completa: https://wa.me/595XXXXXXXXX
+  email: string;    // Solo la dirección: usuario@ejemplo.com (el componente agrega mailto:)
+}
+
+const { whatsapp, email } = Astro.props;
+---
+
+<div class="flex flex-wrap gap-3 justify-center">
+  <a
+    href={whatsapp}
+    target="_blank"
+    rel="noopener noreferrer"
+    class="px-6 py-2.5 rounded-lg text-sm font-semibold border border-green-800 text-green-400 hover:bg-green-950 transition-colors"
+  >
+    WhatsApp
+  </a>
+  <a
+    href={`mailto:${email}`}
+    class="px-6 py-2.5 rounded-lg text-sm font-semibold border border-border text-muted hover:border-muted hover:text-white transition-colors"
+  >
+    Email
+  </a>
+</div>

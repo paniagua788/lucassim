@@ -1,0 +1,42 @@
+---
+interface Props {
+  name: string;
+  eyebrow: string;
+  tagline: string;
+  accent: 'vareapp' | 'slotr';
+  features: string[];
+  href: string;
+}
+
+const { name, eyebrow, tagline, accent, features, href } = Astro.props;
+
+const accentColor = accent === 'vareapp' ? 'text-vareapp' : 'text-slotr';
+const bgColor     = accent === 'vareapp' ? 'bg-vareapp-dark border-orange-950' : 'bg-slotr-dark border-violet-950';
+const btnColor    = accent === 'vareapp'
+  ? 'bg-vareapp hover:bg-orange-600 text-white'
+  : 'bg-slotr hover:bg-violet-700 text-white';
+---
+
+<div class={`rounded-card border p-6 flex flex-col gap-4 ${bgColor}`}>
+  <div>
+    <p class={`text-xs font-bold uppercase tracking-widest mb-2 ${accentColor}`}>{eyebrow}</p>
+    <h3 class="text-xl font-black text-white mb-2">{name}</h3>
+    <p class="text-xs text-muted leading-relaxed">{tagline}</p>
+  </div>
+
+  <ul class="flex flex-col gap-1.5 flex-1">
+    {features.map(f => (
+      <li class="text-xs text-subtle flex items-center gap-2">
+        <span class="text-border">—</span>
+        {f}
+      </li>
+    ))}
+  </ul>
+
+  <a
+    href={href}
+    class={`inline-block text-center rounded-lg px-4 py-2 text-xs font-bold transition-colors ${btnColor}`}
+  >
+    Ver {name} →
+  </a>
+</div>

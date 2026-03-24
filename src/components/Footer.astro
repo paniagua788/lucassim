@@ -1,0 +1,42 @@
+---
+interface Props {
+  showHomeLink?: boolean;
+}
+
+const { showHomeLink = false } = Astro.props;
+
+const socials = [
+  { label: 'GitHub',    href: '#' },
+  { label: 'LinkedIn',  href: '#' },
+  { label: 'Twitter/X', href: '#' },
+];
+---
+
+<footer class="border-t border-border mt-24">
+  <div class="max-w-5xl mx-auto px-6 py-8 flex flex-col sm:flex-row items-center justify-between gap-4">
+    <a href="/" class="text-sm font-bold text-muted tracking-widest uppercase hover:text-white transition-colors">
+      lucassim
+    </a>
+
+    <div class="flex gap-6">
+      {socials.map(s => (
+        <a
+          href={s.href}
+          aria-disabled={s.href === '#' ? 'true' : undefined}
+          class={`text-xs transition-colors ${s.href === '#' ? 'text-border cursor-default pointer-events-none' : 'text-muted hover:text-white'}`}
+        >
+          {s.label}
+        </a>
+      ))}
+    </div>
+
+    <div class="flex items-center gap-4">
+      {showHomeLink && (
+        <a href="/" class="text-xs text-muted hover:text-white transition-colors">
+          ← Inicio
+        </a>
+      )}
+      <span class="text-xs text-subtle">© {new Date().getFullYear()} lucassim</span>
+    </div>
+  </div>
+</footer>
