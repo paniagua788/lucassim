@@ -1,17 +1,90 @@
 ---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Navbar from '../components/Navbar.astro';
+import Footer from '../components/Footer.astro';
+import ContactButtons from '../components/ContactButtons.astro';
+import ProductCard from '../components/ProductCard.astro';
 
+const WHATSAPP = 'https://wa.me/595XXXXXXXXX';
+const EMAIL    = 'lucas@ejemplo.com';
+
+const vareappFeatures = [
+  'Menú digital con categorías y variantes',
+  'Gestión de pedidos en tiempo real',
+  'Panel administrativo completo',
+  'Caja, inventario y métricas',
+];
+
+const slotrFeatures = [
+  'Reservas online para tus clientes',
+  'Calendarios por recurso o profesional',
+  'Múltiples servicios configurables',
+  'Panel de administración de agenda',
+];
 ---
 
-<html lang="en">
-	<head>
-		<meta charset="utf-8" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<link rel="icon" href="/favicon.ico" />
-		<meta name="viewport" content="width=device-width" />
-		<meta name="generator" content={Astro.generator} />
-		<title>Astro</title>
-	</head>
-	<body>
-		<h1>Astro</h1>
-	</body>
-</html>
+<BaseLayout title="lucassim — Software SaaS paraguayo">
+  <Navbar />
+
+  <!-- HERO -->
+  <section class="max-w-5xl mx-auto px-6 py-24 text-center">
+    <p class="text-xs text-subtle uppercase tracking-widest mb-6">lucassim</p>
+
+    <h1 class="text-4xl sm:text-5xl font-black leading-tight mb-6">
+      Hola, soy Lucas.<br />
+      <span class="text-muted">Ingeniero de Sistemas.</span>
+    </h1>
+
+    <p class="text-sm text-muted leading-relaxed max-w-xl mx-auto mb-4">
+      Más de <strong class="text-white font-semibold">5 años de experiencia</strong> desarrollando software.
+      Proactivo, orientado al crecimiento y apasionado por construir productos que resuelvan problemas reales.
+    </p>
+
+    <p class="text-sm text-subtle leading-relaxed max-w-xl mx-auto mb-10">
+      Desarrollo soluciones diseñadas para el mercado paraguayo — simples, funcionales y listas para escalar.
+    </p>
+
+    <div class="flex flex-wrap gap-3 justify-center">
+      <a href="#productos" class="px-6 py-2.5 rounded-lg text-sm font-bold bg-white text-black hover:bg-gray-100 transition-colors">
+        Ver proyectos ↓
+      </a>
+      <a href="#contacto" class="px-6 py-2.5 rounded-lg text-sm font-semibold border border-border text-muted hover:border-muted hover:text-white transition-colors">
+        Contacto
+      </a>
+    </div>
+  </section>
+
+  <!-- PRODUCTOS -->
+  <section id="productos" class="max-w-5xl mx-auto px-6 py-16">
+    <h2 class="text-xs text-subtle uppercase tracking-widest mb-8 text-center">Proyectos</h2>
+    <div class="grid sm:grid-cols-2 gap-6">
+      <ProductCard
+        name="VareApp"
+        eyebrow="SaaS · Gastronomía"
+        tagline="Menú digital y sistema de pedidos para restaurantes, cafeterías y food trucks."
+        accent="vareapp"
+        features={vareappFeatures}
+        href="/vareapp"
+      />
+      <ProductCard
+        name="Slotr"
+        eyebrow="SaaS · Agendamiento"
+        tagline="Sistema de turnos online para clínicas, peluquerías, consultoras y canchas deportivas."
+        accent="slotr"
+        features={slotrFeatures}
+        href="/slotr"
+      />
+    </div>
+  </section>
+
+  <!-- CONTACTO -->
+  <section id="contacto" class="max-w-5xl mx-auto px-6 py-16 text-center">
+    <h2 class="text-2xl font-black mb-3">¿Hablamos?</h2>
+    <p class="text-sm text-muted mb-8 max-w-md mx-auto">
+      Si te interesa alguno de los productos o tenés una consulta, escribime directamente.
+    </p>
+    <ContactButtons whatsapp={WHATSAPP} email={EMAIL} />
+  </section>
+
+  <Footer />
+</BaseLayout>
