@@ -1,0 +1,22 @@
+@import "tailwindcss";
+
+@theme {
+  /* Colors */
+  --color-base:         #111111;
+  --color-surface:      #161616;
+  --color-surface2:     #1a1a1a;
+  --color-border:       #2a2a2a;
+  --color-muted:        #888888;
+  --color-subtle:       #555555;
+  --color-vareapp:      #f97316;
+  --color-vareapp-dark: #140800;
+  --color-slotr:        #7c3aed;
+  --color-slotr-dark:   #0d0a14;
+
+  /* Typography */
+  --font-sans: "Inter", system-ui, sans-serif;
+
+  /* Border radius */
+  --radius-card:  12px;
+  --radius-inner: 8px;
+}

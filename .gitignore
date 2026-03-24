@@ -1,0 +1,11 @@
+# Astro
+dist/
+.astro/
+node_modules/
+
+# Superpowers
+.superpowers/
+
+# OS
+.DS_Store
+Thumbs.db
