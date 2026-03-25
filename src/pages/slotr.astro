@@ -1,0 +1,121 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Navbar from '../components/Navbar.astro';
+import Footer from '../components/Footer.astro';
+import ContactButtons from '../components/ContactButtons.astro';
+import FeatureCard from '../components/FeatureCard.astro';
+
+const WHATSAPP = 'https://wa.me/595XXXXXXXXX';
+const EMAIL    = 'lucas@ejemplo.com';
+
+const features = [
+  { icon: '📅', name: 'Reservas online',       description: 'Página pública donde tus clientes reservan su turno sin llamar.' },
+  { icon: '📆', name: 'Gestión de agenda',      description: 'Vista de calendario por recurso con bloqueos y cancelaciones.' },
+  { icon: '🛎️', name: 'Múltiples servicios',   description: 'Configuración de servicios con duración y disponibilidad horaria.' },
+  { icon: '👥', name: 'Staff y recursos',        description: 'Soporte para personas (peluqueros, profesionales) y recursos físicos (canchas, consultorios).' },
+  { icon: '🔔', name: 'Notificaciones',          description: 'Aviso automático al cliente al confirmar la reserva.' },
+  { icon: '⚙️', name: 'Panel administrativo',   description: 'Configuración completa: horarios, servicios, bloqueos y ajustes del negocio.' },
+];
+
+const target = ['Clínicas', 'Peluquerías', 'Consultoras', 'Canchas deportivas', 'Consultorios'];
+
+const pricingRanges = [
+  { range: '1 recurso',    example: 'Consultorio individual, peluquero solo',    featured: false },
+  { range: '2–3 recursos', example: '3 canchas de pádel, 2 profesionales',       featured: true  },
+  { range: '4+ recursos',  example: 'Clínica con múltiples especialistas',       featured: false },
+];
+---
+
+<BaseLayout
+  title="Slotr — Sistema de turnos online | lucassim"
+  description="Slotr: sistema de agendamiento de turnos online para clínicas, peluquerías, consultoras y canchas deportivas en Paraguay."
+>
+  <Navbar showBack />
+
+  <!-- HERO -->
+  <section class="bg-gradient-to-b from-slotr-dark to-base py-24 text-center px-6">
+    <p class="text-xs font-bold uppercase tracking-widest text-slotr mb-4">SaaS · Agendamiento</p>
+    <h1 class="text-5xl font-black mb-4">Slotr</h1>
+    <p class="text-sm text-muted max-w-md mx-auto mb-8 leading-relaxed">
+      Sistema de turnos online para clínicas, peluquerías, consultoras y canchas deportivas.
+    </p>
+    <a
+      href={WHATSAPP}
+      target="_blank"
+      rel="noopener noreferrer"
+      class="inline-block px-8 py-3 rounded-lg text-sm font-bold bg-slotr hover:bg-violet-700 text-white transition-colors"
+    >
+      Consultá por una demo
+    </a>
+  </section>
+
+  <div class="max-w-5xl mx-auto px-6">
+
+    <!-- FUNCIONALIDADES -->
+    <section class="py-16">
+      <h2 class="text-xl font-black mb-2">¿Qué incluye Slotr?</h2>
+      <p class="text-sm text-muted mb-8">Todo lo que necesitás para que tus clientes reserven solos.</p>
+      <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
+        {features.map(f => <FeatureCard {...f} />)}
+      </div>
+    </section>
+
+    <!-- PARA QUIÉN ES -->
+    <section class="py-12 border-t border-border">
+      <h2 class="text-xl font-black mb-2">Para cualquier negocio que trabaje con turnos</h2>
+      <p class="text-sm text-muted mb-6">Si tu negocio agenda citas, Slotr es para vos.</p>
+      <div class="flex flex-wrap gap-2">
+        {target.map(t => (
+          <span class="px-4 py-1.5 rounded-full text-xs font-semibold border border-violet-900 text-slotr bg-slotr-dark">
+            {t}
+          </span>
+        ))}
+        <span class="px-4 py-1.5 rounded-full text-xs font-semibold border border-border text-muted">
+          Cualquier negocio que agenda citas
+        </span>
+      </div>
+    </section>
+
+    <!-- PRECIOS -->
+    <section class="py-12 border-t border-border">
+      <h2 class="text-xl font-black mb-2">Precio según tu equipo</h2>
+      <p class="text-sm text-muted mb-2">Pagás por los calendarios que usás. Sin costos fijos por funciones que no necesitás.</p>
+      <p class="text-xs text-subtle mb-8">Precio base incluye 1 recurso/calendario. Cada recurso adicional tiene un costo adicional.</p>
+
+      <div class="flex flex-col gap-3 max-w-lg">
+        {pricingRanges.map(r => (
+          <div class={`flex items-center justify-between rounded-inner px-5 py-4 border ${
+            r.featured
+              ? 'bg-slotr-dark border-violet-800'
+              : 'bg-surface border-border'
+          }`}>
+            <div>
+              <p class={`text-sm font-bold ${r.featured ? 'text-white' : 'text-muted'}`}>{r.range}</p>
+              <p class="text-xs text-subtle mt-0.5">{r.example}</p>
+            </div>
+            <a
+              href={WHATSAPP}
+              target="_blank"
+              rel="noopener noreferrer"
+              class={`text-xs font-semibold whitespace-nowrap ml-6 hover:underline transition-all ${
+                r.featured ? 'text-slotr' : 'text-subtle hover:text-muted'
+              }`}
+            >
+              Consultá →
+            </a>
+          </div>
+        ))}
+      </div>
+    </section>
+
+    <!-- CTA FINAL -->
+    <section class="py-16 text-center border-t border-border">
+      <h2 class="text-2xl font-black mb-3">¿Querés que tus clientes reserven solos?</h2>
+      <p class="text-sm text-muted mb-8">Escribime y te muestro cómo funciona.</p>
+      <ContactButtons whatsapp={WHATSAPP} email={EMAIL} />
+    </section>
+
+  </div>
+
+  <Footer showHomeLink />
+</BaseLayout>
