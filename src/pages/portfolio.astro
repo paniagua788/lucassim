@@ -1,0 +1,92 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import PortfolioNavbar from '../components/portfolio/PortfolioNavbar.astro';
+import PortfolioHero from '../components/portfolio/PortfolioHero.astro';
+import SkillsGrid from '../components/portfolio/SkillsGrid.astro';
+import ExperienceList from '../components/portfolio/ExperienceList.astro';
+import ProjectsList from '../components/portfolio/ProjectsList.astro';
+import EducationCerts from '../components/portfolio/EducationCerts.astro';
+---
+
+<BaseLayout
+  title="Lucas S. Paniagua — Portfolio"
+  description="Portfolio profesional de Lucas S. Paniagua: Full-Stack Developer, System Administrator y Support Engineer con 5+ años de experiencia."
+>
+  <!-- Wrapper claro que cubre el bg-base del body definido en BaseLayout -->
+  <div class="bg-gray-50 text-gray-900 min-h-screen font-sans">
+    <PortfolioNavbar />
+
+    <main>
+      <PortfolioHero />
+
+      <!-- Divisor -->
+      <div class="max-w-4xl mx-auto px-6">
+        <hr class="border-gray-200" />
+      </div>
+
+      <SkillsGrid />
+
+      <div class="max-w-4xl mx-auto px-6">
+        <hr class="border-gray-200" />
+      </div>
+
+      <ExperienceList />
+
+      <div class="max-w-4xl mx-auto px-6">
+        <hr class="border-gray-200" />
+      </div>
+
+      <ProjectsList />
+
+      <div class="max-w-4xl mx-auto px-6">
+        <hr class="border-gray-200" />
+      </div>
+
+      <EducationCerts />
+    </main>
+
+    <!-- Footer light inline -->
+    <footer class="border-t border-gray-200 mt-8">
+      <div class="max-w-4xl mx-auto px-6 py-6 flex flex-col sm:flex-row items-center justify-between gap-2">
+        <span class="text-sm font-bold text-gray-900">lucassim</span>
+        <span class="text-xs text-gray-400">© {new Date().getFullYear()} Lucas S. Paniagua · lucassim.com.py</span>
+        <div class="flex gap-4">
+          <a href="https://github.com/paniagua788" class="text-xs text-gray-500 hover:text-gray-900 transition-colors">GitHub</a>
+          <a href="https://linkedin.com/in/paniagua788" class="text-xs text-gray-500 hover:text-gray-900 transition-colors">LinkedIn</a>
+        </div>
+      </div>
+    </footer>
+  </div>
+
+  <!-- Toggle script: alterna data-lang="es" / data-lang="en" -->
+  <script>
+    (function () {
+      var btns = document.querySelectorAll('[data-lang-btn]');
+      var sections = document.querySelectorAll('[data-lang]');
+
+      function setLang(lang) {
+        sections.forEach(function (el) {
+          if (el instanceof HTMLElement) {
+            el.classList.toggle('hidden', el.dataset.lang !== lang);
+          }
+        });
+        btns.forEach(function (btn) {
+          if (btn instanceof HTMLElement) {
+            var active = btn.dataset.target === lang;
+            btn.classList.toggle('bg-gray-900', active);
+            btn.classList.toggle('text-white', active);
+            btn.classList.toggle('text-gray-500', !active);
+          }
+        });
+      }
+
+      btns.forEach(function (btn) {
+        btn.addEventListener('click', function () {
+          if (btn instanceof HTMLElement && btn.dataset.target) {
+            setLang(btn.dataset.target);
+          }
+        });
+      });
+    })();
+  </script>
+</BaseLayout>
