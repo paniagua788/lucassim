@@ -1,0 +1,40 @@
+---
+// src/components/portfolio/PortfolioNavbar.astro
+// Navbar light con toggle de idioma para la página portfolio.
+// Sin props — los botones del toggle son manejados por el script en portfolio.astro.
+---
+
+<nav class="fixed top-0 left-0 right-0 z-50 border-b border-gray-200 bg-white/90 backdrop-blur-sm">
+  <div class="max-w-4xl mx-auto px-6 h-14 flex items-center justify-between">
+    <a href="/" class="text-sm font-bold tracking-widest uppercase text-gray-900 hover:text-gray-600 transition-colors">
+      lucassim
+    </a>
+
+    <div class="flex items-center gap-4">
+      <!-- Lang toggle -->
+      <div class="flex gap-1 p-1 bg-gray-100 rounded-lg">
+        <button
+          data-lang-btn
+          data-target="es"
+          class="px-3 py-1 text-xs font-semibold rounded-md bg-gray-900 text-white transition-colors"
+        >
+          ES
+        </button>
+        <button
+          data-lang-btn
+          data-target="en"
+          class="px-3 py-1 text-xs font-semibold rounded-md text-gray-500 transition-colors"
+        >
+          EN
+        </button>
+      </div>
+
+      <a href="/" class="text-sm text-gray-500 hover:text-gray-900 transition-colors">
+        ← Volver
+      </a>
+    </div>
+  </div>
+</nav>
+
+<!-- Spacer para compensar la navbar fixed -->
+<div class="h-14"></div>
