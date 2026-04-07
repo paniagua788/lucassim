@@ -9,6 +9,9 @@ node_modules/
 # Claude
 CLAUDE.md
 
+# Docs
+docs/*.pdf
+
 # OS
 .DS_Store
 Thumbs.db
