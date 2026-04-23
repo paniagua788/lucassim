@@ -2,6 +2,7 @@
 import BaseLayout from '../layouts/BaseLayout.astro';
 import PortfolioNavbar from '../components/portfolio/PortfolioNavbar.astro';
 import PortfolioHero from '../components/portfolio/PortfolioHero.astro';
+import MetricsGrid from '../components/portfolio/MetricsGrid.astro';
 import SkillsGrid from '../components/portfolio/SkillsGrid.astro';
 import ExperienceList from '../components/portfolio/ExperienceList.astro';
 import ProjectsList from '../components/portfolio/ProjectsList.astro';
@@ -17,6 +18,13 @@ import EducationCerts from '../components/portfolio/EducationCerts.astro';
 
     <main>
       <PortfolioHero />
+
+      <!-- Divisor -->
+      <div class="max-w-4xl mx-auto px-6">
+        <hr class="border-border" />
+      </div>
+
+      <MetricsGrid />
 
       <!-- Divisor -->
       <div class="max-w-4xl mx-auto px-6">
