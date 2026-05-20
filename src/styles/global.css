@@ -84,3 +84,31 @@
     animation: none;
   }
 }
+
+/* VareApp Orange Variants */
+.vareapp-card {
+  transition: transform 0.2s ease, border-color 0.2s ease;
+}
+
+.vareapp-card:hover {
+  transform: translateY(-2px);
+  border-color: rgba(249, 115, 22, 0.3);
+}
+
+.vareapp-cta {
+  background: linear-gradient(135deg, #f97316, #ea580c);
+  box-shadow: 0 4px 14px rgba(249, 115, 22, 0.35);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.vareapp-cta:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 6px 20px rgba(249, 115, 22, 0.45);
+}
+
+.vareapp-gradient-text {
+  background: linear-gradient(135deg, #ffffff 0%, #fb923c 50%, #f97316 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
