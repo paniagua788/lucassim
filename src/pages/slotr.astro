@@ -8,16 +8,54 @@ import FeatureCard from '../components/FeatureCard.astro';
 const WHATSAPP = 'https://wa.me/595993294266';
 const EMAIL    = 'lucas_paniagua@hotmail.com';
 
-const features = [
-  { icon: '📅', name: 'Reservas online',        description: 'Página pública donde tus clientes reservan su turno sin llamar.' },
-  { icon: '📆', name: 'Gestión de agenda',       description: 'Vista de calendario por recurso con bloqueos y cancelaciones.' },
-  { icon: '🛎️', name: 'Múltiples servicios',    description: 'Servicios con duración y rango de precios. Con 10 o más servicios, los clientes navegan por categoría primero.' },
-  { icon: '👥', name: 'Staff y recursos',         description: 'Soporte para personas y recursos físicos, con roles admin/staff y permisos granulares por módulo.' },
-  { icon: '🔔', name: 'Notificaciones',           description: 'Email de confirmación al reservar, recordatorio automático 1 hora antes del turno, aviso por Telegram al staff y botón de WhatsApp en la confirmación.' },
-  { icon: '⚙️', name: 'Panel administrativo',    description: 'Configuración completa: horarios, servicios, bloqueos y ajustes del negocio.' },
-  { icon: '📊', name: 'Dashboard de métricas',   description: 'KPIs de turnos e ingresos estimados, 5 gráficos por período (7/30/90 días), ranking de servicios, franjas horarias pico y clientes frecuentes.' },
-  { icon: '⭐', name: 'Reseñas de clientes',     description: 'Los clientes califican su experiencia con estrellas y texto. El puntaje promedio y las reseñas recientes se muestran en tu página pública.' },
-  { icon: '🎨', name: 'Personalización',          description: '16 paletas de color, logo propio y etiquetas configurables. Tu sistema de turnos con tu identidad visual.' },
+const featureCategories = [
+  {
+    heading: 'Reservas',
+    description: 'Todo para que tus clientes reserven fácil.',
+    features: [
+      { icon: '📅', name: 'Reservas online', description: 'Página pública donde tus clientes reservan su turno sin llamar.' },
+      { icon: '🛎️', name: 'Múltiples servicios', description: 'Servicios con duración y rango de precios. Con 10 o más servicios, los clientes navegan por categoría primero.' },
+      { icon: '🧩', name: 'Multi-servicios', description: 'Tus clientes pueden reservar varios servicios en una sola cita. El sistema calcula duración total y precio combinado automáticamente.' },
+      { icon: '📂', name: 'Categorías y precios', description: 'Organizá tus servicios por categoría y mostrá rangos de precio para que el cliente tenga una idea clara antes de reservar.' },
+    ],
+  },
+  {
+    heading: 'Gestión',
+    description: 'Control total de tu equipo y tu agenda.',
+    features: [
+      { icon: '📆', name: 'Gestión de agenda', description: 'Vista de calendario por recurso con bloqueos y cancelaciones.' },
+      { icon: '👥', name: 'Staff y recursos', description: 'Soporte para personas y recursos físicos, con roles admin/staff y permisos granulares por módulo.' },
+      { icon: '⚙️', name: 'Panel administrativo', description: 'Configuración completa: horarios, servicios, bloqueos y ajustes del negocio.' },
+      { icon: '🚫', name: 'Bloqueos con motivo', description: 'Bloqueá turnos individuales o días completos indicando el motivo. Visible en la agenda para todo el equipo.' },
+      { icon: '🔐', name: 'Permisos granulares', description: 'Controlá quién ve y gestiona cada agenda. Permisos independientes por staff para agenda, bloqueos y configuración.' },
+    ],
+  },
+  {
+    heading: 'Comunicación',
+    description: 'Mantené informados a tus clientes y a tu equipo.',
+    features: [
+      { icon: '🔔', name: 'Notificaciones', description: 'Avisos instantáneos por Telegram al staff cuando un cliente reserva. Integración con bot de Telegram para mantener al equipo informado en tiempo real.' },
+      { icon: '📧', name: 'Confirmación por email', description: 'Tus clientes reciben un email con los detalles de su turno al confirmar la reserva.' },
+      { icon: '⏰', name: 'Recordatorios automáticos', description: 'Emails de recordatorio enviados automáticamente antes del turno para reducir ausencias.' },
+      { icon: '💬', name: 'Confirmación por WhatsApp', description: 'Botón directo en la pantalla de confirmación para que el cliente envíe los datos de su turno por WhatsApp.' },
+    ],
+  },
+  {
+    heading: 'Marketing',
+    description: 'Atraé más clientes y fidelizá a los que ya tenés.',
+    features: [
+      { icon: '🎉', name: 'Eventos y Promociones', description: 'Creá promociones con descuentos porcentuales o fijos, notificaciones visuales con íconos y banners de color. Solo un evento activo a la vez. Tus clientes ven las ofertas directamente en la página de reservas.', isNew: true },
+      { icon: '⭐', name: 'Reseñas de clientes', description: 'Los clientes califican su experiencia con estrellas y texto. El puntaje promedio y las reseñas recientes se muestran en tu página pública.' },
+    ],
+  },
+  {
+    heading: 'Analytics',
+    description: 'Datos claros para tomar mejores decisiones.',
+    features: [
+      { icon: '📊', name: 'Dashboard de métricas', description: 'KPIs de turnos e ingresos estimados, 5 gráficos por período (7/30/90 días), ranking de servicios, franjas horarias pico y clientes frecuentes.' },
+      { icon: '🎨', name: 'Personalización', description: '16 paletas de color, logo propio y etiquetas configurables. Tu sistema de turnos con tu identidad visual.' },
+    ],
+  },
 ];
 
 const target = ['Clínicas', 'Peluquerías', 'Consultoras', 'Canchas deportivas', 'Consultorios'];
