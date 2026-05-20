@@ -4,68 +4,83 @@ import Navbar from '../components/Navbar.astro';
 import Footer from '../components/Footer.astro';
 import ContactButtons from '../components/ContactButtons.astro';
 import CategoryCard from '../components/CategoryCard.astro';
-import { icons } from '../components/icons';
+import { icons, type IconName } from '../components/icons';
 
 const WHATSAPP = 'https://wa.me/595993294266';
 const EMAIL    = 'lucas_paniagua@hotmail.com';
 
-const featureCategories = [
+interface FeatureItem {
+  icon: IconName;
+  name: string;
+  description: string;
+}
+
+interface FeatureCategory {
+  heading: string;
+  description: string;
+  icon: IconName;
+  span: number;
+  isNew?: boolean;
+  features: FeatureItem[];
+}
+
+const featureCategories: FeatureCategory[] = [
   {
     heading: 'Reservas',
     description: 'Todo para que tus clientes reserven fácil.',
-    icon: 'calendar' as const,
+    icon: 'calendar',
     span: 5,
     features: [
-      { icon: 'calendar' as const, name: 'Reservas online', description: 'Página pública donde tus clientes reservan su turno sin llamar.' },
-      { icon: 'list' as const, name: 'Múltiples servicios', description: 'Servicios con duración y rango de precios. Con 10 o más servicios, los clientes navegan por categoría primero.' },
-      { icon: 'link' as const, name: 'Multi-servicios', description: 'Tus clientes pueden reservar varios servicios en una sola cita. El sistema calcula duración total y precio combinado automáticamente.' },
-      { icon: 'folder' as const, name: 'Categorías y precios', description: 'Organizá tus servicios por categoría y mostrá rangos de precio para que el cliente tenga una idea clara antes de reservar.' },
+      { icon: 'calendar', name: 'Reservas online', description: 'Página pública donde tus clientes reservan su turno sin llamar.' },
+      { icon: 'list', name: 'Múltiples servicios', description: 'Servicios con duración y rango de precios. Con 10 o más servicios, los clientes navegan por categoría primero.' },
+      { icon: 'link', name: 'Multi-servicios', description: 'Tus clientes pueden reservar varios servicios en una sola cita. El sistema calcula duración total y precio combinado automáticamente.' },
+      { icon: 'folder', name: 'Categorías y precios', description: 'Organizá tus servicios por categoría y mostrá rangos de precio para que el cliente tenga una idea clara antes de reservar.' },
     ],
   },
   {
     heading: 'Gestión',
     description: 'Control total de tu equipo y tu agenda.',
-    icon: 'grid' as const,
+    icon: 'grid',
     span: 7,
     features: [
-      { icon: 'grid' as const, name: 'Gestión de agenda', description: 'Vista de calendario por recurso con bloqueos y cancelaciones.' },
-      { icon: 'users' as const, name: 'Staff y recursos', description: 'Soporte para personas y recursos físicos, con roles admin/staff y permisos granulares por módulo.' },
-      { icon: 'settings' as const, name: 'Panel administrativo', description: 'Configuración completa: horarios, servicios, bloqueos y ajustes del negocio.' },
-      { icon: 'lock' as const, name: 'Bloqueos con motivo', description: 'Bloqueá turnos individuales o días completos indicando el motivo. Visible en la agenda para todo el equipo.' },
-      { icon: 'shield' as const, name: 'Permisos granulares', description: 'Controlá quién ve y gestiona cada agenda. Permisos independientes por staff para agenda, bloqueos y configuración.' },
+      { icon: 'grid', name: 'Gestión de agenda', description: 'Vista de calendario por recurso con bloqueos y cancelaciones.' },
+      { icon: 'users', name: 'Staff y recursos', description: 'Soporte para personas y recursos físicos, con roles admin/staff y permisos granulares por módulo.' },
+      { icon: 'settings', name: 'Panel administrativo', description: 'Configuración completa: horarios, servicios, bloqueos y ajustes del negocio.' },
+      { icon: 'lock', name: 'Bloqueos con motivo', description: 'Bloqueá turnos individuales o días completos indicando el motivo. Visible en la agenda para todo el equipo.' },
+      { icon: 'shield', name: 'Permisos granulares', description: 'Controlá quién ve y gestiona cada agenda. Permisos independientes por staff para agenda, bloqueos y configuración.' },
     ],
   },
   {
     heading: 'Comunicación',
     description: 'Mantené informados a tus clientes y a tu equipo.',
-    icon: 'bell' as const,
+    icon: 'bell',
     span: 5,
     features: [
-      { icon: 'bell' as const, name: 'Notificaciones', description: 'Avisos instantáneos por Telegram al staff cuando un cliente reserva. Integración con bot de Telegram para mantener al equipo informado en tiempo real.' },
-      { icon: 'mail' as const, name: 'Confirmación por email', description: 'Tus clientes reciben un email con los detalles de su turno al confirmar la reserva.' },
-      { icon: 'clock' as const, name: 'Recordatorios automáticos', description: 'Emails de recordatorio enviados automáticamente antes del turno para reducir ausencias.' },
-      { icon: 'messageCircle' as const, name: 'Confirmación por WhatsApp', description: 'Botón directo en la pantalla de confirmación para que el cliente envíe los datos de su turno por WhatsApp.' },
+      { icon: 'bell', name: 'Notificaciones', description: 'Avisos instantáneos por Telegram al staff cuando un cliente reserva. Integración con bot de Telegram para mantener al equipo informado en tiempo real.' },
+      { icon: 'mail', name: 'Confirmación por email', description: 'Tus clientes reciben un email con los detalles de su turno al confirmar la reserva.' },
+      { icon: 'clock', name: 'Recordatorios automáticos', description: 'Emails de recordatorio enviados automáticamente antes del turno para reducir ausencias.' },
+      { icon: 'messageCircle', name: 'Confirmación por WhatsApp', description: 'Botón directo en la pantalla de confirmación para que el cliente envíe los datos de su turno por WhatsApp.' },
     ],
   },
   {
     heading: 'Marketing',
     description: 'Atraé más clientes y fidelizá a los que ya tenés.',
-    icon: 'sparkles' as const,
+    icon: 'sparkles',
     span: 4,
     isNew: true,
     features: [
-      { icon: 'sparkles' as const, name: 'Eventos y Promociones', description: 'Creá promociones con descuentos porcentuales o fijos, notificaciones visuales con íconos y banners de color. Solo un evento activo a la vez. Tus clientes ven las ofertas directamente en la página de reservas.' },
-      { icon: 'star' as const, name: 'Reseñas de clientes', description: 'Los clientes califican su experiencia con estrellas y texto. El puntaje promedio y las reseñas recientes se muestran en tu página pública.' },
+      { icon: 'sparkles', name: 'Eventos y Promociones', description: 'Creá promociones con descuentos porcentuales o fijos, notificaciones visuales con íconos y banners de color. Solo un evento activo a la vez. Tus clientes ven las ofertas directamente en la página de reservas.' },
+      { icon: 'star', name: 'Reseñas de clientes', description: 'Los clientes califican su experiencia con estrellas y texto. El puntaje promedio y las reseñas recientes se muestran en tu página pública.' },
     ],
   },
   {
     heading: 'Analytics',
     description: 'Datos claros para tomar mejores decisiones.',
-    icon: 'activity' as const,
+    icon: 'activity',
     span: 3,
     features: [
-      { icon: 'activity' as const, name: 'Dashboard de métricas', description: 'KPIs de turnos e ingresos estimados, 5 gráficos por período (7/30/90 días), ranking de servicios, franjas horarias pico y clientes frecuentes.' },
-      { icon: 'palette' as const, name: 'Personalización', description: '16 paletas de color, logo propio y etiquetas configurables. Tu sistema de turnos con tu identidad visual.' },
+      { icon: 'activity', name: 'Dashboard de métricas', description: 'KPIs de turnos e ingresos estimados, 5 gráficos por período (7/30/90 días), ranking de servicios, franjas horarias pico y clientes frecuentes.' },
+      { icon: 'palette', name: 'Personalización', description: '16 paletas de color, logo propio y etiquetas configurables. Tu sistema de turnos con tu identidad visual.' },
     ],
   },
 ];
