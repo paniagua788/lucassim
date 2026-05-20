@@ -97,10 +97,22 @@ const pricingRanges = [
     <section class="py-16">
       <h2 class="text-xl font-black mb-2">¿Qué incluye Slotr?</h2>
       <p class="text-sm text-muted mb-8">Todo lo que necesitás para que tus clientes reserven solos.</p>
-      <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
-        {features.map(f => <FeatureCard {...f} />)}
-      </div>
     </section>
+
+    {featureCategories.map(cat => (
+      <section class="py-12 border-t border-border">
+        <h2 class="text-xl font-black mb-1">
+          {cat.heading}
+          {cat.heading === 'Marketing' && (
+            <span class="inline-block px-2 py-0.5 rounded text-[10px] font-bold uppercase tracking-wider bg-slotr/20 text-slotr align-middle ml-2">Nuevo</span>
+          )}
+        </h2>
+        <p class="text-sm text-muted mb-6">{cat.description}</p>
+        <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
+          {cat.features.map(f => <FeatureCard {...f} />)}
+        </div>
+      </section>
+    ))}
 
     <!-- PARA QUIÉN ES -->
     <section class="py-12 border-t border-border">
