@@ -21,28 +21,28 @@
   --radius-inner: 8px;
 }
 
-/* Slotr Hero Animations */
-@keyframes slotr-float {
+/* Hero Animations */
+@keyframes hero-float {
   0%, 100% { transform: translate(0, 0) scale(1); }
   25% { transform: translate(15px, -20px) scale(1.05); }
   50% { transform: translate(-10px, 15px) scale(0.95); }
   75% { transform: translate(20px, 10px) scale(1.02); }
 }
 
-.slotr-shape {
-  animation: slotr-float 20s ease-in-out infinite;
+.hero-shape {
+  animation: hero-float 20s ease-in-out infinite;
 }
 
-.slotr-shape-reverse {
-  animation: slotr-float 25s ease-in-out infinite reverse;
+.hero-shape-reverse {
+  animation: hero-float 25s ease-in-out infinite reverse;
 }
 
-.slotr-icon-float {
-  animation: slotr-float 16s ease-in-out infinite;
+.hero-icon-float {
+  animation: hero-float 16s ease-in-out infinite;
 }
 
-.slotr-icon-float-reverse {
-  animation: slotr-float 20s ease-in-out infinite reverse;
+.hero-icon-float-reverse {
+  animation: hero-float 20s ease-in-out infinite reverse;
 }
 
 /* Slotr Card Hover Effects */
@@ -77,10 +77,10 @@
 
 /* Respect user motion preferences */
 @media (prefers-reduced-motion: reduce) {
-  .slotr-shape,
-  .slotr-shape-reverse,
-  .slotr-icon-float,
-  .slotr-icon-float-reverse {
+  .hero-shape,
+  .hero-shape-reverse,
+  .hero-icon-float,
+  .hero-icon-float-reverse {
     animation: none;
   }
 }
