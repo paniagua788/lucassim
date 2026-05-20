@@ -1,0 +1,44 @@
+---
+import { icons, type IconName } from './icons';
+
+interface Feature {
+  icon: IconName;
+  name: string;
+  description: string;
+  isNew?: boolean;
+}
+
+interface Props {
+  heading: string;
+  description: string;
+  features: Feature[];
+  icon: IconName;
+  isNew?: boolean;
+  span: number;
+}
+
+const { heading, description, features, icon, isNew, span } = Astro.props;
+---
+
+<div class={`slotr-card bg-white/[0.03] border border-white/[0.06] rounded-2xl p-6 ${isNew ? '!bg-gradient-to-br !from-violet-500/10 !to-purple-500/5 !border-violet-500/25' : ''}`} style={`grid-column: span ${span};`}>
+  <div class="mb-4">
+    <h3 class="text-lg font-bold text-white flex items-center gap-2">
+      <span class="text-slotr" set:html={icons[icon]} style="width:20px;height:20px;display:inline-block;"></span>
+      {heading}
+      {isNew && (
+        <span class="bg-violet-500/20 text-violet-300 text-[10px] font-bold uppercase tracking-wider px-1.5 py-0.5 rounded">Nuevo</span>
+      )}
+    </h3>
+    <p class="text-xs text-subtle mt-1">{description}</p>
+  </div>
+
+  <div class={`grid gap-2.5 ${features.length >= 5 ? 'grid-cols-3' : features.length >= 3 ? 'grid-cols-2' : 'grid-cols-1'}`}>
+    {features.map(f => (
+      <div class={`p-3 rounded-xl ${isNew ? 'bg-white/[0.03] border border-violet-500/12' : 'bg-white/[0.02] border border-white/[0.04]'}`}>
+        <span class="text-slotr mb-1.5 block" set:html={icons[f.icon]} style="width:16px;height:16px;display:block;"></span>
+        <p class="text-[0.7rem] font-bold text-white mb-0.5">{f.name}</p>
+        <p class="text-[0.6rem] text-subtle leading-relaxed">{f.description}</p>
+      </div>
+    ))}
+  </div>
+</div>
