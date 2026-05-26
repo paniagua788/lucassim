@@ -13,10 +13,11 @@ interface Props {
   features: Feature[];
   icon: IconName;
   isNew?: boolean;
+  isNewLabel?: string;
   span?: number;
 }
 
-const { heading, description, features, icon, isNew, span = 1 } = Astro.props;
+const { heading, description, features, icon, isNew, isNewLabel = 'Nuevo', span = 1 } = Astro.props;
 
 // Map span values to responsive col-span classes (only applied at lg breakpoint)
 const spanClasses: Record<number, string> = {
@@ -53,7 +54,7 @@ const subGridCols = features.length >= 5
       <span class="text-slotr" set:html={icons[icon]} style="width:20px;height:20px;display:inline-block;"></span>
       {heading}
       {isNew && (
-        <span class="bg-violet-500/20 text-violet-300 text-[10px] font-bold uppercase tracking-wider px-1.5 py-0.5 rounded">Nuevo</span>
+        <span class="bg-violet-500/20 text-violet-300 text-[10px] font-bold uppercase tracking-wider px-1.5 py-0.5 rounded">{isNewLabel}</span>
       )}
     </h3>
     <p class="text-xs text-subtle mt-1">{description}</p>
