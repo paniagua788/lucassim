@@ -92,6 +92,75 @@ const pricingRanges = [
   { range: '2–3 recursos', example: '3 canchas de pádel, 2 profesionales',       featured: true  },
   { range: '4+ recursos',  example: 'Clínica con múltiples especialistas',       featured: false },
 ];
+
+const featureCategoriesEn: FeatureCategory[] = [
+  {
+    heading: 'Bookings',
+    description: 'Everything so your clients can book easily.',
+    icon: 'calendar',
+    span: 5,
+    features: [
+      { icon: 'calendar', name: 'Online bookings', description: 'Public page where your clients book their appointment without calling.' },
+      { icon: 'list', name: 'Multiple services', description: 'Services with duration and price range. With 10 or more services, clients browse by category first.' },
+      { icon: 'link', name: 'Multi-services', description: 'Your clients can book multiple services in a single appointment. The system calculates total duration and combined price automatically.' },
+      { icon: 'folder', name: 'Categories and prices', description: 'Organize your services by category and display price ranges so clients have a clear idea before booking.' },
+    ],
+  },
+  {
+    heading: 'Management',
+    description: 'Total control of your team and schedule.',
+    icon: 'grid',
+    span: 7,
+    features: [
+      { icon: 'grid', name: 'Schedule management', description: 'Calendar view by resource with blocks and cancellations.' },
+      { icon: 'users', name: 'Staff and resources', description: 'Support for people and physical resources, with admin/staff roles and granular permissions per module.' },
+      { icon: 'settings', name: 'Admin panel', description: 'Full configuration: hours, services, blocks and business settings.' },
+      { icon: 'lock', name: 'Blocks with reason', description: 'Block individual slots or full days indicating the reason. Visible on the schedule for the entire team.' },
+      { icon: 'shield', name: 'Granular permissions', description: 'Control who sees and manages each schedule. Independent permissions per staff for schedule, blocks and configuration.' },
+    ],
+  },
+  {
+    heading: 'Communication',
+    description: 'Keep your clients and team informed.',
+    icon: 'bell',
+    span: 5,
+    features: [
+      { icon: 'bell', name: 'Notifications', description: 'Instant Telegram alerts to staff when a client books. Telegram bot integration to keep the team informed in real time.' },
+      { icon: 'mail', name: 'Email confirmation', description: 'Your clients receive an email with their appointment details upon confirming the booking.' },
+      { icon: 'clock', name: 'Automatic reminders', description: 'Reminder emails sent automatically before the appointment to reduce no-shows.' },
+      { icon: 'messageCircle', name: 'WhatsApp confirmation', description: 'Direct button on the confirmation screen so the client can send their appointment details via WhatsApp.' },
+    ],
+  },
+  {
+    heading: 'Marketing',
+    description: 'Attract more clients and retain the ones you have.',
+    icon: 'sparkles',
+    span: 4,
+    isNew: true,
+    features: [
+      { icon: 'sparkles', name: 'Events & Promotions', description: 'Create promotions with percentage or fixed discounts, visual notifications with icons and color banners. Only one active event at a time. Your clients see offers directly on the booking page.' },
+      { icon: 'star', name: 'Client reviews', description: 'Clients rate their experience with stars and text. The average score and recent reviews are shown on your public page.' },
+    ],
+  },
+  {
+    heading: 'Analytics',
+    description: 'Clear data to make better decisions.',
+    icon: 'activity',
+    span: 3,
+    features: [
+      { icon: 'activity', name: 'Metrics dashboard', description: 'KPIs of appointments and estimated revenue, 5 charts by period (7/30/90 days), service ranking, peak time slots and frequent clients.' },
+      { icon: 'palette', name: 'Customization', description: '16 color palettes, custom logo and configurable labels. Your appointment system with your visual identity.' },
+    ],
+  },
+];
+
+const targetEn = ['Clinics', 'Hair salons', 'Consultancies', 'Sports courts', 'Medical offices'];
+
+const pricingRangesEn = [
+  { range: '1 resource',    example: 'Individual office, single hairdresser',    featured: false },
+  { range: '2–3 resources', example: '3 padel courts, 2 professionals',       featured: true  },
+  { range: '4+ resources',  example: 'Clinic with multiple specialists',       featured: false },
+];
 ---
 
 <BaseLayout
@@ -99,137 +168,287 @@ const pricingRanges = [
   description="Slotr: sistema de agendamiento de turnos online para clínicas, peluquerías, consultoras y canchas deportivas en Paraguay."
   favicon="/slotr-icono-morado.png"
 >
-  <Navbar />
+  <Navbar showLangToggle={true} />
 
-  <!-- HERO -->
-  <section class="relative overflow-hidden bg-[#0a0a0f] py-24 text-center px-6">
-    <!-- Animated shapes -->
-    <div class="hero-shape absolute top-[15%] left-[12%] w-[180px] h-[180px] rounded-full" style="background: radial-gradient(circle, rgba(124,58,237,0.25), transparent 70%); filter: blur(40px);"></div>
-    <div class="hero-shape-reverse absolute top-[55%] right-[10%] w-[220px] h-[220px] rounded-full" style="background: radial-gradient(circle, rgba(168,85,247,0.2), transparent 70%); filter: blur(50px);"></div>
-    <div class="hero-shape absolute bottom-[10%] left-[35%] w-[140px] h-[140px] rounded-full" style="background: radial-gradient(circle, rgba(192,132,252,0.15), transparent 70%); filter: blur(35px);"></div>
-    <div class="hero-shape-reverse absolute top-[25%] right-[28%] w-[100px] h-[100px] rounded-full" style="background: radial-gradient(circle, rgba(124,58,237,0.18), transparent 70%); filter: blur(30px);"></div>
+  <!-- ESPAÑOL -->
+  <div data-lang="es">
+    <!-- HERO -->
+    <section class="relative overflow-hidden bg-[#0a0a0f] py-24 text-center px-6">
+      <div class="hero-shape absolute top-[15%] left-[12%] w-[180px] h-[180px] rounded-full" style="background: radial-gradient(circle, rgba(124,58,237,0.25), transparent 70%); filter: blur(40px);"></div>
+      <div class="hero-shape-reverse absolute top-[55%] right-[10%] w-[220px] h-[220px] rounded-full" style="background: radial-gradient(circle, rgba(168,85,247,0.2), transparent 70%); filter: blur(50px);"></div>
+      <div class="hero-shape absolute bottom-[10%] left-[35%] w-[140px] h-[140px] rounded-full" style="background: radial-gradient(circle, rgba(192,132,252,0.15), transparent 70%); filter: blur(35px);"></div>
+      <div class="hero-shape-reverse absolute top-[25%] right-[28%] w-[100px] h-[100px] rounded-full" style="background: radial-gradient(circle, rgba(124,58,237,0.18), transparent 70%); filter: blur(30px);"></div>
 
-    <!-- Grid overlay -->
-    <div class="absolute inset-0" style="background-image: linear-gradient(rgba(124,58,237,0.04) 1px, transparent 1px), linear-gradient(90deg, rgba(124,58,237,0.04) 1px, transparent 1px); background-size: 60px 60px; mask-image: radial-gradient(ellipse at center, black 30%, transparent 70%); -webkit-mask-image: radial-gradient(ellipse at center, black 30%, transparent 70%);"></div>
+      <div class="absolute inset-0" style="background-image: linear-gradient(rgba(124,58,237,0.04) 1px, transparent 1px), linear-gradient(90deg, rgba(124,58,237,0.04) 1px, transparent 1px); background-size: 60px 60px; mask-image: radial-gradient(ellipse at center, black 30%, transparent 70%); -webkit-mask-image: radial-gradient(ellipse at center, black 30%, transparent 70%);"></div>
 
-    <!-- Floating icons -->
-    <div class="hero-icon-float absolute top-[18%] right-[18%]" style="opacity: 0.15;" aria-hidden="true">
-      <span set:html={icons.calendar} style="width:32px;height:32px;display:block;color:#a855f7;"></span>
-    </div>
-    <div class="hero-icon-float-reverse absolute bottom-[22%] left-[14%]" style="opacity: 0.12;" aria-hidden="true">
-      <span set:html={icons.users} style="width:28px;height:28px;display:block;color:#7c3aed;"></span>
-    </div>
-    <div class="hero-icon-float absolute top-[35%] left-[8%]" style="opacity: 0.10;" aria-hidden="true">
-      <span set:html={icons.bell} style="width:24px;height:24px;display:block;color:#c084fc;"></span>
-    </div>
-    <div class="hero-icon-float-reverse absolute bottom-[12%] right-[22%]" style="opacity: 0.12;" aria-hidden="true">
-      <span set:html={icons.sparkles} style="width:26px;height:26px;display:block;color:#a855f7;"></span>
-    </div>
-    <div class="hero-icon-float absolute top-[50%] left-[24%]" style="opacity: 0.10;" aria-hidden="true">
-      <span set:html={icons.clock} style="width:22px;height:22px;display:block;color:#c084fc;"></span>
-    </div>
+      <div class="hero-icon-float absolute top-[18%] right-[18%]" style="opacity: 0.15;" aria-hidden="true">
+        <span set:html={icons.calendar} style="width:32px;height:32px;display:block;color:#a855f7;"></span>
+      </div>
+      <div class="hero-icon-float-reverse absolute bottom-[22%] left-[14%]" style="opacity: 0.12;" aria-hidden="true">
+        <span set:html={icons.users} style="width:28px;height:28px;display:block;color:#7c3aed;"></span>
+      </div>
+      <div class="hero-icon-float absolute top-[35%] left-[8%]" style="opacity: 0.10;" aria-hidden="true">
+        <span set:html={icons.bell} style="width:24px;height:24px;display:block;color:#c084fc;"></span>
+      </div>
+      <div class="hero-icon-float-reverse absolute bottom-[12%] right-[22%]" style="opacity: 0.12;" aria-hidden="true">
+        <span set:html={icons.sparkles} style="width:26px;height:26px;display:block;color:#a855f7;"></span>
+      </div>
+      <div class="hero-icon-float absolute top-[50%] left-[24%]" style="opacity: 0.10;" aria-hidden="true">
+        <span set:html={icons.clock} style="width:22px;height:22px;display:block;color:#c084fc;"></span>
+      </div>
 
-    <!-- Content -->
-    <div class="relative z-10">
-      <p class="text-xs font-bold uppercase tracking-widest text-slotr mb-4 inline-block px-4 py-1.5 border border-violet-500/30 rounded-full">SaaS · Agendamiento</p>
+      <div class="relative z-10">
+        <p class="text-xs font-bold uppercase tracking-widest text-slotr mb-4 inline-block px-4 py-1.5 border border-violet-500/30 rounded-full">SaaS · Agendamiento</p>
 
-      <img src="/slotr-morado-claro.png" alt="Slotr" class="h-16 mx-auto mb-4" />
+        <img src="/slotr-morado-claro.png" alt="Slotr" class="h-16 mx-auto mb-4" />
 
-      <h1 class="text-4xl font-black mb-3 slotr-gradient-text leading-tight">Turnos online, sin complicaciones</h1>
+        <h1 class="text-4xl font-black mb-3 slotr-gradient-text leading-tight">Turnos online, sin complicaciones</h1>
 
-      <p class="text-sm text-muted max-w-md mx-auto mb-8 leading-relaxed">
-        Sistema de turnos online para clínicas, peluquerías, consultoras y canchas deportivas en Paraguay.
-      </p>
+        <p class="text-sm text-muted max-w-md mx-auto mb-8 leading-relaxed">
+          Sistema de turnos online para clínicas, peluquerías, consultoras y canchas deportivas en Paraguay.
+        </p>
 
-      <a
-        href={WHATSAPP}
-        target="_blank"
-        rel="noopener noreferrer"
-        class="inline-block px-8 py-3 rounded-lg text-sm font-bold text-white slotr-cta"
-      >
-        Consultá por una demo
-      </a>
-    </div>
-  </section>
-
-  <div class="max-w-5xl mx-auto px-6">
-
-    <!-- FUNCIONALIDADES -->
-    <section class="py-16">
-      <h2 class="text-xl font-black mb-2">¿Qué incluye Slotr?</h2>
-      <p class="text-sm text-muted mb-8">Todo lo que necesitás para que tus clientes reserven solos.</p>
-
-      <!-- Bento Grid -->
-      <div class="grid grid-cols-1 lg:grid-cols-12 gap-4">
-        {featureCategories.map(cat => (
-          <CategoryCard
-            heading={cat.heading}
-            description={cat.description}
-            features={cat.features}
-            icon={cat.icon}
-            isNew={cat.isNew}
-            span={cat.span}
-          />
-        ))}
+        <a
+          href={WHATSAPP}
+          target="_blank"
+          rel="noopener noreferrer"
+          class="inline-block px-8 py-3 rounded-lg text-sm font-bold text-white slotr-cta"
+        >
+          Consultá por una demo
+        </a>
       </div>
     </section>
 
-    <!-- PARA QUIÉN ES -->
-    <section class="py-12 border-t border-border">
-      <h2 class="text-xl font-black mb-2">Para cualquier negocio que trabaje con turnos</h2>
-      <p class="text-sm text-muted mb-6">Si tu negocio agenda citas, Slotr es para vos.</p>
-      <div class="flex flex-wrap gap-2">
-        {target.map(t => (
-          <span class="px-4 py-1.5 rounded-full text-xs font-semibold border border-violet-900 text-slotr bg-slotr-dark">
-            {t}
+    <div class="max-w-5xl mx-auto px-6">
+
+      <section class="py-16">
+        <h2 class="text-xl font-black mb-2">¿Qué incluye Slotr?</h2>
+        <p class="text-sm text-muted mb-8">Todo lo que necesitás para que tus clientes reserven solos.</p>
+
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-4">
+          {featureCategories.map(cat => (
+            <CategoryCard
+              heading={cat.heading}
+              description={cat.description}
+              features={cat.features}
+              icon={cat.icon}
+              isNew={cat.isNew}
+              span={cat.span}
+            />
+          ))}
+        </div>
+      </section>
+
+      <section class="py-12 border-t border-border">
+        <h2 class="text-xl font-black mb-2">Para cualquier negocio que trabaje con turnos</h2>
+        <p class="text-sm text-muted mb-6">Si tu negocio agenda citas, Slotr es para vos.</p>
+        <div class="flex flex-wrap gap-2">
+          {target.map(t => (
+            <span class="px-4 py-1.5 rounded-full text-xs font-semibold border border-violet-900 text-slotr bg-slotr-dark">
+              {t}
+            </span>
+          ))}
+          <span class="px-4 py-1.5 rounded-full text-xs font-semibold border border-border text-muted">
+            Cualquier negocio que agenda citas
           </span>
-        ))}
-        <span class="px-4 py-1.5 rounded-full text-xs font-semibold border border-border text-muted">
-          Cualquier negocio que agenda citas
-        </span>
-      </div>
-    </section>
+        </div>
+      </section>
 
-    <!-- PRECIOS -->
-    <section class="py-12 border-t border-white/[0.06]">
-      <h2 class="text-xl font-black mb-2">Precio según tu equipo</h2>
-      <p class="text-sm text-muted mb-2">Pagás por los calendarios que usás. Sin costos fijos por funciones que no necesitás.</p>
-      <p class="text-xs text-subtle mb-8">Precio base incluye 1 recurso/calendario. Cada recurso adicional tiene un costo adicional.</p>
+      <section class="py-12 border-t border-white/[0.06]">
+        <h2 class="text-xl font-black mb-2">Precio según tu equipo</h2>
+        <p class="text-sm text-muted mb-2">Pagás por los calendarios que usás. Sin costos fijos por funciones que no necesitás.</p>
+        <p class="text-xs text-subtle mb-8">Precio base incluye 1 recurso/calendario. Cada recurso adicional tiene un costo adicional.</p>
 
-      <div class="flex flex-col gap-3 max-w-lg">
-        {pricingRanges.map(r => (
-          <div class={`flex items-center justify-between rounded-2xl px-5 py-4 border ${
-            r.featured
-              ? 'bg-slotr-dark/50 border-violet-500/25'
-              : 'bg-white/[0.03] border-white/[0.06]'
-          }`}>
-            <div>
-              <p class={`text-sm font-bold ${r.featured ? 'text-white' : 'text-muted'}`}>{r.range}</p>
-              <p class="text-xs text-subtle mt-0.5">{r.example}</p>
+        <div class="flex flex-col gap-3 max-w-lg">
+          {pricingRanges.map(r => (
+            <div class={`flex items-center justify-between rounded-2xl px-5 py-4 border ${
+              r.featured
+                ? 'bg-slotr-dark/50 border-violet-500/25'
+                : 'bg-white/[0.03] border-white/[0.06]'
+            }`}>
+              <div>
+                <p class={`text-sm font-bold ${r.featured ? 'text-white' : 'text-muted'}`}>{r.range}</p>
+                <p class="text-xs text-subtle mt-0.5">{r.example}</p>
+              </div>
+              <a
+                href={WHATSAPP}
+                target="_blank"
+                rel="noopener noreferrer"
+                class={`text-xs font-semibold whitespace-nowrap ml-6 hover:underline transition-all ${
+                  r.featured ? 'text-slotr' : 'text-subtle hover:text-muted'
+                }`}
+              >
+                Consultá →
+              </a>
             </div>
-            <a
-              href={WHATSAPP}
-              target="_blank"
-              rel="noopener noreferrer"
-              class={`text-xs font-semibold whitespace-nowrap ml-6 hover:underline transition-all ${
-                r.featured ? 'text-slotr' : 'text-subtle hover:text-muted'
-              }`}
-            >
-              Consultá →
-            </a>
-          </div>
-        ))}
+          ))}
+        </div>
+      </section>
+
+      <section class="py-16 text-center border-t border-white/[0.06]">
+        <h2 class="text-2xl font-black mb-3">¿Querés que tus clientes reserven solos?</h2>
+        <p class="text-sm text-muted mb-8">Escribime y te muestro cómo funciona.</p>
+        <ContactButtons whatsapp={WHATSAPP} email={EMAIL} />
+      </section>
+
+    </div>
+  </div>
+
+  <!-- ENGLISH -->
+  <div data-lang="en" class="hidden">
+    <!-- HERO -->
+    <section class="relative overflow-hidden bg-[#0a0a0f] py-24 text-center px-6">
+      <div class="hero-shape absolute top-[15%] left-[12%] w-[180px] h-[180px] rounded-full" style="background: radial-gradient(circle, rgba(124,58,237,0.25), transparent 70%); filter: blur(40px);"></div>
+      <div class="hero-shape-reverse absolute top-[55%] right-[10%] w-[220px] h-[220px] rounded-full" style="background: radial-gradient(circle, rgba(168,85,247,0.2), transparent 70%); filter: blur(50px);"></div>
+      <div class="hero-shape absolute bottom-[10%] left-[35%] w-[140px] h-[140px] rounded-full" style="background: radial-gradient(circle, rgba(192,132,252,0.15), transparent 70%); filter: blur(35px);"></div>
+      <div class="hero-shape-reverse absolute top-[25%] right-[28%] w-[100px] h-[100px] rounded-full" style="background: radial-gradient(circle, rgba(124,58,237,0.18), transparent 70%); filter: blur(30px);"></div>
+
+      <div class="absolute inset-0" style="background-image: linear-gradient(rgba(124,58,237,0.04) 1px, transparent 1px), linear-gradient(90deg, rgba(124,58,237,0.04) 1px, transparent 1px); background-size: 60px 60px; mask-image: radial-gradient(ellipse at center, black 30%, transparent 70%); -webkit-mask-image: radial-gradient(ellipse at center, black 30%, transparent 70%);"></div>
+
+      <div class="hero-icon-float absolute top-[18%] right-[18%]" style="opacity: 0.15;" aria-hidden="true">
+        <span set:html={icons.calendar} style="width:32px;height:32px;display:block;color:#a855f7;"></span>
+      </div>
+      <div class="hero-icon-float-reverse absolute bottom-[22%] left-[14%]" style="opacity: 0.12;" aria-hidden="true">
+        <span set:html={icons.users} style="width:28px;height:28px;display:block;color:#7c3aed;"></span>
+      </div>
+      <div class="hero-icon-float absolute top-[35%] left-[8%]" style="opacity: 0.10;" aria-hidden="true">
+        <span set:html={icons.bell} style="width:24px;height:24px;display:block;color:#c084fc;"></span>
+      </div>
+      <div class="hero-icon-float-reverse absolute bottom-[12%] right-[22%]" style="opacity: 0.12;" aria-hidden="true">
+        <span set:html={icons.sparkles} style="width:26px;height:26px;display:block;color:#a855f7;"></span>
+      </div>
+      <div class="hero-icon-float absolute top-[50%] left-[24%]" style="opacity: 0.10;" aria-hidden="true">
+        <span set:html={icons.clock} style="width:22px;height:22px;display:block;color:#c084fc;"></span>
+      </div>
+
+      <div class="relative z-10">
+        <p class="text-xs font-bold uppercase tracking-widest text-slotr mb-4 inline-block px-4 py-1.5 border border-violet-500/30 rounded-full">SaaS · Scheduling</p>
+
+        <img src="/slotr-morado-claro.png" alt="Slotr" class="h-16 mx-auto mb-4" />
+
+        <h1 class="text-4xl font-black mb-3 slotr-gradient-text leading-tight">Online appointments, hassle-free</h1>
+
+        <p class="text-sm text-muted max-w-md mx-auto mb-8 leading-relaxed">
+          Online appointment system for clinics, hair salons, consultancies and sports courts in Paraguay.
+        </p>
+
+        <a
+          href={WHATSAPP}
+          target="_blank"
+          rel="noopener noreferrer"
+          class="inline-block px-8 py-3 rounded-lg text-sm font-bold text-white slotr-cta"
+        >
+          Request a demo
+        </a>
       </div>
     </section>
 
-    <!-- CTA FINAL -->
-    <section class="py-16 text-center border-t border-white/[0.06]">
-      <h2 class="text-2xl font-black mb-3">¿Querés que tus clientes reserven solos?</h2>
-      <p class="text-sm text-muted mb-8">Escribime y te muestro cómo funciona.</p>
-      <ContactButtons whatsapp={WHATSAPP} email={EMAIL} />
-    </section>
+    <div class="max-w-5xl mx-auto px-6">
 
+      <section class="py-16">
+        <h2 class="text-xl font-black mb-2">What's included in Slotr?</h2>
+        <p class="text-sm text-muted mb-8">Everything you need for your clients to book on their own.</p>
+
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-4">
+          {featureCategoriesEn.map(cat => (
+            <CategoryCard
+              heading={cat.heading}
+              description={cat.description}
+              features={cat.features}
+              icon={cat.icon}
+              isNew={cat.isNew}
+              span={cat.span}
+            />
+          ))}
+        </div>
+      </section>
+
+      <section class="py-12 border-t border-border">
+        <h2 class="text-xl font-black mb-2">For any business that works with appointments</h2>
+        <p class="text-sm text-muted mb-6">If your business schedules appointments, Slotr is for you.</p>
+        <div class="flex flex-wrap gap-2">
+          {targetEn.map(t => (
+            <span class="px-4 py-1.5 rounded-full text-xs font-semibold border border-violet-900 text-slotr bg-slotr-dark">
+              {t}
+            </span>
+          ))}
+          <span class="px-4 py-1.5 rounded-full text-xs font-semibold border border-border text-muted">
+            Any business that schedules appointments
+          </span>
+        </div>
+      </section>
+
+      <section class="py-12 border-t border-white/[0.06]">
+        <h2 class="text-xl font-black mb-2">Pricing based on your team</h2>
+        <p class="text-sm text-muted mb-2">You pay for the calendars you use. No fixed costs for features you don't need.</p>
+        <p class="text-xs text-subtle mb-8">Base price includes 1 resource/calendar. Each additional resource has an extra cost.</p>
+
+        <div class="flex flex-col gap-3 max-w-lg">
+          {pricingRangesEn.map(r => (
+            <div class={`flex items-center justify-between rounded-2xl px-5 py-4 border ${
+              r.featured
+                ? 'bg-slotr-dark/50 border-violet-500/25'
+                : 'bg-white/[0.03] border-white/[0.06]'
+            }`}>
+              <div>
+                <p class={`text-sm font-bold ${r.featured ? 'text-white' : 'text-muted'}`}>{r.range}</p>
+                <p class="text-xs text-subtle mt-0.5">{r.example}</p>
+              </div>
+              <a
+                href={WHATSAPP}
+                target="_blank"
+                rel="noopener noreferrer"
+                class={`text-xs font-semibold whitespace-nowrap ml-6 hover:underline transition-all ${
+                  r.featured ? 'text-slotr' : 'text-subtle hover:text-muted'
+                }`}
+              >
+                Request →
+              </a>
+            </div>
+          ))}
+        </div>
+      </section>
+
+      <section class="py-16 text-center border-t border-white/[0.06]">
+        <h2 class="text-2xl font-black mb-3">Want your clients to book on their own?</h2>
+        <p class="text-sm text-muted mb-8">Message me and I'll show you how it works.</p>
+        <ContactButtons whatsapp={WHATSAPP} email={EMAIL} />
+      </section>
+
+    </div>
   </div>
+
+  <!-- Toggle script -->
+  <script>
+    (function () {
+      var btns = document.querySelectorAll('[data-lang-btn]');
+      var sections = document.querySelectorAll('[data-lang]');
+
+      function setLang(lang) {
+        sections.forEach(function (el) {
+          if (el instanceof HTMLElement) {
+            el.classList.toggle('hidden', el.dataset.lang !== lang);
+          }
+        });
+        btns.forEach(function (btn) {
+          if (btn instanceof HTMLElement) {
+            var active = btn.dataset.target === lang;
+            btn.classList.toggle('bg-white', active);
+            btn.classList.toggle('text-gray-900', active);
+            btn.classList.toggle('text-muted', !active);
+          }
+        });
+      }
+
+      btns.forEach(function (btn) {
+        btn.addEventListener('click', function () {
+          if (btn instanceof HTMLElement && btn.dataset.target) {
+            setLang(btn.dataset.target);
+          }
+        });
+      });
+    })();
+  </script>
 
   <Footer />
 </BaseLayout>
