@@ -1,9 +1,11 @@
 ---
 interface Props {
   showBack?: boolean;
+  showHomeLink?: boolean;
+  showLangToggle?: boolean;
 }
 
-const { showBack = false } = Astro.props;
+const { showBack = false, showHomeLink = false, showLangToggle = false } = Astro.props;
 ---
 
 <nav class="fixed top-0 left-0 right-0 z-50 border-b border-border bg-base/90 backdrop-blur-sm">
@@ -12,20 +14,48 @@ const { showBack = false } = Astro.props;
       lucassim
     </a>
 
-    {showBack ? (
-      <a href="/" class="text-sm text-muted hover:text-white transition-colors">
-        ← Volver
-      </a>
-    ) : (
-      <div class="flex gap-8">
-        <a href="/#productos" class="text-sm text-muted hover:text-white transition-colors">
-          Proyectos
+    <div class="flex items-center gap-4">
+      {showBack ? (
+        <a href="/" class="text-xs font-semibold text-muted hover:text-white transition-colors flex items-center gap-1.5">
+          <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m15 18-6-6 6-6"/></svg>
+          Volver
         </a>
-        <a href="/#contacto" class="text-sm text-muted hover:text-white transition-colors">
-          Contacto
+      ) : (
+        <div class="flex gap-8">
+          <a href="/#productos" class="text-sm text-muted hover:text-white transition-colors">
+            Proyectos
+          </a>
+          <a href="/#contacto" class="text-sm text-muted hover:text-white transition-colors">
+            Contacto
+          </a>
+        </div>
+      )}
+
+      {showHomeLink && (
+        <a href="/" class="text-xs font-semibold text-muted hover:text-white transition-colors">
+          Inicio
         </a>
-      </div>
-    )}
+      )}
+
+      {showLangToggle && (
+        <div class="flex gap-1 p-1 bg-surface rounded-lg">
+          <button
+            data-lang-btn
+            data-target="es"
+            class="px-3 py-1 text-xs font-semibold rounded-md bg-white text-gray-900 transition-colors"
+          >
+            ES
+          </button>
+          <button
+            data-lang-btn
+            data-target="en"
+            class="px-3 py-1 text-xs font-semibold rounded-md text-muted transition-colors"
+          >
+            EN
+          </button>
+        </div>
+      )}
+    </div>
   </div>
 </nav>
 
