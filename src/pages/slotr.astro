@@ -29,7 +29,7 @@ const featureCategories: FeatureCategory[] = [
     heading: 'Reservas',
     description: 'Todo para que tus clientes reserven fácil.',
     icon: 'calendar',
-    span: 5,
+    span: 4,
     features: [
       { icon: 'calendar', name: 'Reservas online', description: 'Página pública donde tus clientes reservan su turno sin llamar.' },
       { icon: 'list', name: 'Múltiples servicios', description: 'Servicios con duración y rango de precios. Con 10 o más servicios, los clientes navegan por categoría primero.' },
@@ -41,7 +41,7 @@ const featureCategories: FeatureCategory[] = [
     heading: 'Gestión',
     description: 'Control total de tu equipo y tu agenda.',
     icon: 'grid',
-    span: 7,
+    span: 4,
     features: [
       { icon: 'grid', name: 'Gestión de agenda', description: 'Vista de calendario por recurso con bloqueos y cancelaciones.' },
       { icon: 'users', name: 'Staff y recursos', description: 'Soporte para personas y recursos físicos, con roles admin/staff y permisos granulares por módulo.' },
@@ -51,10 +51,23 @@ const featureCategories: FeatureCategory[] = [
     ],
   },
   {
+    heading: 'Sucursales',
+    description: 'Varios locales, un solo panel.',
+    icon: 'building',
+    span: 4,
+    isNew: true,
+    features: [
+      { icon: 'building', name: 'Multi-sucursal', description: 'Configurá todas tus ubicaciones físicas. Cada sucursal con su nombre, horarios y staff propio.' },
+      { icon: 'clock',    name: 'Horarios por sucursal', description: 'Cada sucursal tiene su propio horario de atención, independiente de las demás.' },
+      { icon: 'users',    name: 'Staff asignado', description: 'Asigná cada profesional a una sucursal específica. El sistema filtra quién atiende dónde.' },
+      { icon: 'mapPin',   name: 'Selector público', description: 'Cuando tenés más de una sucursal activa, tus clientes eligen dónde reservar en el primer paso.' },
+    ],
+  },
+  {
     heading: 'Comunicación',
     description: 'Mantené informados a tus clientes y a tu equipo.',
     icon: 'bell',
-    span: 5,
+    span: 4,
     features: [
       { icon: 'bell', name: 'Notificaciones', description: 'Avisos instantáneos por Telegram al staff cuando un cliente reserva. Integración con bot de Telegram para mantener al equipo informado en tiempo real.' },
       { icon: 'mail', name: 'Confirmación por email', description: 'Tus clientes reciben un email con los detalles de su turno al confirmar la reserva.' },
@@ -77,7 +90,7 @@ const featureCategories: FeatureCategory[] = [
     heading: 'Analytics',
     description: 'Datos claros para tomar mejores decisiones.',
     icon: 'activity',
-    span: 3,
+    span: 4,
     features: [
       { icon: 'activity', name: 'Dashboard de métricas', description: 'KPIs de turnos e ingresos estimados, 5 gráficos por período (7/30/90 días), ranking de servicios, franjas horarias pico y clientes frecuentes.' },
       { icon: 'palette', name: 'Personalización', description: '16 paletas de color, logo propio y etiquetas configurables. Tu sistema de turnos con tu identidad visual.' },
@@ -98,7 +111,7 @@ const featureCategoriesEn: FeatureCategory[] = [
     heading: 'Bookings',
     description: 'Everything so your clients can book easily.',
     icon: 'calendar',
-    span: 5,
+    span: 4,
     features: [
       { icon: 'calendar', name: 'Online bookings', description: 'Public page where your clients book their appointment without calling.' },
       { icon: 'list', name: 'Multiple services', description: 'Services with duration and price range. With 10 or more services, clients browse by category first.' },
@@ -110,7 +123,7 @@ const featureCategoriesEn: FeatureCategory[] = [
     heading: 'Management',
     description: 'Total control of your team and schedule.',
     icon: 'grid',
-    span: 7,
+    span: 4,
     features: [
       { icon: 'grid', name: 'Schedule management', description: 'Calendar view by resource with blocks and cancellations.' },
       { icon: 'users', name: 'Staff and resources', description: 'Support for people and physical resources, with admin/staff roles and granular permissions per module.' },
@@ -120,10 +133,23 @@ const featureCategoriesEn: FeatureCategory[] = [
     ],
   },
   {
+    heading: 'Branches',
+    description: 'Multiple locations, one panel.',
+    icon: 'building',
+    span: 4,
+    isNew: true,
+    features: [
+      { icon: 'building', name: 'Multi-branch', description: 'Configure all your physical locations. Each branch with its own name, hours and staff.' },
+      { icon: 'clock',    name: 'Per-branch hours', description: 'Each branch has its own opening hours, independent from the others.' },
+      { icon: 'users',    name: 'Assigned staff', description: 'Assign each staff member to a specific branch. The system filters who serves where.' },
+      { icon: 'mapPin',   name: 'Public selector', description: 'When you have more than one active branch, your clients pick where to book in the first step.' },
+    ],
+  },
+  {
     heading: 'Communication',
     description: 'Keep your clients and team informed.',
     icon: 'bell',
-    span: 5,
+    span: 4,
     features: [
       { icon: 'bell', name: 'Notifications', description: 'Instant Telegram alerts to staff when a client books. Telegram bot integration to keep the team informed in real time.' },
       { icon: 'mail', name: 'Email confirmation', description: 'Your clients receive an email with their appointment details upon confirming the booking.' },
@@ -146,7 +172,7 @@ const featureCategoriesEn: FeatureCategory[] = [
     heading: 'Analytics',
     description: 'Clear data to make better decisions.',
     icon: 'activity',
-    span: 3,
+    span: 4,
     features: [
       { icon: 'activity', name: 'Metrics dashboard', description: 'KPIs of appointments and estimated revenue, 5 charts by period (7/30/90 days), service ranking, peak time slots and frequent clients.' },
       { icon: 'palette', name: 'Customization', description: '16 color palettes, custom logo and configurable labels. Your appointment system with your visual identity.' },
