@@ -5,13 +5,14 @@ interface Props {
   title: string;
   description?: string;
   favicon?: string;
+  lang?: string;
 }
 
-const { title, description = 'Software SaaS para negocios paraguayos.', favicon = '/favicon.svg' } = Astro.props;
+const { title, description = 'Software SaaS para negocios paraguayos.', favicon = '/favicon.svg', lang = 'es' } = Astro.props;
 ---
 
 <!doctype html>
-<html lang="es">
+<html lang={lang}>
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
