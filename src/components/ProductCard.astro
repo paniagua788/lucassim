@@ -6,9 +6,10 @@ interface Props {
   accent: 'vareapp' | 'slotr';
   features: string[];
   href: string;
+  businessTypes?: string[];
 }
 
-const { name, eyebrow, tagline, accent, features, href } = Astro.props;
+const { name, eyebrow, tagline, accent, features, href, businessTypes } = Astro.props;
 
 const accentColor = accent === 'vareapp' ? 'text-vareapp' : 'text-slotr';
 const bgColor     = accent === 'vareapp' ? 'bg-vareapp-dark border-orange-950' : 'bg-slotr-dark border-violet-950';
@@ -21,6 +22,15 @@ const btnColor    = accent === 'vareapp'
   <div>
     <p class={`text-xs font-bold uppercase tracking-widest mb-2 ${accentColor}`}>{eyebrow}</p>
     <h3 class="text-xl font-black text-white mb-2">{name}</h3>
+    {businessTypes && businessTypes.length > 0 && (
+      <div class="flex flex-wrap gap-1.5 mb-2">
+        {businessTypes.map(t => (
+          <span class={`text-[0.6rem] font-semibold uppercase tracking-wider px-2 py-0.5 rounded-full border ${accent === 'vareapp' ? 'border-orange-700 text-vareapp' : 'border-violet-700 text-slotr'}`}>
+            {t}
+          </span>
+        ))}
+      </div>
+    )}
     <p class="text-xs text-muted leading-relaxed">{tagline}</p>
   </div>
 

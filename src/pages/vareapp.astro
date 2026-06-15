@@ -31,114 +31,124 @@ const spanClasses: Record<number, string> = {
 
 const featureCategories: VareappFeatureCategory[] = [
   {
-    heading: 'Pedidos',
-    description: 'Todo para que tus clientes pidan fácil.',
+    heading: 'Core Compartido',
+    description: 'Funcionalidades base para cualquier negocio.',
     icon: 'bookOpen',
-    span: 5,
+    span: 4,
     features: [
-      { icon: 'bookOpen', name: 'Menú digital', description: 'Catálogo con categorías, variantes, extras, fotos y combinaciones. Stock diario configurable. Logo personalizado en el encabezado.' },
-      { icon: 'clipboardList', name: 'Gestión de pedidos', description: 'Pedidos en tiempo real para Delivery, Pickup y Mesa (con número de mesa). Notificación directa al negocio por WhatsApp.' },
-      { icon: 'userCheck', name: 'Modo mozo', description: 'Panel simplificado para mozos: toman pedidos por mesa directamente desde su celular, sin pasar por WhatsApp.' },
-      { icon: 'printer', name: 'Tickets de cocina', description: 'Comandas formato 80mm con detalle completo: items, variantes, extras y aclaraciones. Marcado automático de impresos.' },
+      { icon: 'bookOpen', name: 'Catálogo digital', description: 'Productos con categorías, variantes, fotos y stock configurable. Logo personalizado en tu página pública.' },
+      { icon: 'clipboardList', name: 'Gestión de pedidos', description: 'Delivery, pickup y mostrador con notificación directa al negocio por WhatsApp.' },
+      { icon: 'creditCard', name: 'Caja / POS', description: 'Registro de ventas, venta directa, tickets y facturas electrónicas habilitadas por la DNIT.' },
+      { icon: 'settings', name: 'Panel admin', description: 'Control total: productos, horarios, staff, permisos y configuración del negocio.' },
     ],
   },
   {
-    heading: 'Operaciones',
-    description: 'Control total de tu restaurante.',
-    icon: 'settings',
-    span: 7,
+    heading: 'Restaurante',
+    description: 'Todo lo que necesita un negocio gastronómico.',
+    icon: 'utensilsCrossed',
+    span: 4,
     features: [
-      { icon: 'settings', name: 'Panel administrativo', description: 'Control total: productos, horarios, cierres especiales, staff y configuración del negocio.' },
-      { icon: 'creditCard', name: 'Caja', description: 'Registro de ventas, venta directa, impresión de tickets y facturas electrónicas habilitadas por la DNIT.' },
-      { icon: 'package', name: 'Inventario', description: 'Control de stock con alertas de bajo inventario, registro de movimientos y trazabilidad por lote y vencimiento.' },
-      { icon: 'bot', name: 'Impresión automática', description: 'Agente que imprime pedidos nuevos automáticamente a impresora térmica ESC/POS. Sin intervención manual.' },
+      { icon: 'userCheck', name: 'Modo mozo', description: 'Panel simplificado para que los mozos tomen pedidos por mesa desde su celular.' },
+      { icon: 'printer', name: 'Comandas cocina', description: 'Tickets 80mm con items, variantes, extras y aclaraciones. Impresión automática.' },
+      { icon: 'bot', name: 'Impresión automática', description: 'Agente que imprime pedidos nuevos a impresora térmica ESC/POS sin intervención manual.' },
+      { icon: 'creditCard', name: 'Gestión de mesas', description: 'QR por mesa, pedidos directos de clientes y control de ocupación en tiempo real.' },
     ],
   },
   {
-    heading: 'Negocio',
-    description: 'Datos y estilo para tu marca.',
-    icon: 'barChart3',
-    span: 6,
+    heading: 'Retail',
+    description: 'Todo lo que necesita un comercio minorista.',
+    icon: 'store',
+    span: 4,
     features: [
-      { icon: 'barChart3', name: 'Métricas', description: 'Dashboard con ventas, productos más pedidos y horas pico.' },
-      { icon: 'palette', name: 'Personalización', description: '11 paletas de color y 6 opciones de fuente seleccionables. Tu menú digital con tu identidad visual.' },
+      { icon: 'package2', name: 'Inventario avanzado', description: 'Control de stock con alertas de bajo inventario, lotes, vencimientos y movimientos.' },
+      { icon: 'barcode', name: 'Variantes y SKU', description: 'Tallas, colores, códigos de barra y atributos por producto. Gestión por lote.' },
+      { icon: 'users2', name: 'Clientes y fidelidad', description: 'Perfil de cliente, historial de compras, puntos de fidelidad y cupones.' },
+      { icon: 'receipt', name: 'Caja retail', description: 'Venta rápida, devoluciones, arqueo de caja y cierre de lote. Múltiples formas de pago.' },
     ],
   },
   {
     heading: 'Marketing',
-    description: 'Atraé más clientes.',
+    description: 'Atraé más clientes y fidelizalos.',
     icon: 'image',
-    span: 6,
+    span: 12,
     isHighlighted: true,
     features: [
       { icon: 'image', name: 'Generador de flyers', description: 'Seleccioná productos, armá tu flyer y exportalo en PDF listo para imprimir o compartir.' },
+      { icon: 'tag', name: 'Promociones', description: 'Creá descuentos porcentuales o fijos con banners visuales. Solo una promoción activa a la vez.' },
+      { icon: 'star', name: 'Reseñas de clientes', description: 'Los clientes califican su experiencia con estrellas y texto. El puntaje se muestra en tu página pública.' },
     ],
   },
 ];
 
-const target = ['Restaurantes', 'Cafeterías', 'Food trucks', 'Rotiserías'];
+const restaurantTarget = ['Restaurantes', 'Cafeterías', 'Food trucks', 'Bares', 'Rotiserías', 'Panaderías'];
+const retailTarget     = ['Tiendas de ropa', 'Electrónica', 'Ferreterías', 'Farmacias', 'Regalerías', 'Librerías'];
 
-const esencialIncluded = ['Menú digital', 'Gestión de pedidos', 'Panel admin', 'Caja — registro de ventas', 'Impresión de ticket'];
-const esencialExcluded = ['Factura electrónica (DNIT)', 'Inventario', 'Métricas avanzadas'];
-const proIncluded      = ['Todo el plan Esencial', 'Factura electrónica (DNIT)', 'Inventario', 'Métricas avanzadas'];
+const esencialIncluded = ['Catálogo digital', 'Gestión de pedidos', 'Panel admin', 'Caja / POS', 'Impresión de ticket'];
+const esencialExcluded = ['Factura electrónica (DNIT)', 'Inventario avanzado', 'Métricas avanzadas', 'Modo mozo', 'Comandas cocina'];
+const proIncluded      = ['Todo el plan Esencial', 'Factura electrónica (DNIT)', 'Inventario avanzado', 'Métricas avanzadas', 'Modo mozo', 'Comandas cocina', 'Impresión automática'];
 
 const featureCategoriesEn: VareappFeatureCategory[] = [
   {
-    heading: 'Orders',
-    description: 'Everything so your clients can order easily.',
+    heading: 'Shared Core',
+    description: 'Base features for any business.',
     icon: 'bookOpen',
-    span: 5,
+    span: 4,
     features: [
-      { icon: 'bookOpen', name: 'Digital menu', description: 'Catalog with categories, variants, extras, photos and combinations. Configurable daily stock. Custom logo in the header.' },
-      { icon: 'clipboardList', name: 'Order management', description: 'Real-time orders for Delivery, Pickup and Table (with table number). Direct notification to the business via WhatsApp.' },
-      { icon: 'userCheck', name: 'Waiter mode', description: 'Simplified panel for waiters: they take orders by table directly from their phone, without going through WhatsApp.' },
-      { icon: 'printer', name: 'Kitchen tickets', description: '80mm format tickets with full detail: items, variants, extras and notes. Automatic marking of printed orders.' },
+      { icon: 'bookOpen', name: 'Digital catalog', description: 'Products with categories, variants, photos and configurable stock. Custom logo on your public page.' },
+      { icon: 'clipboardList', name: 'Order management', description: 'Delivery, pickup and counter with direct WhatsApp notification to the business.' },
+      { icon: 'creditCard', name: 'POS / Cash register', description: 'Sales log, direct sales, tickets and electronic invoices enabled by DNIT.' },
+      { icon: 'settings', name: 'Admin panel', description: 'Total control: products, hours, staff, permissions and business configuration.' },
     ],
   },
   {
-    heading: 'Operations',
-    description: 'Total control of your restaurant.',
-    icon: 'settings',
-    span: 7,
+    heading: 'Restaurant',
+    description: 'Everything a food business needs.',
+    icon: 'utensilsCrossed',
+    span: 4,
     features: [
-      { icon: 'settings', name: 'Admin panel', description: 'Total control: products, hours, special closures, staff and business configuration.' },
-      { icon: 'creditCard', name: 'Cash register', description: 'Sales log, direct sales, ticket printing and electronic invoices enabled by the DNIT.' },
-      { icon: 'package', name: 'Inventory', description: 'Stock control with low inventory alerts, movement log and traceability by batch and expiration.' },
-      { icon: 'bot', name: 'Automatic printing', description: 'Agent that automatically prints new orders to ESC/POS thermal printer. No manual intervention.' },
+      { icon: 'userCheck', name: 'Waiter mode', description: 'Simplified panel for waiters to take orders by table directly from their phone.' },
+      { icon: 'printer', name: 'Kitchen tickets', description: '80mm tickets with items, variants, extras and notes. Automatic printing.' },
+      { icon: 'bot', name: 'Automatic printing', description: 'Agent that prints new orders to ESC/POS thermal printer. No manual intervention.' },
+      { icon: 'creditCard', name: 'Table management', description: 'QR per table, direct customer ordering and real-time occupancy control.' },
     ],
   },
   {
-    heading: 'Business',
-    description: 'Data and style for your brand.',
-    icon: 'barChart3',
-    span: 6,
+    heading: 'Retail',
+    description: 'Everything a retail business needs.',
+    icon: 'store',
+    span: 4,
     features: [
-      { icon: 'barChart3', name: 'Metrics', description: 'Dashboard with sales, most ordered products and peak hours.' },
-      { icon: 'palette', name: 'Customization', description: '11 color palettes and 6 selectable font options. Your digital menu with your visual identity.' },
+      { icon: 'package2', name: 'Advanced inventory', description: 'Stock control with low inventory alerts, batches, expirations and movements.' },
+      { icon: 'barcode', name: 'Variants and SKU', description: 'Sizes, colors, barcodes and product attributes. Batch management.' },
+      { icon: 'users2', name: 'Customers & loyalty', description: 'Customer profile, purchase history, loyalty points and coupons.' },
+      { icon: 'receipt', name: 'Retail POS', description: 'Quick sale, returns, cash audit and batch closing. Multiple payment methods.' },
     ],
   },
   {
     heading: 'Marketing',
-    description: 'Attract more clients.',
+    description: 'Attract more clients and retain them.',
     icon: 'image',
-    span: 6,
+    span: 12,
     isHighlighted: true,
     features: [
       { icon: 'image', name: 'Flyer generator', description: 'Select products, build your flyer and export it as a PDF ready to print or share.' },
+      { icon: 'tag', name: 'Promotions', description: 'Create percentage or fixed discounts with visual banners. Only one active promotion at a time.' },
+      { icon: 'star', name: 'Client reviews', description: 'Clients rate their experience with stars and text. The score is shown on your public page.' },
     ],
   },
 ];
 
-const targetEn = ['Restaurants', 'Cafés', 'Food trucks', 'Rotisseries'];
+const restaurantTargetEn = ['Restaurants', 'Cafés', 'Food trucks', 'Bars', 'Rotisseries', 'Bakeries'];
+const retailTargetEn     = ['Clothing stores', 'Electronics', 'Hardware stores', 'Pharmacies', 'Gift shops', 'Bookstores'];
 
-const esencialIncludedEn = ['Digital menu', 'Order management', 'Admin panel', 'Cash register — sales log', 'Ticket printing'];
-const esencialExcludedEn = ['Electronic invoice (DNIT)', 'Inventory', 'Advanced metrics'];
-const proIncludedEn      = ['Everything in Essential plan', 'Electronic invoice (DNIT)', 'Inventory', 'Advanced metrics'];
+const esencialIncludedEn = ['Digital catalog', 'Order management', 'Admin panel', 'POS / Cash register', 'Ticket printing'];
+const esencialExcludedEn = ['Electronic invoice (DNIT)', 'Advanced inventory', 'Advanced metrics', 'Waiter mode', 'Kitchen tickets'];
+const proIncludedEn      = ['Everything in Essential plan', 'Electronic invoice (DNIT)', 'Advanced inventory', 'Advanced metrics', 'Waiter mode', 'Kitchen tickets', 'Automatic printing'];
 ---
 
 <BaseLayout
-  title="VareApp — Menú digital y pedidos | lucassim"
-  description="VareApp: sistema de menú digital y gestión de pedidos para restaurantes, cafeterías y food trucks en Paraguay."
+  title="VareApp — Catálogo, pedidos y caja | lucassim"
+  description="VareApp: sistema de catálogo digital, pedidos y caja para restaurantes y comercios minoristas en Paraguay."
   favicon="/vareapp-icono.png"
 >
   <Navbar showLangToggle={true} />
@@ -158,27 +168,27 @@ const proIncludedEn      = ['Everything in Essential plan', 'Electronic invoice 
         <span set:html={vareappIcons.chefHat} style="width:32px;height:32px;display:block;color:#fb923c;"></span>
       </div>
       <div class="hero-icon-float-reverse absolute bottom-[20%] left-[12%]" style="opacity: 0.12;" aria-hidden="true">
-        <span set:html={vareappIcons.utensilsCrossed} style="width:28px;height:28px;display:block;color:#f97316;"></span>
+        <span set:html={vareappIcons.store} style="width:28px;height:28px;display:block;color:#f97316;"></span>
       </div>
       <div class="hero-icon-float absolute top-[30%] left-[6%]" style="opacity: 0.10;" aria-hidden="true">
-        <span set:html={vareappIcons.flame} style="width:24px;height:24px;display:block;color:#ea580c;"></span>
+        <span set:html={vareappIcons.shoppingBag} style="width:24px;height:24px;display:block;color:#ea580c;"></span>
       </div>
       <div class="hero-icon-float-reverse absolute bottom-[12%] right-[20%]" style="opacity: 0.12;" aria-hidden="true">
-        <span set:html={vareappIcons.coffee} style="width:26px;height:26px;display:block;color:#fb923c;"></span>
+        <span set:html={vareappIcons.pizza} style="width:26px;height:26px;display:block;color:#fb923c;"></span>
       </div>
       <div class="hero-icon-float absolute top-[50%] left-[22%]" style="opacity: 0.10;" aria-hidden="true">
-        <span set:html={vareappIcons.pizza} style="width:22px;height:22px;display:block;color:#f97316;"></span>
+        <span set:html={vareappIcons.receipt} style="width:22px;height:22px;display:block;color:#f97316;"></span>
       </div>
 
       <div class="relative z-10">
-        <p class="text-xs font-bold uppercase tracking-widest text-vareapp mb-4 inline-block px-4 py-1.5 border border-orange-500/30 rounded-full">SaaS · Gastronomía</p>
+        <p class="text-xs font-bold uppercase tracking-widest text-vareapp mb-4 inline-block px-4 py-1.5 border border-orange-500/30 rounded-full">SaaS · Multi-negocio</p>
 
         <img src="/vareapp-claro-transparente.png" alt="VareApp" class="h-20 mx-auto mb-4" />
 
-        <h1 class="text-4xl font-black mb-3 vareapp-gradient-text leading-tight">Menú digital y pedidos para tu negocio</h1>
+        <h1 class="text-4xl font-black mb-3 vareapp-gradient-text leading-tight">Catálogo, pedidos y caja para tu negocio</h1>
 
         <p class="text-sm text-muted max-w-md mx-auto mb-8 leading-relaxed">
-          Sistema de menú digital y gestión de pedidos para restaurantes, cafeterías y food trucks en Paraguay.
+          Sistema de catálogo digital, pedidos y gestión para restaurantes y comercios minoristas en Paraguay.
         </p>
 
         <a
@@ -196,7 +206,7 @@ const proIncludedEn      = ['Everything in Essential plan', 'Electronic invoice 
 
       <section class="py-16">
         <h2 class="text-xl font-black mb-2">¿Qué incluye VareApp?</h2>
-        <p class="text-sm text-muted mb-8">Todo lo que necesitás para digitalizar tu negocio gastronómico.</p>
+        <p class="text-sm text-muted mb-8">Funcionalidades compartidas y específicas para cada tipo de negocio.</p>
 
         <div class="grid grid-cols-1 lg:grid-cols-12 gap-4">
           {featureCategories.map(cat => (
@@ -212,7 +222,7 @@ const proIncludedEn      = ['Everything in Essential plan', 'Electronic invoice 
                 <p class="text-xs text-subtle mt-1">{cat.description}</p>
               </div>
 
-              <div class={`grid gap-2.5 ${cat.features.length >= 4 ? 'grid-cols-1 md:grid-cols-2 lg:grid-cols-2' : cat.features.length >= 3 ? 'grid-cols-1 md:grid-cols-2' : 'grid-cols-1'}`}>
+              <div class={`grid gap-2.5 ${cat.features.length >= 4 ? 'grid-cols-1 md:grid-cols-2' : cat.features.length >= 3 ? 'grid-cols-1 md:grid-cols-3' : 'grid-cols-1'}`}>
                 {cat.features.map(f => (
                   <div class="p-3 rounded-xl bg-white/[0.02] border border-white/[0.04]">
                     <span class="text-vareapp mb-1.5 block" set:html={vareappIcons[f.icon]} style="width:16px;height:16px;display:block;"></span>
@@ -227,16 +237,39 @@ const proIncludedEn      = ['Everything in Essential plan', 'Electronic invoice 
       </section>
 
       <section class="py-12 border-t border-border">
-        <h2 class="text-xl font-black mb-2">Ideal para negocios gastronómicos</h2>
-        <p class="text-sm text-muted mb-6">Si vendés comida, VareApp se adapta a tu operación.</p>
-        <div class="flex flex-wrap gap-2">
-          {target.map(t => (
-            <span class="px-4 py-1.5 rounded-full text-xs font-semibold border border-orange-900 text-vareapp bg-vareapp-dark">
-              {t}
-            </span>
-          ))}
+        <h2 class="text-xl font-black mb-2">Para dos tipos de negocio</h2>
+        <p class="text-sm text-muted mb-6">VareApp se adapta a restaurantes y comercios minoristas por igual.</p>
+        <div class="grid sm:grid-cols-2 gap-6">
+          <div>
+            <h3 class="text-xs font-bold uppercase tracking-widest text-vareapp mb-3 flex items-center gap-2">
+              <span set:html={vareappIcons.utensilsCrossed} style="width:14px;height:14px;display:inline-block;"></span>
+              Restaurante
+            </h3>
+            <div class="flex flex-wrap gap-2">
+              {restaurantTarget.map(t => (
+                <span class="px-4 py-1.5 rounded-full text-xs font-semibold border border-orange-900 text-vareapp bg-vareapp-dark">
+                  {t}
+                </span>
+              ))}
+            </div>
+          </div>
+          <div>
+            <h3 class="text-xs font-bold uppercase tracking-widest text-vareapp mb-3 flex items-center gap-2">
+              <span set:html={vareappIcons.store} style="width:14px;height:14px;display:inline-block;"></span>
+              Retail
+            </h3>
+            <div class="flex flex-wrap gap-2">
+              {retailTarget.map(t => (
+                <span class="px-4 py-1.5 rounded-full text-xs font-semibold border border-orange-900 text-vareapp bg-vareapp-dark">
+                  {t}
+                </span>
+              ))}
+            </div>
+          </div>
+        </div>
+        <div class="flex flex-wrap gap-2 mt-4">
           <span class="px-4 py-1.5 rounded-full text-xs font-semibold border border-border text-muted">
-            Cualquier negocio con menú y pedidos
+            Cualquier negocio con catálogo, pedidos y caja
           </span>
         </div>
       </section>
@@ -314,27 +347,27 @@ const proIncludedEn      = ['Everything in Essential plan', 'Electronic invoice 
         <span set:html={vareappIcons.chefHat} style="width:32px;height:32px;display:block;color:#fb923c;"></span>
       </div>
       <div class="hero-icon-float-reverse absolute bottom-[20%] left-[12%]" style="opacity: 0.12;" aria-hidden="true">
-        <span set:html={vareappIcons.utensilsCrossed} style="width:28px;height:28px;display:block;color:#f97316;"></span>
+        <span set:html={vareappIcons.store} style="width:28px;height:28px;display:block;color:#f97316;"></span>
       </div>
       <div class="hero-icon-float absolute top-[30%] left-[6%]" style="opacity: 0.10;" aria-hidden="true">
-        <span set:html={vareappIcons.flame} style="width:24px;height:24px;display:block;color:#ea580c;"></span>
+        <span set:html={vareappIcons.shoppingBag} style="width:24px;height:24px;display:block;color:#ea580c;"></span>
       </div>
       <div class="hero-icon-float-reverse absolute bottom-[12%] right-[20%]" style="opacity: 0.12;" aria-hidden="true">
-        <span set:html={vareappIcons.coffee} style="width:26px;height:26px;display:block;color:#fb923c;"></span>
+        <span set:html={vareappIcons.pizza} style="width:26px;height:26px;display:block;color:#fb923c;"></span>
       </div>
       <div class="hero-icon-float absolute top-[50%] left-[22%]" style="opacity: 0.10;" aria-hidden="true">
-        <span set:html={vareappIcons.pizza} style="width:22px;height:22px;display:block;color:#f97316;"></span>
+        <span set:html={vareappIcons.receipt} style="width:22px;height:22px;display:block;color:#f97316;"></span>
       </div>
 
       <div class="relative z-10">
-        <p class="text-xs font-bold uppercase tracking-widest text-vareapp mb-4 inline-block px-4 py-1.5 border border-orange-500/30 rounded-full">SaaS · Food & Beverage</p>
+        <p class="text-xs font-bold uppercase tracking-widest text-vareapp mb-4 inline-block px-4 py-1.5 border border-orange-500/30 rounded-full">SaaS · Multi-business</p>
 
         <img src="/vareapp-claro-transparente.png" alt="VareApp" class="h-20 mx-auto mb-4" />
 
-        <h1 class="text-4xl font-black mb-3 vareapp-gradient-text leading-tight">Digital menu and orders for your business</h1>
+        <h1 class="text-4xl font-black mb-3 vareapp-gradient-text leading-tight">Catalog, orders &amp; POS for your business</h1>
 
         <p class="text-sm text-muted max-w-md mx-auto mb-8 leading-relaxed">
-          Digital menu and order management system for restaurants, cafés and food trucks in Paraguay.
+          Digital catalog, order and management system for restaurants and retail businesses in Paraguay.
         </p>
 
         <a
@@ -352,7 +385,7 @@ const proIncludedEn      = ['Everything in Essential plan', 'Electronic invoice 
 
       <section class="py-16">
         <h2 class="text-xl font-black mb-2">What's included in VareApp?</h2>
-        <p class="text-sm text-muted mb-8">Everything you need to digitize your food business.</p>
+        <p class="text-sm text-muted mb-8">Shared and specific features for each business type.</p>
 
         <div class="grid grid-cols-1 lg:grid-cols-12 gap-4">
           {featureCategoriesEn.map(cat => (
@@ -368,7 +401,7 @@ const proIncludedEn      = ['Everything in Essential plan', 'Electronic invoice 
                 <p class="text-xs text-subtle mt-1">{cat.description}</p>
               </div>
 
-              <div class={`grid gap-2.5 ${cat.features.length >= 4 ? 'grid-cols-1 md:grid-cols-2 lg:grid-cols-2' : cat.features.length >= 3 ? 'grid-cols-1 md:grid-cols-2' : 'grid-cols-1'}`}>
+              <div class={`grid gap-2.5 ${cat.features.length >= 4 ? 'grid-cols-1 md:grid-cols-2' : cat.features.length >= 3 ? 'grid-cols-1 md:grid-cols-3' : 'grid-cols-1'}`}>
                 {cat.features.map(f => (
                   <div class="p-3 rounded-xl bg-white/[0.02] border border-white/[0.04]">
                     <span class="text-vareapp mb-1.5 block" set:html={vareappIcons[f.icon]} style="width:16px;height:16px;display:block;"></span>
@@ -383,16 +416,39 @@ const proIncludedEn      = ['Everything in Essential plan', 'Electronic invoice 
       </section>
 
       <section class="py-12 border-t border-border">
-        <h2 class="text-xl font-black mb-2">Ideal for food businesses</h2>
-        <p class="text-sm text-muted mb-6">If you sell food, VareApp adapts to your operation.</p>
-        <div class="flex flex-wrap gap-2">
-          {targetEn.map(t => (
-            <span class="px-4 py-1.5 rounded-full text-xs font-semibold border border-orange-900 text-vareapp bg-vareapp-dark">
-              {t}
-            </span>
-          ))}
+        <h2 class="text-xl font-black mb-2">For two types of business</h2>
+        <p class="text-sm text-muted mb-6">VareApp adapts to restaurants and retail businesses alike.</p>
+        <div class="grid sm:grid-cols-2 gap-6">
+          <div>
+            <h3 class="text-xs font-bold uppercase tracking-widest text-vareapp mb-3 flex items-center gap-2">
+              <span set:html={vareappIcons.utensilsCrossed} style="width:14px;height:14px;display:inline-block;"></span>
+              Restaurant
+            </h3>
+            <div class="flex flex-wrap gap-2">
+              {restaurantTargetEn.map(t => (
+                <span class="px-4 py-1.5 rounded-full text-xs font-semibold border border-orange-900 text-vareapp bg-vareapp-dark">
+                  {t}
+                </span>
+              ))}
+            </div>
+          </div>
+          <div>
+            <h3 class="text-xs font-bold uppercase tracking-widest text-vareapp mb-3 flex items-center gap-2">
+              <span set:html={vareappIcons.store} style="width:14px;height:14px;display:inline-block;"></span>
+              Retail
+            </h3>
+            <div class="flex flex-wrap gap-2">
+              {retailTargetEn.map(t => (
+                <span class="px-4 py-1.5 rounded-full text-xs font-semibold border border-orange-900 text-vareapp bg-vareapp-dark">
+                  {t}
+                </span>
+              ))}
+            </div>
+          </div>
+        </div>
+        <div class="flex flex-wrap gap-2 mt-4">
           <span class="px-4 py-1.5 rounded-full text-xs font-semibold border border-border text-muted">
-            Any business with a menu and orders
+            Any business with catalog, orders and POS
           </span>
         </div>
       </section>

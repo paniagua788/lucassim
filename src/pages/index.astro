@@ -9,10 +9,10 @@ const WHATSAPP = 'https://wa.me/595993294266';
 const EMAIL    = 'lucas_paniagua@hotmail.com';
 
 const vareappFeatures = [
-  'Menú digital con categorías y variantes',
-  'Gestión de pedidos en tiempo real',
-  'Panel administrativo completo',
-  'Caja, inventario y métricas',
+  'Catálogo digital con variantes y fotos',
+  'Pedidos delivery, pickup y mostrador',
+  'Caja / POS con factura DNIT',
+  'Inventario, clientes y fidelidad',
 ];
 
 const slotrFeatures = [
@@ -60,10 +60,11 @@ const slotrFeatures = [
     <div class="grid sm:grid-cols-2 gap-6">
       <ProductCard
         name="VareApp"
-        eyebrow="SaaS · Gastronomía"
-        tagline="Menú digital y sistema de pedidos para restaurantes, cafeterías y food trucks."
+        eyebrow="SaaS · Multi-negocio"
+        tagline="Catálogo, pedidos y caja para restaurantes y comercios minoristas."
         accent="vareapp"
         features={vareappFeatures}
+        businessTypes={['Restaurante', 'Retail']}
         href="/vareapp"
       />
       <ProductCard
