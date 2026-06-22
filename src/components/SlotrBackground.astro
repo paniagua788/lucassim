@@ -1,0 +1,70 @@
+---
+// src/components/SlotrBackground.astro
+// Page-level background decorations for the slotr landing page.
+// Includes radial gradient shapes, subtle grid pattern, and floating icons
+// distributed across the full page height (not just the hero).
+import { icons } from './icons';
+---
+
+<div class="absolute inset-0 pointer-events-none overflow-hidden" aria-hidden="true">
+  <!-- Radial gradient shapes — distributed across the page (violet theme) -->
+  <div class="hero-shape hero-shape-1 absolute top-[5%] left-[10%] w-[180px] h-[180px] rounded-full"></div>
+  <div class="hero-shape-reverse hero-shape-2 absolute top-[22%] right-[8%] w-[220px] h-[220px] rounded-full"></div>
+  <div class="hero-shape hero-shape-3 absolute top-[40%] left-[5%] w-[160px] h-[160px] rounded-full"></div>
+  <div class="hero-shape-reverse hero-shape-4 absolute top-[58%] right-[12%] w-[200px] h-[200px] rounded-full"></div>
+  <div class="hero-shape absolute top-[78%] left-[20%] w-[140px] h-[140px] rounded-full" style="background: radial-gradient(circle, rgba(168,85,247,0.12), transparent 70%); filter: blur(40px);"></div>
+
+  <!-- Subtle grid pattern — covers full page with edge fade -->
+  <div class="absolute inset-0" style="background-image: linear-gradient(rgba(124,58,237,0.03) 1px, transparent 1px), linear-gradient(90deg, rgba(124,58,237,0.03) 1px, transparent 1px); background-size: 60px 60px; mask-image: linear-gradient(to bottom, transparent 0%, black 5%, black 95%, transparent 100%); -webkit-mask-image: linear-gradient(to bottom, transparent 0%, black 5%, black 95%, transparent 100%);"></div>
+
+  <!-- Floating icons — distributed across the full page -->
+
+  <!-- Hero area (0–20%) -->
+  <div class="hero-icon-float absolute top-[3%] right-[15%]" style="opacity: 0.12;" aria-hidden="true">
+    <span set:html={icons.calendar} class="text-slotr block" style="width:36px;height:36px;"></span>
+  </div>
+  <div class="hero-icon-float-reverse absolute top-[10%] left-[6%]" style="opacity: 0.10;" aria-hidden="true">
+    <span set:html={icons.users} class="text-slotr block" style="width:32px;height:32px;"></span>
+  </div>
+  <div class="hero-icon-float absolute top-[15%] right-[30%]" style="opacity: 0.08;" aria-hidden="true">
+    <span set:html={icons.sparkles} class="text-slotr block" style="width:28px;height:28px;"></span>
+  </div>
+  <div class="hero-icon-float-reverse absolute top-[18%] left-[15%]" style="opacity: 0.10;" aria-hidden="true">
+    <span set:html={icons.clock} class="text-slotr block" style="width:24px;height:24px;"></span>
+  </div>
+
+  <!-- Features area (25–45%) -->
+  <div class="hero-icon-float absolute top-[28%] right-[18%]" style="opacity: 0.10;" aria-hidden="true">
+    <span set:html={icons.bell} class="text-slotr block" style="width:28px;height:28px;"></span>
+  </div>
+  <div class="hero-icon-float-reverse absolute top-[35%] left-[4%]" style="opacity: 0.10;" aria-hidden="true">
+    <span set:html={icons.mail} class="text-slotr block" style="width:26px;height:26px;"></span>
+  </div>
+  <div class="hero-icon-float absolute top-[42%] right-[10%]" style="opacity: 0.08;" aria-hidden="true">
+    <span set:html={icons.shield} class="text-slotr block" style="width:24px;height:24px;"></span>
+  </div>
+
+  <!-- Business types area (50–65%) -->
+  <div class="hero-icon-float absolute top-[52%] right-[8%]" style="opacity: 0.10;" aria-hidden="true">
+    <span set:html={icons.building} class="text-slotr block" style="width:24px;height:24px;"></span>
+  </div>
+  <div class="hero-icon-float-reverse absolute top-[60%] left-[6%]" style="opacity: 0.08;" aria-hidden="true">
+    <span set:html={icons.mapPin} class="text-slotr block" style="width:22px;height:22px;"></span>
+  </div>
+
+  <!-- Pricing area (68–85%) -->
+  <div class="hero-icon-float absolute top-[70%] right-[22%]" style="opacity: 0.10;" aria-hidden="true">
+    <span set:html={icons.star} class="text-slotr block" style="width:24px;height:24px;"></span>
+  </div>
+  <div class="hero-icon-float-reverse absolute top-[78%] left-[12%]" style="opacity: 0.08;" aria-hidden="true">
+    <span set:html={icons.list} class="text-slotr block" style="width:22px;height:22px;"></span>
+  </div>
+
+  <!-- Contact area (88–100%) -->
+  <div class="hero-icon-float absolute top-[88%] right-[10%]" style="opacity: 0.10;" aria-hidden="true">
+    <span set:html={icons.activity} class="text-slotr block" style="width:22px;height:22px;"></span>
+  </div>
+  <div class="hero-icon-float-reverse absolute top-[95%] left-[8%]" style="opacity: 0.08;" aria-hidden="true">
+    <span set:html={icons.settings} class="text-slotr block" style="width:20px;height:20px;"></span>
+  </div>
+</div>

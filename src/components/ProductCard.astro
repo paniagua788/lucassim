@@ -12,7 +12,7 @@ interface Props {
 const { name, eyebrow, tagline, accent, features, href, businessTypes } = Astro.props;
 
 const accentColor = accent === 'vareapp' ? 'text-vareapp' : 'text-slotr';
-const bgColor     = accent === 'vareapp' ? 'bg-vareapp-dark border-orange-950' : 'bg-slotr-dark border-violet-950';
+const bgColor     = accent === 'vareapp' ? 'bg-surface border-orange-950' : 'bg-surface border-violet-950';
 const btnColor    = accent === 'vareapp'
   ? 'bg-vareapp hover:bg-orange-600 text-white'
   : 'bg-slotr hover:bg-violet-700 text-white';
@@ -36,7 +36,7 @@ const btnColor    = accent === 'vareapp'
 
   <ul class="flex flex-col gap-1.5 flex-1">
     {features.map(f => (
-      <li class="text-xs text-subtle flex items-center gap-2">
+      <li class="text-xs text-muted flex items-center gap-2">
         <span class="text-border">—</span>
         {f}
       </li>

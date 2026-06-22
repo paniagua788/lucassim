@@ -4,6 +4,7 @@ import Navbar from '../components/Navbar.astro';
 import Footer from '../components/Footer.astro';
 import ContactButtons from '../components/ContactButtons.astro';
 import { vareappIcons, type VareappIconName } from '../components/vareapp-icons';
+import VareappBackground from '../components/VareappBackground.astro';
 
 const WHATSAPP = 'https://wa.me/595993294266';
 const EMAIL    = 'lucas_paniagua@hotmail.com';
@@ -153,39 +154,19 @@ const proIncludedEn      = ['Everything in Essential plan', 'Electronic invoice 
 >
   <Navbar showLangToggle={true} />
 
-  <!-- ESPAÑOL -->
-  <div data-lang="es">
+  <div class="relative">
+    <VareappBackground />
+
+    <!-- ESPAÑOL -->
+    <div data-lang="es">
     <!-- HERO -->
-    <section class="relative overflow-hidden bg-[#0a0a0f] py-24 text-center px-6">
-      <div class="hero-shape absolute top-[15%] left-[12%] w-[180px] h-[180px] rounded-full" style="background: radial-gradient(circle, rgba(249,115,22,0.25), transparent 70%); filter: blur(40px);"></div>
-      <div class="hero-shape-reverse absolute top-[55%] right-[10%] w-[220px] h-[220px] rounded-full" style="background: radial-gradient(circle, rgba(234,88,12,0.2), transparent 70%); filter: blur(50px);"></div>
-      <div class="hero-shape absolute bottom-[10%] left-[35%] w-[140px] h-[140px] rounded-full" style="background: radial-gradient(circle, rgba(251,146,60,0.15), transparent 70%); filter: blur(35px);"></div>
-      <div class="hero-shape-reverse absolute top-[25%] right-[28%] w-[100px] h-[100px] rounded-full" style="background: radial-gradient(circle, rgba(249,115,22,0.18), transparent 70%); filter: blur(30px);"></div>
-
-      <div class="absolute inset-0" style="background-image: linear-gradient(rgba(249,115,22,0.04) 1px, transparent 1px), linear-gradient(90deg, rgba(249,115,22,0.04) 1px, transparent 1px); background-size: 60px 60px; mask-image: radial-gradient(ellipse at center, black 30%, transparent 70%); -webkit-mask-image: radial-gradient(ellipse at center, black 30%, transparent 70%);"></div>
-
-      <div class="hero-icon-float absolute top-[15%] right-[15%]" style="opacity: 0.15;" aria-hidden="true">
-        <span set:html={vareappIcons.chefHat} style="width:32px;height:32px;display:block;color:#fb923c;"></span>
-      </div>
-      <div class="hero-icon-float-reverse absolute bottom-[20%] left-[12%]" style="opacity: 0.12;" aria-hidden="true">
-        <span set:html={vareappIcons.store} style="width:28px;height:28px;display:block;color:#f97316;"></span>
-      </div>
-      <div class="hero-icon-float absolute top-[30%] left-[6%]" style="opacity: 0.10;" aria-hidden="true">
-        <span set:html={vareappIcons.shoppingBag} style="width:24px;height:24px;display:block;color:#ea580c;"></span>
-      </div>
-      <div class="hero-icon-float-reverse absolute bottom-[12%] right-[20%]" style="opacity: 0.12;" aria-hidden="true">
-        <span set:html={vareappIcons.pizza} style="width:26px;height:26px;display:block;color:#fb923c;"></span>
-      </div>
-      <div class="hero-icon-float absolute top-[50%] left-[22%]" style="opacity: 0.10;" aria-hidden="true">
-        <span set:html={vareappIcons.receipt} style="width:22px;height:22px;display:block;color:#f97316;"></span>
-      </div>
-
+    <section class="relative py-24 text-center px-6">
       <div class="relative z-10">
         <p class="text-xs font-bold uppercase tracking-widest text-vareapp mb-4 inline-block px-4 py-1.5 border border-orange-500/30 rounded-full">SaaS · Multi-negocio</p>
 
-        <img src="/vareapp-claro-transparente.png" alt="VareApp" class="h-20 mx-auto mb-4" />
+        <img src="/vareapp-claro-transparente.png" alt="VareApp" class="h-20 lg:h-24 mx-auto mb-4" />
 
-        <h1 class="text-4xl font-black mb-3 vareapp-gradient-text leading-tight">Catálogo, pedidos y caja para tu negocio</h1>
+        <h1 class="text-4xl lg:text-5xl xl:text-6xl font-black mb-3 vareapp-gradient-text leading-tight">Catálogo, pedidos y caja para tu negocio</h1>
 
         <p class="text-sm text-muted max-w-md mx-auto mb-8 leading-relaxed">
           Sistema de catálogo digital, pedidos y gestión para restaurantes y comercios minoristas en Paraguay.
@@ -202,7 +183,7 @@ const proIncludedEn      = ['Everything in Essential plan', 'Electronic invoice 
       </div>
     </section>
 
-    <div class="max-w-5xl mx-auto px-6">
+    <div class="max-w-5xl lg:max-w-6xl mx-auto px-6">
 
       <section class="py-16">
         <h2 class="text-xl font-black mb-2">¿Qué incluye VareApp?</h2>
@@ -212,7 +193,7 @@ const proIncludedEn      = ['Everything in Essential plan', 'Electronic invoice 
           {featureCategories.map(cat => (
             <div class={`vareapp-card rounded-2xl p-6 ${cat.isHighlighted
               ? 'bg-gradient-to-br from-orange-500/10 to-amber-500/5 border border-orange-500/25'
-              : 'bg-white/[0.03] border border-white/[0.06]'
+              : 'bg-white/[0.04] border border-white/[0.08]'
             } ${spanClasses[cat.span] || 'lg:col-span-1'}`}>
               <div class="mb-4">
                 <h3 class="text-lg font-bold text-white flex items-center gap-2">
@@ -222,12 +203,12 @@ const proIncludedEn      = ['Everything in Essential plan', 'Electronic invoice 
                 <p class="text-xs text-subtle mt-1">{cat.description}</p>
               </div>
 
-              <div class={`grid gap-2.5 ${cat.features.length >= 4 ? 'grid-cols-1 md:grid-cols-2' : cat.features.length >= 3 ? 'grid-cols-1 md:grid-cols-3' : 'grid-cols-1'}`}>
+              <div class={`grid gap-2.5 ${cat.features.length >= 4 ? 'grid-cols-1 md:grid-cols-2' : cat.features.length >= 3 ? 'grid-cols-1 md:grid-cols-3 xl:grid-cols-4' : 'grid-cols-1'}`}>
                 {cat.features.map(f => (
                   <div class="p-3 rounded-xl bg-white/[0.02] border border-white/[0.04]">
                     <span class="text-vareapp mb-1.5 block" set:html={vareappIcons[f.icon]} style="width:16px;height:16px;display:block;"></span>
-                    <p class="text-[0.7rem] font-bold text-white mb-0.5">{f.name}</p>
-                    <p class="text-[0.6rem] text-subtle leading-relaxed">{f.description}</p>
+                    <p class="text-xs font-bold text-white mb-0.5">{f.name}</p>
+                    <p class="text-xs text-subtle leading-relaxed">{f.description}</p>
                   </div>
                 ))}
               </div>
@@ -247,7 +228,7 @@ const proIncludedEn      = ['Everything in Essential plan', 'Electronic invoice 
             </h3>
             <div class="flex flex-wrap gap-2">
               {restaurantTarget.map(t => (
-                <span class="px-4 py-1.5 rounded-full text-xs font-semibold border border-orange-900 text-vareapp bg-vareapp-dark">
+                <span class="px-4 py-1.5 rounded-full text-xs font-semibold border border-orange-800/60 text-vareapp bg-orange-950/40">
                   {t}
                 </span>
               ))}
@@ -260,7 +241,7 @@ const proIncludedEn      = ['Everything in Essential plan', 'Electronic invoice 
             </h3>
             <div class="flex flex-wrap gap-2">
               {retailTarget.map(t => (
-                <span class="px-4 py-1.5 rounded-full text-xs font-semibold border border-orange-900 text-vareapp bg-vareapp-dark">
+                <span class="px-4 py-1.5 rounded-full text-xs font-semibold border border-orange-800/60 text-vareapp bg-orange-950/40">
                   {t}
                 </span>
               ))}
@@ -274,7 +255,7 @@ const proIncludedEn      = ['Everything in Essential plan', 'Electronic invoice 
         </div>
       </section>
 
-      <section class="py-12 border-t border-white/[0.06]">
+      <section class="py-12 border-t border-border">
         <h2 class="text-xl font-black mb-2">Elegí el plan que se ajusta a tu negocio</h2>
         <p class="text-sm text-muted mb-8">Precios a consultar — sin sorpresas.</p>
         <div class="grid sm:grid-cols-2 gap-6">
@@ -297,7 +278,7 @@ const proIncludedEn      = ['Everything in Essential plan', 'Electronic invoice 
             </ul>
             <p class="text-xs text-subtle italic mb-4">*El ticket no tiene valor fiscal.</p>
             <a href={WHATSAPP} target="_blank" rel="noopener noreferrer"
-              class="block text-center py-2 rounded-lg text-xs font-bold border border-border text-muted hover:border-muted hover:text-white transition-colors">
+              class="block text-center py-2 rounded-lg text-xs font-bold border border-white/20 text-white hover:border-white/40 hover:bg-white/5 transition-colors">
               Consultar
             </a>
           </div>
@@ -323,7 +304,7 @@ const proIncludedEn      = ['Everything in Essential plan', 'Electronic invoice 
         </div>
       </section>
 
-      <section class="py-16 text-center border-t border-white/[0.06]">
+      <section class="py-16 text-center border-t border-border">
         <h2 class="text-2xl font-black mb-3">¿Listo para digitalizar tu negocio?</h2>
         <p class="text-sm text-muted mb-8">Escribime y coordinamos una demo personalizada.</p>
         <ContactButtons whatsapp={WHATSAPP} email={EMAIL} />
@@ -332,39 +313,17 @@ const proIncludedEn      = ['Everything in Essential plan', 'Electronic invoice 
     </div>
   </div>
 
-  <!-- ENGLISH -->
-  <div data-lang="en" class="hidden">
+    <!-- ENGLISH -->
+    <div data-lang="en" class="hidden">
+
     <!-- HERO -->
-    <section class="relative overflow-hidden bg-[#0a0a0f] py-24 text-center px-6">
-      <div class="hero-shape absolute top-[15%] left-[12%] w-[180px] h-[180px] rounded-full" style="background: radial-gradient(circle, rgba(249,115,22,0.25), transparent 70%); filter: blur(40px);"></div>
-      <div class="hero-shape-reverse absolute top-[55%] right-[10%] w-[220px] h-[220px] rounded-full" style="background: radial-gradient(circle, rgba(234,88,12,0.2), transparent 70%); filter: blur(50px);"></div>
-      <div class="hero-shape absolute bottom-[10%] left-[35%] w-[140px] h-[140px] rounded-full" style="background: radial-gradient(circle, rgba(251,146,60,0.15), transparent 70%); filter: blur(35px);"></div>
-      <div class="hero-shape-reverse absolute top-[25%] right-[28%] w-[100px] h-[100px] rounded-full" style="background: radial-gradient(circle, rgba(249,115,22,0.18), transparent 70%); filter: blur(30px);"></div>
-
-      <div class="absolute inset-0" style="background-image: linear-gradient(rgba(249,115,22,0.04) 1px, transparent 1px), linear-gradient(90deg, rgba(249,115,22,0.04) 1px, transparent 1px); background-size: 60px 60px; mask-image: radial-gradient(ellipse at center, black 30%, transparent 70%); -webkit-mask-image: radial-gradient(ellipse at center, black 30%, transparent 70%);"></div>
-
-      <div class="hero-icon-float absolute top-[15%] right-[15%]" style="opacity: 0.15;" aria-hidden="true">
-        <span set:html={vareappIcons.chefHat} style="width:32px;height:32px;display:block;color:#fb923c;"></span>
-      </div>
-      <div class="hero-icon-float-reverse absolute bottom-[20%] left-[12%]" style="opacity: 0.12;" aria-hidden="true">
-        <span set:html={vareappIcons.store} style="width:28px;height:28px;display:block;color:#f97316;"></span>
-      </div>
-      <div class="hero-icon-float absolute top-[30%] left-[6%]" style="opacity: 0.10;" aria-hidden="true">
-        <span set:html={vareappIcons.shoppingBag} style="width:24px;height:24px;display:block;color:#ea580c;"></span>
-      </div>
-      <div class="hero-icon-float-reverse absolute bottom-[12%] right-[20%]" style="opacity: 0.12;" aria-hidden="true">
-        <span set:html={vareappIcons.pizza} style="width:26px;height:26px;display:block;color:#fb923c;"></span>
-      </div>
-      <div class="hero-icon-float absolute top-[50%] left-[22%]" style="opacity: 0.10;" aria-hidden="true">
-        <span set:html={vareappIcons.receipt} style="width:22px;height:22px;display:block;color:#f97316;"></span>
-      </div>
-
+    <section class="relative py-24 text-center px-6">
       <div class="relative z-10">
         <p class="text-xs font-bold uppercase tracking-widest text-vareapp mb-4 inline-block px-4 py-1.5 border border-orange-500/30 rounded-full">SaaS · Multi-business</p>
 
-        <img src="/vareapp-claro-transparente.png" alt="VareApp" class="h-20 mx-auto mb-4" />
+        <img src="/vareapp-claro-transparente.png" alt="VareApp" class="h-20 lg:h-24 mx-auto mb-4" />
 
-        <h1 class="text-4xl font-black mb-3 vareapp-gradient-text leading-tight">Catalog, orders &amp; POS for your business</h1>
+        <h1 class="text-4xl lg:text-5xl xl:text-6xl font-black mb-3 vareapp-gradient-text leading-tight">Catalog, orders &amp; POS for your business</h1>
 
         <p class="text-sm text-muted max-w-md mx-auto mb-8 leading-relaxed">
           Digital catalog, order and management system for restaurants and retail businesses in Paraguay.
@@ -381,7 +340,7 @@ const proIncludedEn      = ['Everything in Essential plan', 'Electronic invoice 
       </div>
     </section>
 
-    <div class="max-w-5xl mx-auto px-6">
+    <div class="max-w-5xl lg:max-w-6xl mx-auto px-6">
 
       <section class="py-16">
         <h2 class="text-xl font-black mb-2">What's included in VareApp?</h2>
@@ -391,7 +350,7 @@ const proIncludedEn      = ['Everything in Essential plan', 'Electronic invoice 
           {featureCategoriesEn.map(cat => (
             <div class={`vareapp-card rounded-2xl p-6 ${cat.isHighlighted
               ? 'bg-gradient-to-br from-orange-500/10 to-amber-500/5 border border-orange-500/25'
-              : 'bg-white/[0.03] border border-white/[0.06]'
+              : 'bg-white/[0.04] border border-white/[0.08]'
             } ${spanClasses[cat.span] || 'lg:col-span-1'}`}>
               <div class="mb-4">
                 <h3 class="text-lg font-bold text-white flex items-center gap-2">
@@ -401,12 +360,12 @@ const proIncludedEn      = ['Everything in Essential plan', 'Electronic invoice 
                 <p class="text-xs text-subtle mt-1">{cat.description}</p>
               </div>
 
-              <div class={`grid gap-2.5 ${cat.features.length >= 4 ? 'grid-cols-1 md:grid-cols-2' : cat.features.length >= 3 ? 'grid-cols-1 md:grid-cols-3' : 'grid-cols-1'}`}>
+              <div class={`grid gap-2.5 ${cat.features.length >= 4 ? 'grid-cols-1 md:grid-cols-2' : cat.features.length >= 3 ? 'grid-cols-1 md:grid-cols-3 xl:grid-cols-4' : 'grid-cols-1'}`}>
                 {cat.features.map(f => (
                   <div class="p-3 rounded-xl bg-white/[0.02] border border-white/[0.04]">
                     <span class="text-vareapp mb-1.5 block" set:html={vareappIcons[f.icon]} style="width:16px;height:16px;display:block;"></span>
-                    <p class="text-[0.7rem] font-bold text-white mb-0.5">{f.name}</p>
-                    <p class="text-[0.6rem] text-subtle leading-relaxed">{f.description}</p>
+                    <p class="text-xs font-bold text-white mb-0.5">{f.name}</p>
+                    <p class="text-xs text-subtle leading-relaxed">{f.description}</p>
                   </div>
                 ))}
               </div>
@@ -426,7 +385,7 @@ const proIncludedEn      = ['Everything in Essential plan', 'Electronic invoice 
             </h3>
             <div class="flex flex-wrap gap-2">
               {restaurantTargetEn.map(t => (
-                <span class="px-4 py-1.5 rounded-full text-xs font-semibold border border-orange-900 text-vareapp bg-vareapp-dark">
+                <span class="px-4 py-1.5 rounded-full text-xs font-semibold border border-orange-800/60 text-vareapp bg-orange-950/40">
                   {t}
                 </span>
               ))}
@@ -439,7 +398,7 @@ const proIncludedEn      = ['Everything in Essential plan', 'Electronic invoice 
             </h3>
             <div class="flex flex-wrap gap-2">
               {retailTargetEn.map(t => (
-                <span class="px-4 py-1.5 rounded-full text-xs font-semibold border border-orange-900 text-vareapp bg-vareapp-dark">
+                <span class="px-4 py-1.5 rounded-full text-xs font-semibold border border-orange-800/60 text-vareapp bg-orange-950/40">
                   {t}
                 </span>
               ))}
@@ -453,7 +412,7 @@ const proIncludedEn      = ['Everything in Essential plan', 'Electronic invoice 
         </div>
       </section>
 
-      <section class="py-12 border-t border-white/[0.06]">
+      <section class="py-12 border-t border-border">
         <h2 class="text-xl font-black mb-2">Choose the plan that fits your business</h2>
         <p class="text-sm text-muted mb-8">Pricing on request — no surprises.</p>
         <div class="grid sm:grid-cols-2 gap-6">
@@ -476,7 +435,7 @@ const proIncludedEn      = ['Everything in Essential plan', 'Electronic invoice 
             </ul>
             <p class="text-xs text-subtle italic mb-4">*The ticket has no fiscal value.</p>
             <a href={WHATSAPP} target="_blank" rel="noopener noreferrer"
-              class="block text-center py-2 rounded-lg text-xs font-bold border border-border text-muted hover:border-muted hover:text-white transition-colors">
+              class="block text-center py-2 rounded-lg text-xs font-bold border border-white/20 text-white hover:border-white/40 hover:bg-white/5 transition-colors">
               Request
             </a>
           </div>
@@ -502,13 +461,14 @@ const proIncludedEn      = ['Everything in Essential plan', 'Electronic invoice 
         </div>
       </section>
 
-      <section class="py-16 text-center border-t border-white/[0.06]">
+      <section class="py-16 text-center border-t border-border">
         <h2 class="text-2xl font-black mb-3">Ready to digitize your business?</h2>
         <p class="text-sm text-muted mb-8">Message me and let's coordinate a personalized demo.</p>
         <ContactButtons whatsapp={WHATSAPP} email={EMAIL} />
       </section>
 
     </div>
+  </div>
   </div>
 
   <!-- Toggle script -->

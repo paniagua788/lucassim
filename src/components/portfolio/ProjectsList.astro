@@ -1,14 +1,15 @@
 ---
 // src/components/portfolio/ProjectsList.astro
 // Proyectos propios con stack y descripción. Bilingüe.
+// En lg+ muestra los proyectos en grid de 2 columnas.
 ---
 
 <!-- ESPAÑOL -->
-<section data-lang="es" class="py-12 px-6 max-w-4xl mx-auto">
+<section data-lang="es" class="py-12 container-page">
   <h2 class="text-xs text-muted uppercase tracking-widest mb-6">Proyectos Propios</h2>
   <p class="text-xs text-subtle mb-6">lucassim.com.py</p>
 
-  <div class="flex flex-col gap-5">
+  <div class="grid lg:grid-cols-2 gap-5">
 
     <!-- VareApp -->
     <div class="bg-surface border border-border rounded-xl p-6">
@@ -21,7 +22,7 @@
       </div>
       <div class="flex flex-wrap gap-1.5 mb-4">
         {['Python', 'Flask', 'MongoDB', 'TailwindCSS', 'Cloudinary', 'Docker', 'WhatsApp API'].map(t => (
-          <span class="px-2 py-0.5 bg-blue-900/30 text-blue-400 rounded text-xs font-medium">{t}</span>
+          <span class="px-2 py-0.5 bg-brand-soft/30 text-brand rounded text-xs font-medium">{t}</span>
         ))}
       </div>
       <ul class="text-sm text-muted flex flex-col gap-1.5 list-disc list-inside">
@@ -42,7 +43,7 @@
       </div>
       <div class="flex flex-wrap gap-1.5 mb-4">
         {['Python', 'Flask', 'PostgreSQL', 'Telegram Bot API', 'Docker', 'Render', 'CI/CD'].map(t => (
-          <span class="px-2 py-0.5 bg-blue-900/30 text-blue-400 rounded text-xs font-medium">{t}</span>
+          <span class="px-2 py-0.5 bg-brand-soft/30 text-brand rounded text-xs font-medium">{t}</span>
         ))}
       </div>
       <ul class="text-sm text-muted flex flex-col gap-1.5 list-disc list-inside">
@@ -59,11 +60,21 @@
           <p class="font-bold text-white text-lg">MedicFile</p>
           <p class="text-sm text-muted">Ganador Hackathon Penguin Academy 2023</p>
         </div>
-        <span class="px-2 py-0.5 bg-yellow-900/30 text-yellow-400 rounded text-xs font-medium whitespace-nowrap">🏆 Hackathon</span>
+        <span class="self-start inline-flex items-center gap-1 px-2 py-0.5 bg-yellow-900/30 text-yellow-400 rounded text-xs font-medium whitespace-nowrap" aria-label="Premio Hackathon">
+          <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" class="inline-block">
+            <path d="M6 9H4.5a2.5 2.5 0 0 1 0-5H6"/>
+            <path d="M18 9h1.5a2.5 2.5 0 0 0 0-5H18"/>
+            <path d="M4 22h16"/>
+            <path d="M10 14.66V17c0 .55-.47.98-.97 1.21C7.85 18.75 7 20.24 7 22"/>
+            <path d="M14 14.66V17c0 .55.47.98.97 1.21C16.15 18.75 17 20.24 17 22"/>
+            <path d="M18 2H6v7a6 6 0 0 0 12 0V2Z"/>
+          </svg>
+          Hackathon
+        </span>
       </div>
       <div class="flex flex-wrap gap-1.5 mb-4">
         {['Flask', 'SQLAlchemy', 'TailwindCSS', 'QR Code', 'Pillow'].map(t => (
-          <span class="px-2 py-0.5 bg-blue-900/30 text-blue-400 rounded text-xs font-medium">{t}</span>
+          <span class="px-2 py-0.5 bg-brand-soft/30 text-brand rounded text-xs font-medium">{t}</span>
         ))}
       </div>
       <ul class="text-sm text-muted flex flex-col gap-1.5 list-disc list-inside">
@@ -82,7 +93,7 @@
       </div>
       <div class="flex flex-wrap gap-1.5 mb-4">
         {['PowerShell', 'Python', 'Flask', 'BeautifulSoup', 'SMTP', 'Active Directory'].map(t => (
-          <span class="px-2 py-0.5 bg-blue-900/30 text-blue-400 rounded text-xs font-medium">{t}</span>
+          <span class="px-2 py-0.5 bg-brand-soft/30 text-brand rounded text-xs font-medium">{t}</span>
         ))}
       </div>
       <ul class="text-sm text-muted flex flex-col gap-1.5 list-disc list-inside">
@@ -97,11 +108,11 @@
 </section>
 
 <!-- ENGLISH -->
-<section data-lang="en" class="hidden py-12 px-6 max-w-4xl mx-auto">
+<section data-lang="en" class="hidden py-12 container-page">
   <h2 class="text-xs text-muted uppercase tracking-widest mb-6">Own Projects</h2>
   <p class="text-xs text-subtle mb-6">lucassim.com.py</p>
 
-  <div class="flex flex-col gap-5">
+  <div class="grid lg:grid-cols-2 gap-5">
 
     <!-- VareApp -->
     <div class="bg-surface border border-border rounded-xl p-6">
@@ -114,7 +125,7 @@
       </div>
       <div class="flex flex-wrap gap-1.5 mb-4">
         {['Python', 'Flask', 'MongoDB', 'TailwindCSS', 'Cloudinary', 'Docker', 'WhatsApp API'].map(t => (
-          <span class="px-2 py-0.5 bg-blue-900/30 text-blue-400 rounded text-xs font-medium">{t}</span>
+          <span class="px-2 py-0.5 bg-brand-soft/30 text-brand rounded text-xs font-medium">{t}</span>
         ))}
       </div>
       <ul class="text-sm text-muted flex flex-col gap-1.5 list-disc list-inside">
@@ -135,7 +146,7 @@
       </div>
       <div class="flex flex-wrap gap-1.5 mb-4">
         {['Python', 'Flask', 'PostgreSQL', 'Telegram Bot API', 'Docker', 'Render', 'CI/CD'].map(t => (
-          <span class="px-2 py-0.5 bg-blue-900/30 text-blue-400 rounded text-xs font-medium">{t}</span>
+          <span class="px-2 py-0.5 bg-brand-soft/30 text-brand rounded text-xs font-medium">{t}</span>
         ))}
       </div>
       <ul class="text-sm text-muted flex flex-col gap-1.5 list-disc list-inside">
@@ -152,11 +163,21 @@
           <p class="font-bold text-white text-lg">MedicFile</p>
           <p class="text-sm text-muted">Winner — Penguin Academy Hackathon 2023</p>
         </div>
-        <span class="px-2 py-0.5 bg-yellow-900/30 text-yellow-400 rounded text-xs font-medium whitespace-nowrap">🏆 Hackathon</span>
+        <span class="self-start inline-flex items-center gap-1 px-2 py-0.5 bg-yellow-900/30 text-yellow-400 rounded text-xs font-medium whitespace-nowrap" aria-label="Hackathon award">
+          <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" class="inline-block">
+            <path d="M6 9H4.5a2.5 2.5 0 0 1 0-5H6"/>
+            <path d="M18 9h1.5a2.5 2.5 0 0 0 0-5H18"/>
+            <path d="M4 22h16"/>
+            <path d="M10 14.66V17c0 .55-.47.98-.97 1.21C7.85 18.75 7 20.24 7 22"/>
+            <path d="M14 14.66V17c0 .55.47.98.97 1.21C16.15 18.75 17 20.24 17 22"/>
+            <path d="M18 2H6v7a6 6 0 0 0 12 0V2Z"/>
+          </svg>
+          Hackathon
+        </span>
       </div>
       <div class="flex flex-wrap gap-1.5 mb-4">
         {['Flask', 'SQLAlchemy', 'TailwindCSS', 'QR Code', 'Pillow'].map(t => (
-          <span class="px-2 py-0.5 bg-blue-900/30 text-blue-400 rounded text-xs font-medium">{t}</span>
+          <span class="px-2 py-0.5 bg-brand-soft/30 text-brand rounded text-xs font-medium">{t}</span>
         ))}
       </div>
       <ul class="text-sm text-muted flex flex-col gap-1.5 list-disc list-inside">
@@ -165,7 +186,7 @@
       </ul>
     </div>
 
-    <!-- Herramientas -->
+    <!-- Tools -->
     <div class="bg-surface border border-border rounded-xl p-6">
       <div class="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-2 mb-3">
         <div>
@@ -175,7 +196,7 @@
       </div>
       <div class="flex flex-wrap gap-1.5 mb-4">
         {['PowerShell', 'Python', 'Flask', 'BeautifulSoup', 'SMTP', 'Active Directory'].map(t => (
-          <span class="px-2 py-0.5 bg-blue-900/30 text-blue-400 rounded text-xs font-medium">{t}</span>
+          <span class="px-2 py-0.5 bg-brand-soft/30 text-brand rounded text-xs font-medium">{t}</span>
         ))}
       </div>
       <ul class="text-sm text-muted flex flex-col gap-1.5 list-disc list-inside">

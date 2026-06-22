@@ -5,6 +5,7 @@ import Footer from '../components/Footer.astro';
 import ContactButtons from '../components/ContactButtons.astro';
 import CategoryCard from '../components/CategoryCard.astro';
 import { icons, type IconName } from '../components/icons';
+import SlotrBackground from '../components/SlotrBackground.astro';
 
 const WHATSAPP = 'https://wa.me/595993294266';
 const EMAIL    = 'lucas_paniagua@hotmail.com';
@@ -197,33 +198,19 @@ const pricingRangesEn = [
 >
   <Navbar showLangToggle={true} />
 
+  <div class="relative">
+    <SlotrBackground />
+
     <!-- ESPAÑOL -->
-  <div data-lang="es">
+    <div data-lang="es">
     <!-- HERO -->
-    <section class="relative overflow-hidden bg-[#0a0a0f] py-24 text-center px-6">
-      <div class="hero-shape hero-shape-1 absolute top-[15%] left-[12%] w-[180px] h-[180px] rounded-full"></div>
-      <div class="hero-shape-reverse hero-shape-2 absolute top-[55%] right-[10%] w-[220px] h-[220px] rounded-full"></div>
-      <div class="hero-shape hero-shape-3 absolute bottom-[10%] left-[35%] w-[140px] h-[140px] rounded-full"></div>
-      <div class="hero-shape-reverse hero-shape-4 absolute top-[25%] right-[28%] w-[100px] h-[100px] rounded-full"></div>
-
-      <div class="absolute inset-0 hero-grid-overlay"></div>
-
-      <div class="hero-icon-float hero-icon-1 absolute top-[15%] right-[15%]" aria-hidden="true">
-        <span set:html={icons.calendar} class="text-slotr block" style="width:36px;height:36px;"></span>
-      </div>
-      <div class="hero-icon-float-reverse hero-icon-2 absolute bottom-[20%] left-[12%]" aria-hidden="true">
-        <span set:html={icons.users} class="text-slotr block" style="width:32px;height:32px;"></span>
-      </div>
-      <div class="hero-icon-float hero-icon-3 absolute top-[45%] left-[10%]" aria-hidden="true">
-        <span set:html={icons.sparkles} class="text-slotr block" style="width:28px;height:28px;"></span>
-      </div>
-
+    <section class="relative py-24 text-center px-6">
       <div class="relative z-10">
         <p class="text-xs font-bold uppercase tracking-widest text-slotr mb-4 inline-block px-4 py-1.5 border border-violet-500/30 rounded-full">SaaS · Agendamiento</p>
 
-        <img src="/slotr-morado-claro.png" alt="Slotr" class="h-16 mx-auto mb-4" />
+        <img src="/slotr-morado-claro.png" alt="Slotr" class="h-16 lg:h-20 mx-auto mb-4" />
 
-        <h1 class="text-3xl sm:text-4xl lg:text-5xl font-black mb-3 slotr-gradient-text leading-tight">Turnos online, sin complicaciones</h1>
+        <h1 class="text-3xl sm:text-4xl lg:text-5xl xl:text-6xl font-black mb-3 slotr-gradient-text leading-tight">Turnos online, sin complicaciones</h1>
 
         <p class="text-sm text-muted max-w-md mx-auto mb-8 leading-relaxed">
           Sistema de turnos online para clínicas, peluquerías, consultoras y canchas deportivas en Paraguay.
@@ -266,7 +253,7 @@ const pricingRangesEn = [
         <p class="text-sm text-muted mb-6">Si tu negocio agenda citas, Slotr es para vos.</p>
         <div class="grid grid-cols-2 md:grid-cols-3 lg:flex lg:justify-center lg:flex-wrap gap-3">
           {target.map(t => (
-            <span class="px-4 py-2 rounded-xl text-sm font-semibold border border-violet-900 text-slotr bg-slotr-dark text-center whitespace-nowrap">
+            <span class="px-4 py-2 rounded-xl text-sm font-semibold border border-violet-800/60 text-slotr bg-violet-950/40 text-center whitespace-nowrap">
               {t}
             </span>
           ))}
@@ -276,7 +263,7 @@ const pricingRangesEn = [
         </div>
       </section>
 
-      <section class="py-16 border-t border-white/[0.06] text-center px-6 sm:px-0">
+      <section class="py-16 border-t border-border text-center px-6 sm:px-0">
         <h2 class="text-xl sm:text-2xl font-black mb-2">Precio según tu equipo</h2>
         <p class="text-sm text-muted mb-2">Pagás por los calendarios que usás. Sin costos fijos por funciones que no necesitás.</p>
         <p class="text-xs text-subtle mb-8">Precio base incluye 1 recurso/calendario. Cada recurso adicional tiene un costo adicional.</p>
@@ -293,7 +280,7 @@ const pricingRangesEn = [
                 target="_blank"
                 rel="noopener noreferrer"
                 class={`text-xs font-semibold whitespace-nowrap ml-6 hover:underline transition-all ${
-                  r.featured ? 'text-slotr' : 'text-subtle hover:text-muted'
+                  r.featured ? 'text-slotr' : 'text-muted hover:text-white'
                 }`}
               >
                 Consultá →
@@ -303,7 +290,7 @@ const pricingRangesEn = [
         </div>
       </section>
 
-      <section class="py-20 text-center border-t border-white/[0.06]">
+      <section class="py-20 text-center border-t border-border">
         <h2 class="text-2xl sm:text-3xl lg:text-4xl font-black mb-3">¿Querés que tus clientes reserven solos?</h2>
         <p class="text-sm text-muted mb-8">Escribime y te muestro cómo funciona.</p>
         <ContactButtons whatsapp={WHATSAPP} email={EMAIL} />
@@ -314,30 +301,13 @@ const pricingRangesEn = [
   <!-- ENGLISH -->
   <div data-lang="en" class="hidden">
     <!-- HERO -->
-    <section class="relative overflow-hidden bg-[#0a0a0f] py-24 text-center px-6">
-      <div class="hero-shape hero-shape-1 absolute top-[15%] left-[12%] w-[180px] h-[180px] rounded-full"></div>
-      <div class="hero-shape-reverse hero-shape-2 absolute top-[55%] right-[10%] w-[220px] h-[220px] rounded-full"></div>
-      <div class="hero-shape hero-shape-3 absolute bottom-[10%] left-[35%] w-[140px] h-[140px] rounded-full"></div>
-      <div class="hero-shape-reverse hero-shape-4 absolute top-[25%] right-[28%] w-[100px] h-[100px] rounded-full"></div>
-
-      <div class="absolute inset-0 hero-grid-overlay"></div>
-
-      <div class="hero-icon-float hero-icon-1 absolute top-[15%] right-[15%]" aria-hidden="true">
-        <span set:html={icons.calendar} class="text-slotr block" style="width:36px;height:36px;"></span>
-      </div>
-      <div class="hero-icon-float-reverse hero-icon-2 absolute bottom-[20%] left-[12%]" aria-hidden="true">
-        <span set:html={icons.users} class="text-slotr block" style="width:32px;height:32px;"></span>
-      </div>
-      <div class="hero-icon-float hero-icon-3 absolute top-[45%] left-[10%]" aria-hidden="true">
-        <span set:html={icons.sparkles} class="text-slotr block" style="width:28px;height:28px;"></span>
-      </div>
-
+    <section class="relative py-24 text-center px-6">
       <div class="relative z-10">
         <p class="text-xs font-bold uppercase tracking-widest text-slotr mb-4 inline-block px-4 py-1.5 border border-violet-500/30 rounded-full">SaaS · Scheduling</p>
 
-        <img src="/slotr-morado-claro.png" alt="Slotr" class="h-16 mx-auto mb-4" />
+        <img src="/slotr-morado-claro.png" alt="Slotr" class="h-16 lg:h-20 mx-auto mb-4" />
 
-        <h1 class="text-3xl sm:text-4xl lg:text-5xl font-black mb-3 slotr-gradient-text leading-tight">Online appointments, hassle-free</h1>
+        <h1 class="text-3xl sm:text-4xl lg:text-5xl xl:text-6xl font-black mb-3 slotr-gradient-text leading-tight">Online appointments, hassle-free</h1>
 
         <p class="text-sm text-muted max-w-md mx-auto mb-8 leading-relaxed">
           Online appointment system for clinics, hair salons, consultancies and sports courts in Paraguay.
@@ -381,7 +351,7 @@ const pricingRangesEn = [
         <p class="text-sm text-muted mb-6">If your business schedules appointments, Slotr is for you.</p>
         <div class="grid grid-cols-2 md:grid-cols-3 lg:flex lg:justify-center lg:flex-wrap gap-3">
           {targetEn.map(t => (
-            <span class="px-4 py-2 rounded-xl text-sm font-semibold border border-violet-900 text-slotr bg-slotr-dark text-center whitespace-nowrap">
+            <span class="px-4 py-2 rounded-xl text-sm font-semibold border border-violet-800/60 text-slotr bg-violet-950/40 text-center whitespace-nowrap">
               {t}
             </span>
           ))}
@@ -391,7 +361,7 @@ const pricingRangesEn = [
         </div>
       </section>
 
-      <section class="py-16 border-t border-white/[0.06] text-center px-6 sm:px-0">
+      <section class="py-16 border-t border-border text-center px-6 sm:px-0">
         <h2 class="text-xl sm:text-2xl font-black mb-2">Pricing based on your team</h2>
         <p class="text-sm text-muted mb-2">You pay for the calendars you use. No fixed costs for features you don't need.</p>
         <p class="text-xs text-subtle mb-8">Base price includes 1 resource/calendar. Each additional resource has an extra cost.</p>
@@ -408,7 +378,7 @@ const pricingRangesEn = [
                 target="_blank"
                 rel="noopener noreferrer"
                 class={`text-xs font-semibold whitespace-nowrap ml-6 hover:underline transition-all ${
-                  r.featured ? 'text-slotr' : 'text-subtle hover:text-muted'
+                  r.featured ? 'text-slotr' : 'text-muted hover:text-white'
                 }`}
               >
                 Request →
@@ -418,12 +388,13 @@ const pricingRangesEn = [
         </div>
       </section>
 
-      <section class="py-20 text-center border-t border-white/[0.06]">
+      <section class="py-20 text-center border-t border-border">
         <h2 class="text-2xl sm:text-3xl lg:text-4xl font-black mb-3">Want your clients to book on their own?</h2>
         <p class="text-sm text-muted mb-8">Message me and I'll show you how it works.</p>
         <ContactButtons whatsapp={WHATSAPP} email={EMAIL} />
       </section>
 
+  </div>
   </div>
 
   <!-- Toggle script -->

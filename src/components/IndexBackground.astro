@@ -1,0 +1,17 @@
+---
+// src/components/IndexBackground.astro
+// Page-level background for the home page.
+// Extends the hero gradient to the full page with subtle floating circles
+// for depth. Keeps the personal landing page clean — no icons or monogram
+// (the hero already has the "LS" watermark in its visual cluster).
+---
+
+<div class="absolute inset-0 pointer-events-none overflow-hidden" aria-hidden="true">
+  <!-- Full-page gradient (same as hero) -->
+  <div class="absolute inset-0 hero-bg-home"></div>
+
+  <!-- Subtle floating gradient circles for depth -->
+  <div class="hero-icon-float absolute top-[30%] right-[5%] w-64 h-64 rounded-full bg-slotr/10 blur-3xl"></div>
+  <div class="hero-icon-float-reverse absolute top-[55%] left-[8%] w-56 h-56 rounded-full bg-vareapp/8 blur-3xl"></div>
+  <div class="hero-icon-float absolute top-[80%] right-[20%] w-48 h-48 rounded-full bg-brand/6 blur-3xl"></div>
+</div>

@@ -1,136 +1,203 @@
 ---
 // src/components/portfolio/PortfolioHero.astro
 // Hero del portfolio: nombre, roles, bio, contacto. Bilingüe con data-lang.
+// En lg+ muestra una tarjeta de "Perfil" a la derecha con quick facts.
 ---
 
 <!-- ESPAÑOL -->
-<section data-lang="es" class="py-16 px-6 max-w-4xl mx-auto">
-  <p class="text-xs text-subtle uppercase tracking-widest mb-3">Hernandarias, Paraguay</p>
+<section data-lang="es" class="py-16 container-page">
+  <div class="grid lg:grid-cols-[1fr_280px] lg:gap-12 items-start">
+    <div>
+      <p class="text-xs text-subtle uppercase tracking-widest mb-3">Hernandarias, Paraguay</p>
 
-  <h1 class="text-4xl sm:text-5xl font-black text-white mb-3">
-    Lucas S. Paniagua
-  </h1>
+      <h1 class="text-4xl sm:text-5xl lg:text-6xl font-black text-white mb-3">
+        Lucas S. Paniagua
+      </h1>
 
-  <div class="flex flex-wrap gap-2 mb-6">
-    <span class="px-3 py-1 bg-surface text-muted rounded-full text-xs font-semibold">Full-Stack Developer</span>
-    <span class="px-3 py-1 bg-surface text-muted rounded-full text-xs font-semibold">System Administrator</span>
-    <span class="px-3 py-1 bg-surface text-muted rounded-full text-xs font-semibold">Network Engineer</span>
-    <span class="px-3 py-1 bg-surface text-muted rounded-full text-xs font-semibold">Support Engineer</span>
-  </div>
+      <div class="flex flex-wrap gap-2 mb-6">
+        <span class="px-3 py-1 bg-surface text-muted rounded-full text-xs font-semibold">Full-Stack Developer</span>
+        <span class="px-3 py-1 bg-surface text-muted rounded-full text-xs font-semibold">System Administrator</span>
+        <span class="px-3 py-1 bg-surface text-muted rounded-full text-xs font-semibold">Network Engineer</span>
+        <span class="px-3 py-1 bg-surface text-muted rounded-full text-xs font-semibold">Support Engineer</span>
+      </div>
 
-  <p class="text-muted max-w-2xl leading-relaxed mb-8">
-    Ingeniero de Sistemas con 5+ años de experiencia en diseño, diagnóstico y resolución de
-    infraestructura de red, desarrollo de software, administración de sistemas y gestión de
-    servicios TI. Construyo aplicaciones Full-Stack en Python y JavaScript con SaaS propios en
-    producción; opero entornos empresariales de alta demanda (~2.500 usuarios, uptime &gt;99.5%)
-    con expertise en networking, ITSM/ServiceNow, troubleshooting sistemático y gestión de activos.
-    Certificado en ITIL 4, AWS Cloud Practitioner, Scrum, LPI, CCNA e ISO 27001.
-  </p>
+      <p class="text-muted max-w-2xl leading-relaxed mb-8">
+        Ingeniero de Sistemas con 5+ años de experiencia en diseño, diagnóstico y resolución de
+        infraestructura de red, desarrollo de software, administración de sistemas y gestión de
+        servicios TI. Construyo aplicaciones Full-Stack en Python y JavaScript con SaaS propios en
+        producción; opero entornos empresariales de alta demanda (~2.500 usuarios, uptime &gt;99.5%)
+        con expertise en networking, ITSM/ServiceNow, troubleshooting sistemático y gestión de activos.
+        Certificado en ITIL 4, AWS Cloud Practitioner, Scrum, LPI, CCNA e ISO 27001.
+      </p>
 
-  <div class="flex flex-wrap gap-3">
-    <a
-      href="https://wa.me/595993294266"
-      target="_blank"
-      rel="noopener noreferrer"
-      class="px-5 py-2.5 rounded-lg text-sm font-semibold bg-green-600 text-white hover:bg-green-700 transition-colors"
-    >
-      WhatsApp
-    </a>
-    <a
-      href="mailto:lucas_paniagua@hotmail.com"
-      class="px-5 py-2.5 rounded-lg text-sm font-semibold border border-border text-muted hover:border-white hover:text-white transition-colors"
-    >
-      Email
-    </a>
-    <a
-      href="https://linkedin.com/in/paniagua788"
-      target="_blank"
-      rel="noopener noreferrer"
-      class="px-5 py-2.5 rounded-lg text-sm font-semibold bg-blue-600 text-white hover:bg-blue-700 transition-colors"
-    >
-      LinkedIn
-    </a>
-    <a
-      href="https://github.com/paniagua788"
-      target="_blank"
-      rel="noopener noreferrer"
-      class="px-5 py-2.5 rounded-lg text-sm font-semibold border border-border text-muted hover:border-white hover:text-white transition-colors"
-    >
-      GitHub
-    </a>
-    <a
-      href="https://lucassim.com.py"
-      target="_blank"
-      rel="noopener noreferrer"
-      class="px-5 py-2.5 rounded-lg text-sm font-semibold border border-border text-muted hover:border-white hover:text-white transition-colors"
-    >
-      lucassim.com.py ↗
-    </a>
+      <div class="flex flex-wrap gap-3">
+        <a
+          href="https://wa.me/595993294266"
+          target="_blank"
+          rel="noopener noreferrer"
+          class="px-5 py-2.5 rounded-lg text-sm font-semibold bg-green-600 text-white hover:bg-green-700 transition-colors"
+        >
+          WhatsApp
+        </a>
+        <a
+          href="mailto:lucas_paniagua@hotmail.com"
+          class="px-5 py-2.5 rounded-lg text-sm font-semibold border border-border text-muted hover:border-white hover:text-white transition-colors"
+        >
+          Email
+        </a>
+        <a
+          href="https://linkedin.com/in/paniagua788"
+          target="_blank"
+          rel="noopener noreferrer"
+          class="px-5 py-2.5 rounded-lg text-sm font-semibold bg-blue-600 text-white hover:bg-blue-700 transition-colors"
+        >
+          LinkedIn
+        </a>
+        <a
+          href="https://github.com/paniagua788"
+          target="_blank"
+          rel="noopener noreferrer"
+          class="px-5 py-2.5 rounded-lg text-sm font-semibold border border-border text-muted hover:border-white hover:text-white transition-colors"
+        >
+          GitHub
+        </a>
+        <a
+          href="https://lucassim.com.py"
+          target="_blank"
+          rel="noopener noreferrer"
+          class="px-5 py-2.5 rounded-lg text-sm font-semibold border border-border text-muted hover:border-white hover:text-white transition-colors"
+        >
+          lucassim.com.py ↗
+        </a>
+      </div>
+    </div>
+
+    <aside class="hidden lg:block bg-surface border border-border rounded-xl p-5 lg:sticky lg:top-20 self-start">
+      <p class="text-xs text-muted uppercase tracking-widest mb-4">Perfil</p>
+      <dl class="text-sm divide-y divide-border/60">
+        <div class="flex justify-between gap-3 py-2.5">
+          <dt class="text-muted">Ubicación</dt>
+          <dd class="text-white font-medium text-right">Hernandarias, PY</dd>
+        </div>
+        <div class="flex justify-between gap-3 py-2.5">
+          <dt class="text-muted">Experiencia</dt>
+          <dd class="text-white font-medium text-right">5+ años</dd>
+        </div>
+        <div class="flex justify-between gap-3 py-2.5">
+          <dt class="text-muted">Idiomas</dt>
+          <dd class="text-white font-medium text-right">ES · EN · PT</dd>
+        </div>
+        <div class="flex justify-between gap-3 py-2.5">
+          <dt class="text-muted">Certificaciones</dt>
+          <dd class="text-white font-medium text-right">16+</dd>
+        </div>
+        <div class="flex justify-between gap-3 py-2.5">
+          <dt class="text-muted">Estado</dt>
+          <dd class="text-white font-medium text-right flex items-center gap-1.5">
+            <span class="w-1.5 h-1.5 rounded-full bg-green-500" aria-hidden="true"></span>
+            Disponible
+          </dd>
+        </div>
+      </dl>
+    </aside>
   </div>
 </section>
 
 <!-- ENGLISH -->
-<section data-lang="en" class="hidden py-16 px-6 max-w-4xl mx-auto">
-  <p class="text-xs text-subtle uppercase tracking-widest mb-3">Hernandarias, Paraguay</p>
+<section data-lang="en" class="hidden py-16 container-page">
+  <div class="grid lg:grid-cols-[1fr_280px] lg:gap-12 items-start">
+    <div>
+      <p class="text-xs text-subtle uppercase tracking-widest mb-3">Hernandarias, Paraguay</p>
 
-  <h1 class="text-4xl sm:text-5xl font-black text-white mb-3">
-    Lucas S. Paniagua
-  </h1>
+      <h1 class="text-4xl sm:text-5xl lg:text-6xl font-black text-white mb-3">
+        Lucas S. Paniagua
+      </h1>
 
-  <div class="flex flex-wrap gap-2 mb-6">
-    <span class="px-3 py-1 bg-surface text-muted rounded-full text-xs font-semibold">Full-Stack Developer</span>
-    <span class="px-3 py-1 bg-surface text-muted rounded-full text-xs font-semibold">System Administrator</span>
-    <span class="px-3 py-1 bg-surface text-muted rounded-full text-xs font-semibold">Network Engineer</span>
-    <span class="px-3 py-1 bg-surface text-muted rounded-full text-xs font-semibold">Support Engineer</span>
-  </div>
+      <div class="flex flex-wrap gap-2 mb-6">
+        <span class="px-3 py-1 bg-surface text-muted rounded-full text-xs font-semibold">Full-Stack Developer</span>
+        <span class="px-3 py-1 bg-surface text-muted rounded-full text-xs font-semibold">System Administrator</span>
+        <span class="px-3 py-1 bg-surface text-muted rounded-full text-xs font-semibold">Network Engineer</span>
+        <span class="px-3 py-1 bg-surface text-muted rounded-full text-xs font-semibold">Support Engineer</span>
+      </div>
 
-  <p class="text-muted max-w-2xl leading-relaxed mb-8">
-    Systems Engineer with 5+ years of experience in network infrastructure design, diagnosis,
-    and resolution, software development, systems administration, and IT service management.
-    I build Full-Stack applications in Python and JavaScript with own SaaS products in production,
-    and operate high-demand enterprise environments (~2,500 users, uptime &gt;99.5%) with expertise
-    in networking, ITSM/ServiceNow, systematic troubleshooting, and asset management. ITIL 4,
-    AWS Cloud Practitioner, Scrum, LPI, CCNA, and ISO 27001 certified.
-  </p>
+      <p class="text-muted max-w-2xl leading-relaxed mb-8">
+        Systems Engineer with 5+ years of experience in network infrastructure design, diagnosis,
+        and resolution, software development, systems administration, and IT service management.
+        I build Full-Stack applications in Python and JavaScript with own SaaS products in production,
+        and operate high-demand enterprise environments (~2,500 users, uptime &gt;99.5%) with expertise
+        in networking, ITSM/ServiceNow, systematic troubleshooting, and asset management. ITIL 4,
+        AWS Cloud Practitioner, Scrum, LPI, CCNA, and ISO 27001 certified.
+      </p>
 
-  <div class="flex flex-wrap gap-3">
-    <a
-      href="https://wa.me/595993294266"
-      target="_blank"
-      rel="noopener noreferrer"
-      class="px-5 py-2.5 rounded-lg text-sm font-semibold bg-green-600 text-white hover:bg-green-700 transition-colors"
-    >
-      WhatsApp
-    </a>
-    <a
-      href="mailto:lucas_paniagua@hotmail.com"
-      class="px-5 py-2.5 rounded-lg text-sm font-semibold border border-border text-muted hover:border-white hover:text-white transition-colors"
-    >
-      Email
-    </a>
-    <a
-      href="https://linkedin.com/in/paniagua788"
-      target="_blank"
-      rel="noopener noreferrer"
-      class="px-5 py-2.5 rounded-lg text-sm font-semibold bg-blue-600 text-white hover:bg-blue-700 transition-colors"
-    >
-      LinkedIn
-    </a>
-    <a
-      href="https://github.com/paniagua788"
-      target="_blank"
-      rel="noopener noreferrer"
-      class="px-5 py-2.5 rounded-lg text-sm font-semibold border border-border text-muted hover:border-white hover:text-white transition-colors"
-    >
-      GitHub
-    </a>
-    <a
-      href="https://lucassim.com.py"
-      target="_blank"
-      rel="noopener noreferrer"
-      class="px-5 py-2.5 rounded-lg text-sm font-semibold border border-border text-muted hover:border-white hover:text-white transition-colors"
-    >
-      lucassim.com.py ↗
-    </a>
+      <div class="flex flex-wrap gap-3">
+        <a
+          href="https://wa.me/595993294266"
+          target="_blank"
+          rel="noopener noreferrer"
+          class="px-5 py-2.5 rounded-lg text-sm font-semibold bg-green-600 text-white hover:bg-green-700 transition-colors"
+        >
+          WhatsApp
+        </a>
+        <a
+          href="mailto:lucas_paniagua@hotmail.com"
+          class="px-5 py-2.5 rounded-lg text-sm font-semibold border border-border text-muted hover:border-white hover:text-white transition-colors"
+        >
+          Email
+        </a>
+        <a
+          href="https://linkedin.com/in/paniagua788"
+          target="_blank"
+          rel="noopener noreferrer"
+          class="px-5 py-2.5 rounded-lg text-sm font-semibold bg-blue-600 text-white hover:bg-blue-700 transition-colors"
+        >
+          LinkedIn
+        </a>
+        <a
+          href="https://github.com/paniagua788"
+          target="_blank"
+          rel="noopener noreferrer"
+          class="px-5 py-2.5 rounded-lg text-sm font-semibold border border-border text-muted hover:border-white hover:text-white transition-colors"
+        >
+          GitHub
+        </a>
+        <a
+          href="https://lucassim.com.py"
+          target="_blank"
+          rel="noopener noreferrer"
+          class="px-5 py-2.5 rounded-lg text-sm font-semibold border border-border text-muted hover:border-white hover:text-white transition-colors"
+        >
+          lucassim.com.py ↗
+        </a>
+      </div>
+    </div>
+
+    <aside class="hidden lg:block bg-surface border border-border rounded-xl p-5 lg:sticky lg:top-20 self-start">
+      <p class="text-xs text-muted uppercase tracking-widest mb-4">Profile</p>
+      <dl class="text-sm divide-y divide-border/60">
+        <div class="flex justify-between gap-3 py-2.5">
+          <dt class="text-muted">Location</dt>
+          <dd class="text-white font-medium text-right">Hernandarias, PY</dd>
+        </div>
+        <div class="flex justify-between gap-3 py-2.5">
+          <dt class="text-muted">Experience</dt>
+          <dd class="text-white font-medium text-right">5+ years</dd>
+        </div>
+        <div class="flex justify-between gap-3 py-2.5">
+          <dt class="text-muted">Languages</dt>
+          <dd class="text-white font-medium text-right">ES · EN · PT</dd>
+        </div>
+        <div class="flex justify-between gap-3 py-2.5">
+          <dt class="text-muted">Certifications</dt>
+          <dd class="text-white font-medium text-right">16+</dd>
+        </div>
+        <div class="flex justify-between gap-3 py-2.5">
+          <dt class="text-muted">Status</dt>
+          <dd class="text-white font-medium text-right flex items-center gap-1.5">
+            <span class="w-1.5 h-1.5 rounded-full bg-green-500" aria-hidden="true"></span>
+            Available
+          </dd>
+        </div>
+      </dl>
+    </aside>
   </div>
 </section>

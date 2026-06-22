@@ -7,7 +7,9 @@
   --color-surface2:     #1a1a1a;
   --color-border:       #2a2a2a;
   --color-muted:        #888888;
-  --color-subtle:       #555555;
+  --color-subtle:       #7a7a7a;
+  --color-brand:        #60a5fa;
+  --color-brand-soft:   #1e3a8a;
   --color-vareapp:      #f97316;
   --color-vareapp-dark: #140800;
   --color-slotr:        #7c3aed;
@@ -19,6 +21,33 @@
   /* Border radius */
   --radius-card:  12px;
   --radius-inner: 8px;
+}
+
+/* Page container — scales from 4xl on mobile to 1400px on ultrawide */
+.container-page {
+  max-width: 56rem;
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: 1.5rem;
+  padding-right: 1.5rem;
+}
+
+@media (min-width: 1024px) {
+  .container-page {
+    max-width: 72rem;
+  }
+}
+
+@media (min-width: 1280px) {
+  .container-page {
+    max-width: 80rem;
+  }
+}
+
+@media (min-width: 1536px) {
+  .container-page {
+    max-width: 87.5rem;
+  }
 }
 
 /* Hero Animations */
@@ -139,6 +168,21 @@
 .slotr-card:nth-child(10) { animation-delay: 370ms; }
 .slotr-card:nth-child(11) { animation-delay: 400ms; }
 .slotr-card:nth-child(12) { animation-delay: 400ms; }
+
+/* Home page hero background — subtle two-product gradient */
+.hero-bg-home {
+  background:
+    radial-gradient(ellipse 600px 400px at 15% 20%, rgba(124, 58, 237, 0.10), transparent 60%),
+    radial-gradient(ellipse 500px 400px at 85% 80%, rgba(249, 115, 22, 0.08), transparent 60%);
+}
+
+.hero-bg-home-visual {
+  background:
+    radial-gradient(circle, rgba(249, 115, 22, 0.15), transparent 70%),
+    radial-gradient(circle, rgba(124, 58, 237, 0.18), transparent 70%),
+    radial-gradient(circle, rgba(96, 165, 250, 0.10), transparent 70%);
+  filter: blur(60px);
+}
 
 /* Hero Gradient Shapes */
 .hero-shape-1 {
