@@ -15,8 +15,24 @@
   --color-slotr:        #7c3aed;
   --color-slotr-dark:   #0d0a14;
 
+  /* Slotr: tema morado de la app (MD3), solo en la página de Slotr */
+  --color-md-background:             #FFFBFE;
+  --color-md-primary:                #6750A4;
+  --color-md-primary-container:      #EADDFF;
+  --color-md-on-primary-container:   #21005D;
+  --color-md-secondary-container:    #E8DEF8;
+  --color-md-on-secondary-container: #1D192B;
+  --color-md-surface-container:      #F3EDF7;
+  --color-md-surface-variant:        #E7E0EC;
+  --color-md-on-surface:             #1C1B1F;
+  --color-md-on-surface-variant:     #49454F;
+  --color-md-outline:                #79747E;
+  --color-md-outline-variant:        #CAC4D0;
+
   /* Typography */
   --font-sans: "Inter", system-ui, sans-serif;
+  --font-md: "Roboto", system-ui, sans-serif;
+  --font-md-mono: "JetBrains Mono", ui-monospace, monospace;
 
   /* Border radius */
   --radius-card:  12px;
@@ -74,101 +90,6 @@
   animation: hero-float 20s ease-in-out infinite reverse;
 }
 
-/* Slotr Card Hover Effects */
-.slotr-card {
-  transition: transform 0.2s ease, border-color 0.2s ease;
-}
-
-.slotr-card:hover {
-  transform: translateY(-2px);
-  border-color: rgba(124, 58, 237, 0.3);
-}
-
-/* Slotr CTA Button */
-.slotr-cta {
-  background: linear-gradient(135deg, #7c3aed, #a855f7);
-  box-shadow: 0 4px 14px rgba(124, 58, 237, 0.35);
-  transition: transform 0.2s ease, box-shadow 0.2s ease;
-}
-
-.slotr-cta:hover {
-  transform: translateY(-1px);
-  box-shadow: 0 6px 20px rgba(124, 58, 237, 0.45);
-}
-
-.slotr-cta:focus-visible {
-  outline: 2px solid #a855f7;
-  outline-offset: 2px;
-}
-
-/* Slotr Pricing Cards */
-.slotr-pricing-card {
-  transition: transform 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease;
-}
-
-.slotr-pricing-card:hover {
-  transform: translateY(-2px);
-}
-
-.slotr-pricing-card.featured {
-  border-color: rgba(124, 58, 237, 0.4);
-  box-shadow: 0 8px 30px rgba(124, 58, 237, 0.15);
-}
-
-.slotr-pricing-card.featured:hover {
-  box-shadow: 0 12px 40px rgba(124, 58, 237, 0.25);
-}
-
-.slotr-pricing-card:not(.featured) {
-  background: rgba(255, 255, 255, 0.02);
-  border-color: rgba(255, 255, 255, 0.08);
-}
-
-.slotr-pricing-card:not(.featured):hover {
-  border-color: rgba(255, 255, 255, 0.15);
-  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.2);
-}
-
-/* Pricing card CTA links */
-.slotr-pricing-card a:focus-visible {
-  outline: 2px solid #a855f7;
-  outline-offset: 2px;
-  border-radius: 4px;
-}
-
-/* Slotr Gradient Text */
-.slotr-gradient-text {
-  background: linear-gradient(135deg, #ffffff 0%, #c084fc 50%, #7c3aed 100%);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
-}
-
-/* Staggered Card Entrance Animation */
-@keyframes card-in {
-  0% { opacity: 0; transform: translateY(20px); }
-  100% { opacity: 1; transform: translateY(0); }
-}
-
-.slotr-card {
-  opacity: 0;
-  animation: card-in 0.5s ease-out forwards;
-}
-
-/* Stagger delays for up to 12 cards (capped at 400ms for perceived performance) */
-.slotr-card:nth-child(1) { animation-delay: 100ms; }
-.slotr-card:nth-child(2) { animation-delay: 130ms; }
-.slotr-card:nth-child(3) { animation-delay: 160ms; }
-.slotr-card:nth-child(4) { animation-delay: 190ms; }
-.slotr-card:nth-child(5) { animation-delay: 220ms; }
-.slotr-card:nth-child(6) { animation-delay: 250ms; }
-.slotr-card:nth-child(7) { animation-delay: 280ms; }
-.slotr-card:nth-child(8) { animation-delay: 310ms; }
-.slotr-card:nth-child(9) { animation-delay: 340ms; }
-.slotr-card:nth-child(10) { animation-delay: 370ms; }
-.slotr-card:nth-child(11) { animation-delay: 400ms; }
-.slotr-card:nth-child(12) { animation-delay: 400ms; }
-
 /* Home page hero background — subtle two-product gradient */
 .hero-bg-home {
   background:
@@ -184,50 +105,12 @@
   filter: blur(60px);
 }
 
-/* Hero Gradient Shapes */
-.hero-shape-1 {
-  background: radial-gradient(circle, rgba(124,58,237,0.25), transparent 70%);
-  filter: blur(40px);
-}
-
-.hero-shape-2 {
-  background: radial-gradient(circle, rgba(168,85,247,0.2), transparent 70%);
-  filter: blur(50px);
-}
-
-.hero-shape-3 {
-  background: radial-gradient(circle, rgba(192,132,252,0.15), transparent 70%);
-  filter: blur(35px);
-}
-
-.hero-shape-4 {
-  background: radial-gradient(circle, rgba(124,58,237,0.18), transparent 70%);
-  filter: blur(30px);
-}
-
-.hero-grid-overlay {
-  background-image: linear-gradient(rgba(124,58,237,0.04) 1px, transparent 1px), linear-gradient(90deg, rgba(124,58,237,0.04) 1px, transparent 1px);
-  background-size: 60px 60px;
-  mask-image: radial-gradient(ellipse at center, black 30%, transparent 70%);
-  -webkit-mask-image: radial-gradient(ellipse at center, black 30%, transparent 70%);
-}
-
-/* Hero Floating Icons */
-.hero-icon-1 { opacity: 0.12; }
-.hero-icon-2 { opacity: 0.10; }
-.hero-icon-3 { opacity: 0.08; }
-
-/* CategoryCard Icon Sizes */
-.category-icon-lg { width: 22px; height: 22px; display: inline-block; }
-.category-icon-sm { width: 18px; height: 18px; display: block; }
-
 /* Respect user motion preferences */
 @media (prefers-reduced-motion: reduce) {
   .hero-shape,
   .hero-shape-reverse,
   .hero-icon-float,
-  .hero-icon-float-reverse,
-  .slotr-card {
+  .hero-icon-float-reverse {
     animation: none;
     opacity: 1;
     transform: none;

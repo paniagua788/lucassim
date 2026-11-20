@@ -6,9 +6,10 @@ interface Props {
   description?: string;
   favicon?: string;
   lang?: string;
+  bodyClass?: string;
 }
 
-const { title, description = 'Software SaaS para negocios paraguayos.', favicon = '/favicon.svg', lang = 'es' } = Astro.props;
+const { title, description = 'Software SaaS para negocios paraguayos.', favicon = '/favicon.svg', lang = 'es', bodyClass = 'bg-base text-white font-sans antialiased' } = Astro.props;
 ---
 
 <!doctype html>
@@ -20,10 +21,12 @@ const { title, description = 'Software SaaS para negocios paraguayos.', favicon 
     <link rel="icon" href={favicon} />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet" />
+    <slot name="head">
+      <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet" />
+    </slot>
     <title>{title}</title>
   </head>
-  <body class="bg-base text-white font-sans antialiased">
+  <body class={bodyClass}>
     <slot />
   </body>
 </html>

@@ -486,9 +486,7 @@ const proIncludedEn      = ['Everything in Essential plan', 'Electronic invoice 
         btns.forEach(function (btn) {
           if (btn instanceof HTMLElement) {
             var active = btn.dataset.target === lang;
-            btn.classList.toggle('bg-white', active);
-            btn.classList.toggle('text-gray-900', active);
-            btn.classList.toggle('text-muted', !active);
+            btn.setAttribute('aria-pressed', String(active));
           }
         });
       }

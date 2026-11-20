@@ -1,9 +1,14 @@
 ---
 interface Props {
   showHomeLink?: boolean;
+  /** Tema claro (página de Slotr). */
+  light?: boolean;
 }
 
-const { showHomeLink = false } = Astro.props;
+const { showHomeLink = false, light = false } = Astro.props;
+const border = light ? 'border-md-outline-variant' : 'border-border';
+const link   = light ? 'text-md-on-surface-variant hover:text-md-primary' : 'text-muted hover:text-white';
+const fine   = light ? 'text-md-on-surface-variant' : 'text-subtle';
 
 const socials = [
   { label: 'GitHub',    href: 'https://github.com/paniagua788' },
@@ -12,9 +17,9 @@ const socials = [
 ];
 ---
 
-<footer class="border-t border-border mt-24">
+<footer class={`border-t mt-24 ${border}`}>
   <div class="max-w-5xl mx-auto px-6 py-8 flex flex-col sm:flex-row items-center justify-between gap-4">
-    <a href="/" class="text-sm font-bold text-muted tracking-widest uppercase hover:text-white transition-colors">
+    <a href="/" class={`text-sm font-bold tracking-widest uppercase transition-colors ${link}`}>
       lucassim
     </a>
 
@@ -23,7 +28,7 @@ const socials = [
         <a
           href={s.href}
           aria-disabled={s.href === '#' ? 'true' : undefined}
-          class={`text-xs transition-colors ${s.href === '#' ? 'text-border cursor-default pointer-events-none' : 'text-muted hover:text-white'}`}
+          class={`text-xs transition-colors ${s.href === '#' ? 'text-border cursor-default pointer-events-none' : link}`}
         >
           {s.label}
         </a>
@@ -32,11 +37,11 @@ const socials = [
 
     <div class="flex items-center gap-4">
       {showHomeLink && (
-        <a href="/" class="text-xs text-muted hover:text-white transition-colors">
+        <a href="/" class={`text-xs transition-colors ${link}`}>
           ← Inicio
         </a>
       )}
-      <span class="text-xs text-subtle">© {new Date().getFullYear()} lucassim</span>
+      <span class={`text-xs ${fine}`}>© {new Date().getFullYear()} lucassim</span>
     </div>
   </div>
 </footer>
