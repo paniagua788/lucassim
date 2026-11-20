@@ -48,7 +48,7 @@ Defined in `src/styles/global.css` via Tailwind v4 `@theme`:
 | `--color-subtle` | `#555555` |
 | `--color-vareapp` | `#f97316` (orange) |
 | `--color-slotr` | `#7c3aed` (violet, solo home) |
-| `--color-md-*`, `--font-md`, `--font-md-mono` | Tema morado MD3 de la app Slotr (`#6750A4`, fondo `#FFFBFE`, Roboto + JetBrains Mono), solo en `/slotr` |
+| `--color-md-*`, `--font-md`, `--font-md-mono` | Tema morado MD3 de la app Slotr (`#6750A4`, fondo `#FFFBFE`; títulos Plus Jakarta Sans con `font-md-display`, texto Roboto, horarios JetBrains Mono), solo en `/slotr` |
 
 ## Key Conventions
 
@@ -56,7 +56,7 @@ Defined in `src/styles/global.css` via Tailwind v4 `@theme`:
 - **No emojis as icons** — use SVG from `icons.ts` or `vareapp-icons.ts`
 - **Hero animations** use shared `hero-float` keyframes with `.hero-shape`, `.hero-icon-float` classes
 - **`prefers-reduced-motion`** disables all hero animations
-- **Slotr page** copies the app's light purple theme: hero = brand panel + booking mock, MD3 cards; logo/favicon in `public/brand/` come from the Slotr repo (`docs/marketing/marca/logo-d/`, `app/static/favicon.svg`). `Navbar`/`Footer` take `light`; `BaseLayout` takes `bodyClass` and a `head` slot (fonts).
+- **Slotr page** copies the app's light purple theme: hero = full-width brand band + booking mock, MD3 cards; logo/favicon in `public/brand/` come from the Slotr repo (`docs/marketing/marca/logo-d/`, `app/static/favicon.svg`). `Navbar`/`Footer` take `light`; `BaseLayout` takes `bodyClass` and a `head` slot (fonts).
 - **Language toggle** buttons carry `aria-pressed`; page scripts only flip that attribute.
 - **Bento grid pages** (vareapp) use `grid-cols-1 lg:grid-cols-12` with span lookup maps
 - **`FeatureCard.astro` is dead code** — removed, do not recreate

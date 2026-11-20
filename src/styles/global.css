@@ -33,6 +33,7 @@
   --font-sans: "Inter", system-ui, sans-serif;
   --font-md: "Roboto", system-ui, sans-serif;
   --font-md-mono: "JetBrains Mono", ui-monospace, monospace;
+  --font-md-display: "Plus Jakarta Sans", "Roboto", system-ui, sans-serif;
 
   /* Border radius */
   --radius-card:  12px;

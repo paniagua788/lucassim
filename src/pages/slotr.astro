@@ -14,7 +14,7 @@ interface Category { heading: string; description: string; icon: IconName; isNew
 const copy = {
   es: {
     title: 'Turnos online, sin complicaciones',
-    lead: 'Turnos online, caja y factura electrónica para clínicas, peluquerías, consultoras y canchas deportivas en Paraguay.',
+    lead: 'Reservas, agenda, caja y factura electrónica para clínicas, peluquerías, consultoras y canchas deportivas en Paraguay.',
     cta: 'Consultá por una demo',
     mock: {
       label: 'Vista de la página de reservas de Slotr: el cliente elige servicio, fecha y horario.',
@@ -90,7 +90,7 @@ const copy = {
   },
   en: {
     title: 'Online appointments, hassle-free',
-    lead: 'Online booking, cash book and e-invoicing for clinics, hair salons, consultancies and sports courts in Paraguay.',
+    lead: 'Bookings, schedule, cash book and e-invoicing for clinics, hair salons, consultancies and sports courts in Paraguay.',
     cta: 'Request a demo',
     mock: {
       label: "Slotr's booking page: the client picks a service, a date and a time.",
@@ -179,7 +179,7 @@ const langs = ['es', 'en'] as const;
   bodyClass="bg-md-background text-md-on-surface font-md antialiased"
 >
   <Fragment slot="head">
-    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@600;700;800&family=Roboto:wght@400;500;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
     <link rel="apple-touch-icon" href="/brand/slotr-apple-touch-icon.png" />
     <meta name="theme-color" content="#6750A4" />
   </Fragment>
@@ -190,15 +190,18 @@ const langs = ['es', 'en'] as const;
     const t = copy[lang];
     return (
       <main data-lang={lang} lang={lang} class={lang === 'es' ? '' : 'hidden'}>
-        <!-- HERO: mismo split que la página de reservas (panel de marca + formulario claro) -->
-        <section class="max-w-6xl mx-auto px-4 sm:px-6 pt-6 sm:pt-10">
-          <div class="relative overflow-hidden rounded-[28px] bg-md-primary text-white px-6 py-10 sm:px-10 lg:px-14 lg:py-16 grid lg:grid-cols-[1.15fr_0.85fr] gap-10 lg:gap-14 items-center">
-            <div class="absolute -top-24 -right-16 w-72 h-72 rounded-full bg-white/10 blur-3xl" aria-hidden="true"></div>
-            <div class="absolute -bottom-28 -left-20 w-80 h-80 rounded-full bg-md-primary-container/20 blur-3xl" aria-hidden="true"></div>
+        <!-- HERO: mismo split que la página de reservas (panel de marca + formulario claro), a todo el ancho -->
+        <section class="relative overflow-hidden bg-md-primary text-white">
+          <div class="absolute -top-24 right-[10%] w-80 h-80 rounded-full bg-white/10 blur-3xl" aria-hidden="true"></div>
+          <div class="absolute -bottom-32 -left-16 w-96 h-96 rounded-full bg-md-primary-container/20 blur-3xl" aria-hidden="true"></div>
+          <div class="relative max-w-6xl mx-auto px-5 sm:px-6 py-12 sm:py-16 lg:py-24 grid lg:grid-cols-[1.15fr_0.85fr] gap-10 lg:gap-14 items-center">
 
             <div class="relative">
               <img src="/brand/slotr-logo-blanco.svg" alt="Slotr" width="480" height="211" class="h-12 sm:h-14 w-auto mb-8" />
-              <h1 class="text-4xl sm:text-5xl lg:text-6xl font-bold leading-[1.05] tracking-tight mb-5 max-w-[14ch]">{t.title}</h1>
+              <h1 class="font-md-display text-[2.125rem] min-[380px]:text-[2.5rem] sm:text-5xl lg:text-6xl font-extrabold leading-[1.05] tracking-[-0.01em] mb-5 max-w-[14ch]">
+                {/* La coma de Plus Jakarta Sans trae mucho aire a la izquierda: a este tamaño parece «online ,». */}
+                {t.title.split(',')[0]}<span class="-ml-[0.1em]">,</span>{t.title.split(',').slice(1).join(',')}
+              </h1>
               <p class="text-base sm:text-lg text-white/90 leading-relaxed max-w-[42ch] mb-8">{t.lead}</p>
               <a href={WHATSAPP} target="_blank" rel="noopener noreferrer"
                 class="inline-flex items-center min-h-12 px-7 rounded-full bg-white text-md-primary font-medium shadow-[0_1px_2px_0_rgb(0_0_0/0.06)] hover:shadow-[0_2px_6px_2px_rgb(0_0_0/0.08)] active:scale-95 transition-all duration-300 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white">
@@ -232,7 +235,7 @@ const langs = ['es', 'en'] as const;
 
         <div class="max-w-6xl mx-auto px-4 sm:px-6">
           <section class="pt-20 sm:pt-24">
-            <h2 class="text-2xl sm:text-3xl font-bold tracking-tight mb-2">{t.featuresTitle}</h2>
+            <h2 class="font-md-display text-2xl sm:text-3xl font-bold tracking-tight mb-2">{t.featuresTitle}</h2>
             <p class="text-md-on-surface-variant mb-8">{t.featuresLead}</p>
 
             <div class="grid grid-cols-1 lg:grid-cols-2 gap-4 sm:gap-6">
@@ -242,7 +245,7 @@ const langs = ['es', 'en'] as const;
                     <span class="grid place-items-center w-10 h-10 rounded-full bg-md-primary-container text-md-on-primary-container shrink-0">
                       <span class="w-5 h-5 [&>svg]:w-full [&>svg]:h-full" set:html={icons[cat.icon]}></span>
                     </span>
-                    <h3 class="text-xl font-medium">{cat.heading}</h3>
+                    <h3 class="font-md-display text-xl font-semibold">{cat.heading}</h3>
                     {cat.isNew && (
                       <span class="ml-auto text-xs font-medium px-2.5 py-1 rounded-full bg-md-primary text-white">{t.newLabel}</span>
                     )}
@@ -265,7 +268,7 @@ const langs = ['es', 'en'] as const;
           </section>
 
           <section class="pt-20 sm:pt-24 text-center">
-            <h2 class="text-2xl sm:text-3xl font-bold tracking-tight mb-2">{t.targetTitle}</h2>
+            <h2 class="font-md-display text-2xl sm:text-3xl font-bold tracking-tight mb-2">{t.targetTitle}</h2>
             <p class="text-md-on-surface-variant mb-6">{t.targetLead}</p>
             <ul class="flex flex-wrap justify-center gap-2">
               {t.target.map(name => (
@@ -277,7 +280,7 @@ const langs = ['es', 'en'] as const;
 
           <section class="pt-20 sm:pt-24">
             <div class="text-center mb-8">
-              <h2 class="text-2xl sm:text-3xl font-bold tracking-tight mb-2">{t.pricingTitle}</h2>
+              <h2 class="font-md-display text-2xl sm:text-3xl font-bold tracking-tight mb-2">{t.pricingTitle}</h2>
               <p class="text-md-on-surface-variant mb-1">{t.pricingLead}</p>
               <p class="text-sm text-md-on-surface-variant">{t.pricingNote}</p>
             </div>
@@ -301,7 +304,7 @@ const langs = ['es', 'en'] as const;
           </section>
 
           <section class="pt-20 sm:pt-24 text-center">
-            <h2 class="text-3xl sm:text-4xl font-bold tracking-tight mb-3">{t.closingTitle}</h2>
+            <h2 class="font-md-display text-3xl sm:text-4xl font-bold tracking-tight mb-3">{t.closingTitle}</h2>
             <p class="text-md-on-surface-variant mb-8">{t.closingLead}</p>
             <div class="flex flex-wrap justify-center gap-3">
               <a href={WHATSAPP} target="_blank" rel="noopener noreferrer"

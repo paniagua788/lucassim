@@ -32,7 +32,7 @@ const langBtn = light
           Volver
         </a>
       ) : (
-        <div class="flex gap-8">
+        <div class={`${showLangToggle ? 'hidden sm:flex' : 'flex'} gap-8`}>
           <a href="/#productos" class={`text-sm transition-colors ${linkCls}`}>
             Proyectos
           </a>
