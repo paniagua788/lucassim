@@ -5,13 +5,24 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Tarjeta Slotr</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
   <style>
     * { margin: 0; padding: 0; box-sizing: border-box; }
 
+    /* Tema claro de la app Slotr: morado MD3, Roboto. */
+    :root {
+      --primary: #6750A4;
+      --background: #FFFBFE;
+      --surface-container: #F3EDF7;
+      --on-surface: #1C1B1F;
+      --on-surface-variant: #49454F;
+      --outline-variant: #CAC4D0;
+    }
+
     body {
-      font-family: 'Inter', 'Segoe UI', sans-serif;
-      background: #2a2a2a;
+      font-family: 'Roboto', 'Segoe UI', sans-serif;
+      background: var(--surface-container);
+      color: var(--on-surface);
       display: flex;
       flex-direction: column;
       align-items: center;
@@ -22,95 +33,89 @@
     }
 
     .preview-label {
-      color: #888;
-      font-size: 12px;
-      font-weight: 600;
-      letter-spacing: .1em;
-      text-transform: uppercase;
+      color: var(--on-surface-variant);
+      font-size: 13px;
     }
 
     /* ─── TARJETA ─── */
     .card {
       width: 85mm;
       height: 55mm;
-      background: #111111;
+      background: var(--background);
       border-radius: 3mm;
       overflow: hidden;
       display: flex;
-      box-shadow: 0 8px 40px rgba(0,0,0,.7);
+      box-shadow: 0 4px 8px 3px rgb(0 0 0 / .10);
+      -webkit-print-color-adjust: exact;
+      print-color-adjust: exact;
     }
 
-    /* Panel izquierdo */
+    /* Panel de marca, como en la página de reservas */
     .left {
-      width: 38%;
-      background: #1a1a1a;
-      border-right: 0.7mm solid #7c3aed;
+      width: 40%;
+      background: var(--primary);
+      color: #FFFFFF;
       display: flex;
       flex-direction: column;
-      align-items: center;
       justify-content: center;
-      padding: 4mm 3.5mm;
+      padding: 4.5mm 4mm;
       gap: 3mm;
     }
 
     .left img {
-      width: 20mm;
+      width: 21mm;
       display: block;
     }
 
     .copy {
-      font-size: 5.2pt;
-      color: #aaaaaa;
-      text-align: center;
-      line-height: 1.6;
+      font-size: 5.6pt;
+      line-height: 1.5;
     }
 
     .copy strong {
-      color: #7c3aed;
+      display: block;
       font-weight: 700;
+      font-size: 6.4pt;
+      margin-bottom: .8mm;
     }
 
     .copy .target {
       display: block;
       margin-top: 2mm;
-      font-size: 4.4pt;
-      color: #555555;
-      letter-spacing: .04em;
-      text-transform: uppercase;
-      line-height: 1.5;
+      font-size: 4.8pt;
+      opacity: .9;
     }
 
-    /* Panel derecho */
+    /* Contactos */
     .right {
       flex: 1;
       display: flex;
       flex-direction: column;
       justify-content: center;
       padding: 4mm 4.5mm;
-      gap: 2.8mm;
+      gap: 2.6mm;
     }
 
     .contact-row {
       display: flex;
       align-items: center;
       gap: 2.5mm;
-      font-size: 5.8pt;
-      color: #cccccc;
+      font-size: 6pt;
+      color: var(--on-surface);
       white-space: nowrap;
     }
 
     .contact-row.url {
-      color: #7c3aed;
+      color: var(--primary);
       font-weight: 700;
-      font-size: 5.4pt;
+      font-size: 5.8pt;
     }
 
     .icon-box {
       width: 6mm;
       height: 6mm;
-      background: #1e1e1e;
-      border: 0.3mm solid #2a2a2a;
-      border-radius: 1.2mm;
+      background: var(--surface-container);
+      border-radius: 50%;
       display: flex;
       align-items: center;
       justify-content: center;
@@ -124,11 +129,12 @@
 
     .divider {
       height: 0.2mm;
-      background: #222222;
+      background: var(--outline-variant);
     }
 
     /* ─── PRINT ─── */
     @media print {
+      @page { size: 85mm 55mm; margin: 0; }
       body {
         background: white;
         padding: 0;
@@ -139,8 +145,7 @@
       .print-hint { display: none; }
       .card {
         box-shadow: none;
-        border: 0.3mm solid #e0e0e0;
-        margin: 10mm auto;
+        border-radius: 0;
       }
     }
   </style>
@@ -153,12 +158,11 @@
 
     <!-- IZQUIERDA -->
     <div class="left">
-      <img src="/slotr-morado-claro.png" alt="Slotr" />
+      <img src="/brand/slotr-logo-blanco.svg" alt="Slotr" />
       <div class="copy">
-        <strong>Sistema de turnos online.</strong><br>
-        Tus clientes reservan solos.<br>
-        Vos manejás la agenda.
-        <span class="target">Clínicas · Peluquerías<br>Canchas · Consultorios</span>
+        <strong>Turnos online, caja y factura electrónica.</strong>
+        Tus clientes reservan solos. Vos manejás la agenda.
+        <span class="target">Clínicas, peluquerías, canchas y consultorios</span>
       </div>
     </div>
 
@@ -180,7 +184,7 @@
       <!-- Email -->
       <div class="contact-row">
         <div class="icon-box">
-          <svg viewBox="0 0 24 24" fill="none" stroke="#888" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <svg viewBox="0 0 24 24" fill="none" stroke="#49454F" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
             <rect x="2" y="4" width="20" height="16" rx="2"/>
             <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/>
           </svg>
@@ -193,7 +197,7 @@
       <!-- URL -->
       <div class="contact-row url">
         <div class="icon-box">
-          <svg viewBox="0 0 24 24" fill="none" stroke="#7c3aed" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <svg viewBox="0 0 24 24" fill="none" stroke="#6750A4" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
             <circle cx="12" cy="12" r="10"/>
             <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/>
             <path d="M2 12h20"/>
@@ -205,7 +209,7 @@
     </div>
   </div>
 
-  <div class="print-hint" style="color:#666; font-size:11px; text-align:center; line-height:1.6;">
+  <div class="print-hint" style="color:#49454F; font-size:12px; text-align:center; line-height:1.6;">
     Para imprimir: Ctrl+P → Sin márgenes → Escala 100%<br>
     O abrí en Chrome y usá "Guardar como PDF"
   </div>

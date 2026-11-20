@@ -28,7 +28,7 @@ src/
     ContactButtons.astro # WhatsApp + Email buttons
     Navbar.astro         # Fixed top nav
     Footer.astro         # Footer with socials
-    icons.ts             # Slotr SVG icons (17 Lucide-style)
+    icons.ts             # Slotr SVG icons (28 Lucide-style)
     vareapp-icons.ts     # VareApp SVG icons (11 feature + 5 hero food)
     portfolio/           # Portfolio-specific components
   layouts/BaseLayout.astro  # Shared HTML shell, imports global.css
@@ -68,7 +68,7 @@ Two separate icon files, do not merge:
 
 | File | Purpose | Count |
 |---|---|---|
-| `src/components/icons.ts` | Slotr features + hero | 17 icons |
+| `src/components/icons.ts` | Slotr features + hero | 28 icons |
 | `src/components/vareapp-icons.ts` | VareApp features + hero food | 16 icons |
 
 Both export `as const` objects with derived `IconName` types. Use `set:html={icons[name]}` in Astro templates.
