@@ -2,504 +2,383 @@
 import BaseLayout from '../layouts/BaseLayout.astro';
 import Navbar from '../components/Navbar.astro';
 import Footer from '../components/Footer.astro';
-import ContactButtons from '../components/ContactButtons.astro';
-import { vareappIcons, type VareappIconName } from '../components/vareapp-icons';
-import VareappBackground from '../components/VareappBackground.astro';
+import { icons } from '../components/icons';
+import { vareappIcons } from '../components/vareapp-icons';
 
+// Tema claro de la app VareApp: fondo stone-50, tarjetas blancas, marca orange-500 con texto oscuro
+// (igual que la app: blanco sobre orange-500 no llega a AA) y Outfit.
 const WHATSAPP = 'https://wa.me/595993294266';
 const EMAIL    = 'lucas_paniagua@hotmail.com';
 
-interface VareappFeature {
-  icon: VareappIconName;
-  name: string;
-  description: string;
-}
+const ic = { ...icons, ...vareappIcons };
+type Icon = keyof typeof ic;
 
-interface VareappFeatureCategory {
-  heading: string;
-  description: string;
-  icon: VareappIconName;
-  span: number;
-  isHighlighted?: boolean;
-  features: VareappFeature[];
-}
+interface Feature { icon: Icon; name: string; description: string; pro?: boolean }
+interface Category { heading: string; description: string; icon: Icon; isNew?: boolean; wide?: boolean; pro?: boolean; features: Feature[] }
 
-const spanClasses: Record<number, string> = {
-  1: 'lg:col-span-1', 2: 'lg:col-span-2', 3: 'lg:col-span-3', 4: 'lg:col-span-4',
-  5: 'lg:col-span-5', 6: 'lg:col-span-6', 7: 'lg:col-span-7', 8: 'lg:col-span-8',
-  9: 'lg:col-span-9', 10: 'lg:col-span-10', 11: 'lg:col-span-11', 12: 'lg:col-span-12',
+const copy = {
+  es: {
+    title: 'Tu menú online, tus pedidos y tu caja en un solo lugar',
+    lead: 'Catálogo digital con pedidos por WhatsApp, panel de órdenes, caja y factura electrónica SIFEN para restaurantes y comercios gastronómicos de Paraguay.',
+    cta: 'Consultá por una demo',
+    mock: {
+      label: 'Vista del catálogo de VareApp: el cliente elige productos y arma su pedido desde el celular.',
+      business: 'La Esquina', open: 'Abierto hasta las 23:30 · Delivery y retiro',
+      category: 'Pizzas',
+      products: [
+        { name: 'Pizza muzzarella', price: 'desde Gs. 45.000' },
+        { name: 'Pizza napolitana', price: 'desde Gs. 52.000' },
+        { name: 'Lomito árabe', price: 'Gs. 38.000' },
+      ],
+      cart: 'Ver pedido', cartTotal: 'Gs. 97.000',
+    },
+    stepsTitle: 'Así funciona',
+    steps: [
+      { icon: 'bookOpen', name: 'Tu cliente pide desde tu link', description: 'Elige productos, variantes y extras en tu catálogo, sin descargar nada.' },
+      { icon: 'messageCircle', name: 'El pedido te llega al instante', description: 'Por WhatsApp y al panel, con aviso sonoro y ticket impreso para la cocina.' },
+      { icon: 'receipt', name: 'Cobrás y facturás', description: 'Desde la caja: ticket o factura electrónica aprobada por SIFEN.' },
+    ] as Feature[],
+    featuresTitle: '¿Qué incluye VareApp?',
+    featuresLead: 'Todo lo que pasa entre que el cliente ve tu menú y vos cerrás la caja.',
+    newLabel: 'Nuevo',
+    proLabel: 'Plan Pro',
+    categories: [
+      { heading: 'Factura electrónica SIFEN', description: 'Conexión directa con SIFEN de la DNIT, sin intermediarios.', icon: 'receipt', isNew: true, wide: true, pro: true, features: [
+        { icon: 'receipt', name: 'Facturá desde la caja', description: 'Al cobrar elegís ticket o factura electrónica. La numeración es automática y el documento queda firmado con tu certificado.' },
+        { icon: 'printer', name: 'KuDE de 80 mm con QR', description: 'La factura aprobada se imprime en tu impresora térmica, con CDC y código QR para que el cliente la verifique.' },
+        { icon: 'repeat', name: 'Reintentos automáticos', description: 'Si SIFEN no responde, la venta queda cobrada y la factura se reenvía sola hasta que se apruebe.' },
+        { icon: 'clipboardList', name: 'Cancelar, inutilizar y reemitir', description: 'Gestioná las facturas emitidas desde el panel: cancelación dentro de las 48 h, inutilización de números y reemisión.' },
+        { icon: 'lock', name: 'Certificado protegido', description: 'Tu certificado digital y tu CSC se guardan cifrados. Solo el administrador puede cargarlos.' },
+        { icon: 'users', name: 'RUC o consumidor final', description: 'El cliente puede pedir factura con RUC y razón social desde el checkout, o se emite sin nombre.' },
+      ] },
+      { heading: 'Catálogo y pedidos online', description: 'Tu menú en el celular de tus clientes.', icon: 'bookOpen', features: [
+        { icon: 'bookOpen', name: 'Catálogo con tu marca', description: 'Tu logo, 11 paletas de color y 9 tipografías. Fotos, categorías y buscador.' },
+        { icon: 'pizza', name: 'Variantes, extras y combinaciones', description: 'Chica o grande, extras con precio, aclaraciones y "mitad y mitad" o guarniciones con "Combinar con".' },
+        { icon: 'messageCircle', name: 'Pedido por WhatsApp', description: 'Delivery, retiro o en el local, con forma de pago. El pedido llega armado a tu WhatsApp.' },
+        { icon: 'clock', name: 'Horarios y cierres', description: 'Horario semanal, feriados y pausa de pedidos. Fuera de horario el catálogo avisa cuándo abrís.' },
+        { icon: 'package', name: 'Límite diario por producto', description: 'Cuando se agota, el producto se oculta solo y vuelve al día siguiente.' },
+      ] },
+      { heading: 'Panel de órdenes', description: 'Ningún pedido se pierde.', icon: 'clipboardList', features: [
+        { icon: 'bell', name: 'Aviso de pedidos nuevos', description: 'Sonido y alerta en cualquier pantalla del panel, hasta que alguien lo vea.' },
+        { icon: 'printer', name: 'Impresión automática', description: 'Cada pedido nuevo imprime su ticket para la cocina, sin tocar nada.' },
+        { icon: 'activity', name: 'Estados del pedido', description: 'Pendiente, listo y entregado, actualizados en vivo sin recargar.' },
+        { icon: 'messageCircle', name: 'Avisar al cliente', description: 'Con un toque le avisás por WhatsApp que su pedido está listo.' },
+      ] },
+      { heading: 'Caja', description: 'Cobrá pedidos y ventas en el mostrador.', icon: 'wallet', features: [
+        { icon: 'wallet', name: 'Cobro de pedidos', description: 'Buscás el pedido, elegís efectivo o tarjeta/QR y la caja calcula el vuelto.' },
+        { icon: 'shoppingBag', name: 'Venta directa', description: 'Vendé en el mostrador sin pedido previo, con productos del catálogo o ítems libres.' },
+        { icon: 'printer', name: 'Ticket de 80 mm', description: 'Comprobante listo para impresora térmica.' },
+      ] },
+      { heading: 'Atención en mesas', description: 'Tus mozos cargan el pedido desde el celular.', icon: 'utensilsCrossed', features: [
+        { icon: 'userCheck', name: 'Modo mozo', description: 'Vista simple con PIN: el mozo elige mesa y productos, y el pedido entra directo al panel.' },
+        { icon: 'wallet', name: 'Se cobra en caja', description: 'El pedido de la mesa queda listo para cobrar, con ticket o factura.' },
+      ] },
+      { heading: 'Ofertas y difusión', description: 'Vendé más con lo que ya tenés.', icon: 'tag', features: [
+        { icon: 'tag', name: 'Ofertas', description: 'Descuento por porcentaje o precio fijo, para todo el menú o productos elegidos, con fecha de fin.' },
+        { icon: 'image', name: 'Generador de flyer', description: 'Elegí productos y obtené un flyer con tus colores, con fondo claro u oscuro, listo para imprimir o compartir.', pro: true },
+      ] },
+      { heading: 'Gestión del negocio', description: 'Datos claros y control del equipo.', icon: 'barChart3', pro: true, features: [
+        { icon: 'barChart3', name: 'Métricas', description: 'Ingresos, órdenes, ticket promedio, productos más vendidos y hora y día pico, por período.' },
+        { icon: 'package2', name: 'Inventario', description: 'Stock de insumos con entradas, salidas, lotes, vencimientos y alerta de stock mínimo.' },
+        { icon: 'shield', name: 'Usuarios con permisos', description: 'Creá usuarios para tu equipo y elegí a qué módulos accede cada uno.' },
+      ] },
+    ] as Category[],
+    targetTitle: 'Pensado para gastronomía',
+    targetLead: 'Si vendés comida, VareApp es para vos.',
+    target: ['Pizzerías', 'Hamburgueserías', 'Restaurantes', 'Cafeterías', 'Rotiserías', 'Food trucks', 'Panaderías', 'Bares'],
+    targetAny: 'Cualquier negocio con menú y pedidos',
+    pricingTitle: 'Elegí tu plan',
+    pricingLead: 'Precios a consultar. Sin sorpresas.',
+    plans: [
+      { name: 'Esencial', featured: false, items: [
+        'Catálogo online con tu marca', 'Pedidos por WhatsApp', 'Panel de órdenes con avisos e impresión', 'Caja con ticket y venta directa', 'Modo mozo', 'Ofertas',
+      ], note: 'El ticket no tiene valor fiscal.' },
+      { name: 'Pro', featured: true, items: [
+        'Todo el plan Esencial', 'Factura electrónica SIFEN', 'Métricas', 'Inventario', 'Generador de flyer', 'Usuarios con permisos',
+      ], note: 'Para facturar necesitás tu timbrado electrónico y certificado digital. Te ayudamos con el trámite.' },
+    ],
+    planBadge: 'Más completo',
+    pricingCta: 'Consultar',
+    closingTitle: '¿Listo para recibir pedidos online?',
+    closingLead: 'Escribime y te muestro cómo funciona con tu menú.',
+  },
+  en: {
+    title: 'Your online menu, orders and cash register in one place',
+    lead: 'Digital catalog with WhatsApp ordering, order panel, cash register and SIFEN e-invoicing for restaurants and food businesses in Paraguay.',
+    cta: 'Request a demo',
+    mock: {
+      label: "VareApp's catalog: the customer picks products and builds an order from their phone.",
+      business: 'La Esquina', open: 'Open until 23:30 · Delivery and pickup',
+      category: 'Pizzas',
+      products: [
+        { name: 'Mozzarella pizza', price: 'from Gs. 45.000' },
+        { name: 'Neapolitan pizza', price: 'from Gs. 52.000' },
+        { name: 'Arabic lomito', price: 'Gs. 38.000' },
+      ],
+      cart: 'View order', cartTotal: 'Gs. 97.000',
+    },
+    stepsTitle: 'How it works',
+    steps: [
+      { icon: 'bookOpen', name: 'Your customer orders from your link', description: 'They pick products, variants and extras in your catalog, no app to download.' },
+      { icon: 'messageCircle', name: 'The order reaches you instantly', description: 'On WhatsApp and on the panel, with a sound alert and a printed kitchen ticket.' },
+      { icon: 'receipt', name: 'You charge and invoice', description: 'From the cash register: a receipt or an e-invoice approved by SIFEN.' },
+    ] as Feature[],
+    featuresTitle: "What's included in VareApp?",
+    featuresLead: 'Everything between the customer opening your menu and you closing the register.',
+    newLabel: 'New',
+    proLabel: 'Pro plan',
+    categories: [
+      { heading: 'SIFEN e-invoicing', description: "Direct connection to DNIT's SIFEN, no middlemen.", icon: 'receipt', isNew: true, wide: true, pro: true, features: [
+        { icon: 'receipt', name: 'Invoice from the register', description: 'When charging, choose a receipt or an e-invoice. Numbering is automatic and the document is signed with your certificate.' },
+        { icon: 'printer', name: '80 mm KuDE with QR', description: 'The approved invoice prints on your thermal printer, with CDC and a QR code so the customer can verify it.' },
+        { icon: 'repeat', name: 'Automatic retries', description: "If SIFEN doesn't answer, the sale stays charged and the invoice is resent until it's approved." },
+        { icon: 'clipboardList', name: 'Cancel, void and reissue', description: 'Manage issued invoices from the panel: cancellation within 48 h, number voiding and reissuing.' },
+        { icon: 'lock', name: 'Protected certificate', description: 'Your digital certificate and CSC are stored encrypted. Only the admin can upload them.' },
+        { icon: 'users', name: 'RUC or final consumer', description: 'Customers can ask for an invoice with RUC and business name at checkout, or it is issued unnamed.' },
+      ] },
+      { heading: 'Catalog & online orders', description: "Your menu on your customers' phones.", icon: 'bookOpen', features: [
+        { icon: 'bookOpen', name: 'Catalog with your brand', description: 'Your logo, 11 color palettes and 9 typefaces. Photos, categories and search.' },
+        { icon: 'pizza', name: 'Variants, extras and combos', description: 'Small or large, paid extras, notes and half-and-half or sides with "Combine with".' },
+        { icon: 'messageCircle', name: 'WhatsApp ordering', description: 'Delivery, pickup or dine-in, with payment method. The order lands ready on your WhatsApp.' },
+        { icon: 'clock', name: 'Hours and closures', description: 'Weekly hours, holidays and order pause. After hours the catalog shows when you reopen.' },
+        { icon: 'package', name: 'Daily limit per product', description: 'When it sells out, the product hides itself and comes back the next day.' },
+      ] },
+      { heading: 'Order panel', description: 'No order gets lost.', icon: 'clipboardList', features: [
+        { icon: 'bell', name: 'New order alerts', description: 'Sound and alert on any panel screen, until someone sees it.' },
+        { icon: 'printer', name: 'Automatic printing', description: 'Each new order prints its kitchen ticket, hands-free.' },
+        { icon: 'activity', name: 'Order status', description: 'Pending, ready and delivered, updated live without reloading.' },
+        { icon: 'messageCircle', name: 'Notify the customer', description: 'One tap tells them on WhatsApp that their order is ready.' },
+      ] },
+      { heading: 'Cash register', description: 'Charge orders and counter sales.', icon: 'wallet', features: [
+        { icon: 'wallet', name: 'Charge orders', description: 'Find the order, choose cash or card/QR and the register works out the change.' },
+        { icon: 'shoppingBag', name: 'Direct sale', description: 'Sell at the counter without a prior order, with catalog products or free items.' },
+        { icon: 'printer', name: '80 mm receipt', description: 'Receipt ready for a thermal printer.' },
+      ] },
+      { heading: 'Table service', description: 'Your waiters take orders from their phone.', icon: 'utensilsCrossed', features: [
+        { icon: 'userCheck', name: 'Waiter mode', description: 'Simple PIN view: the waiter picks the table and products, and the order goes straight to the panel.' },
+        { icon: 'wallet', name: 'Charged at the register', description: "The table's order is ready to charge, with a receipt or an invoice." },
+      ] },
+      { heading: 'Offers & promotion', description: 'Sell more with what you already have.', icon: 'tag', features: [
+        { icon: 'tag', name: 'Offers', description: 'Percentage or fixed-price discounts, for the whole menu or selected products, with an end date.' },
+        { icon: 'image', name: 'Flyer generator', description: 'Pick products and get a flyer in your colors, light or dark background, ready to print or share.', pro: true },
+      ] },
+      { heading: 'Business management', description: 'Clear data and control of your team.', icon: 'barChart3', pro: true, features: [
+        { icon: 'barChart3', name: 'Metrics', description: 'Revenue, orders, average ticket, best sellers and peak hour and day, by period.' },
+        { icon: 'package2', name: 'Inventory', description: 'Supply stock with entries, exits, batches, expiry dates and low-stock alerts.' },
+        { icon: 'shield', name: 'Users with permissions', description: 'Create users for your team and choose which modules each one can access.' },
+      ] },
+    ] as Category[],
+    targetTitle: 'Built for food businesses',
+    targetLead: 'If you sell food, VareApp is for you.',
+    target: ['Pizzerias', 'Burger joints', 'Restaurants', 'Cafés', 'Rotisseries', 'Food trucks', 'Bakeries', 'Bars'],
+    targetAny: 'Any business with a menu and orders',
+    pricingTitle: 'Choose your plan',
+    pricingLead: 'Pricing on request. No surprises.',
+    plans: [
+      { name: 'Essential', featured: false, items: [
+        'Online catalog with your brand', 'WhatsApp ordering', 'Order panel with alerts and printing', 'Cash register with receipts and direct sales', 'Waiter mode', 'Offers',
+      ], note: 'The receipt has no fiscal value.' },
+      { name: 'Pro', featured: true, items: [
+        'Everything in Essential', 'SIFEN e-invoicing', 'Metrics', 'Inventory', 'Flyer generator', 'Users with permissions',
+      ], note: 'To invoice you need your electronic timbrado and digital certificate. We help you with the paperwork.' },
+    ],
+    planBadge: 'Most complete',
+    pricingCta: 'Request',
+    closingTitle: 'Ready to take orders online?',
+    closingLead: "Message me and I'll show you how it works with your menu.",
+  },
 };
 
-const featureCategories: VareappFeatureCategory[] = [
-  {
-    heading: 'Core Compartido',
-    description: 'Funcionalidades base para cualquier negocio.',
-    icon: 'bookOpen',
-    span: 4,
-    features: [
-      { icon: 'bookOpen', name: 'Catálogo digital', description: 'Productos con categorías, variantes, fotos y stock configurable. Logo personalizado en tu página pública.' },
-      { icon: 'clipboardList', name: 'Gestión de pedidos', description: 'Delivery, pickup y mostrador con notificación directa al negocio por WhatsApp.' },
-      { icon: 'creditCard', name: 'Caja / POS', description: 'Registro de ventas, venta directa, tickets y facturas electrónicas habilitadas por la DNIT.' },
-      { icon: 'settings', name: 'Panel admin', description: 'Control total: productos, horarios, staff, permisos y configuración del negocio.' },
-    ],
-  },
-  {
-    heading: 'Restaurante',
-    description: 'Todo lo que necesita un negocio gastronómico.',
-    icon: 'utensilsCrossed',
-    span: 4,
-    features: [
-      { icon: 'userCheck', name: 'Modo mozo', description: 'Panel simplificado para que los mozos tomen pedidos por mesa desde su celular.' },
-      { icon: 'printer', name: 'Comandas cocina', description: 'Tickets 80mm con items, variantes, extras y aclaraciones. Impresión automática.' },
-      { icon: 'bot', name: 'Impresión automática', description: 'Agente que imprime pedidos nuevos a impresora térmica ESC/POS sin intervención manual.' },
-      { icon: 'creditCard', name: 'Gestión de mesas', description: 'QR por mesa, pedidos directos de clientes y control de ocupación en tiempo real.' },
-    ],
-  },
-  {
-    heading: 'Retail',
-    description: 'Todo lo que necesita un comercio minorista.',
-    icon: 'store',
-    span: 4,
-    features: [
-      { icon: 'package2', name: 'Inventario avanzado', description: 'Control de stock con alertas de bajo inventario, lotes, vencimientos y movimientos.' },
-      { icon: 'barcode', name: 'Variantes y SKU', description: 'Tallas, colores, códigos de barra y atributos por producto. Gestión por lote.' },
-      { icon: 'users2', name: 'Clientes y fidelidad', description: 'Perfil de cliente, historial de compras, puntos de fidelidad y cupones.' },
-      { icon: 'receipt', name: 'Caja retail', description: 'Venta rápida, devoluciones, arqueo de caja y cierre de lote. Múltiples formas de pago.' },
-    ],
-  },
-  {
-    heading: 'Marketing',
-    description: 'Atraé más clientes y fidelizalos.',
-    icon: 'image',
-    span: 12,
-    isHighlighted: true,
-    features: [
-      { icon: 'image', name: 'Generador de flyers', description: 'Seleccioná productos, armá tu flyer y exportalo en PDF listo para imprimir o compartir.' },
-      { icon: 'tag', name: 'Promociones', description: 'Creá descuentos porcentuales o fijos con banners visuales. Solo una promoción activa a la vez.' },
-      { icon: 'star', name: 'Reseñas de clientes', description: 'Los clientes califican su experiencia con estrellas y texto. El puntaje se muestra en tu página pública.' },
-    ],
-  },
-];
-
-const restaurantTarget = ['Restaurantes', 'Cafeterías', 'Food trucks', 'Bares', 'Rotiserías', 'Panaderías'];
-const retailTarget     = ['Tiendas de ropa', 'Electrónica', 'Ferreterías', 'Farmacias', 'Regalerías', 'Librerías'];
-
-const esencialIncluded = ['Catálogo digital', 'Gestión de pedidos', 'Panel admin', 'Caja / POS', 'Impresión de ticket'];
-const esencialExcluded = ['Factura electrónica (DNIT)', 'Inventario avanzado', 'Métricas avanzadas', 'Modo mozo', 'Comandas cocina'];
-const proIncluded      = ['Todo el plan Esencial', 'Factura electrónica (DNIT)', 'Inventario avanzado', 'Métricas avanzadas', 'Modo mozo', 'Comandas cocina', 'Impresión automática'];
-
-const featureCategoriesEn: VareappFeatureCategory[] = [
-  {
-    heading: 'Shared Core',
-    description: 'Base features for any business.',
-    icon: 'bookOpen',
-    span: 4,
-    features: [
-      { icon: 'bookOpen', name: 'Digital catalog', description: 'Products with categories, variants, photos and configurable stock. Custom logo on your public page.' },
-      { icon: 'clipboardList', name: 'Order management', description: 'Delivery, pickup and counter with direct WhatsApp notification to the business.' },
-      { icon: 'creditCard', name: 'POS / Cash register', description: 'Sales log, direct sales, tickets and electronic invoices enabled by DNIT.' },
-      { icon: 'settings', name: 'Admin panel', description: 'Total control: products, hours, staff, permissions and business configuration.' },
-    ],
-  },
-  {
-    heading: 'Restaurant',
-    description: 'Everything a food business needs.',
-    icon: 'utensilsCrossed',
-    span: 4,
-    features: [
-      { icon: 'userCheck', name: 'Waiter mode', description: 'Simplified panel for waiters to take orders by table directly from their phone.' },
-      { icon: 'printer', name: 'Kitchen tickets', description: '80mm tickets with items, variants, extras and notes. Automatic printing.' },
-      { icon: 'bot', name: 'Automatic printing', description: 'Agent that prints new orders to ESC/POS thermal printer. No manual intervention.' },
-      { icon: 'creditCard', name: 'Table management', description: 'QR per table, direct customer ordering and real-time occupancy control.' },
-    ],
-  },
-  {
-    heading: 'Retail',
-    description: 'Everything a retail business needs.',
-    icon: 'store',
-    span: 4,
-    features: [
-      { icon: 'package2', name: 'Advanced inventory', description: 'Stock control with low inventory alerts, batches, expirations and movements.' },
-      { icon: 'barcode', name: 'Variants and SKU', description: 'Sizes, colors, barcodes and product attributes. Batch management.' },
-      { icon: 'users2', name: 'Customers & loyalty', description: 'Customer profile, purchase history, loyalty points and coupons.' },
-      { icon: 'receipt', name: 'Retail POS', description: 'Quick sale, returns, cash audit and batch closing. Multiple payment methods.' },
-    ],
-  },
-  {
-    heading: 'Marketing',
-    description: 'Attract more clients and retain them.',
-    icon: 'image',
-    span: 12,
-    isHighlighted: true,
-    features: [
-      { icon: 'image', name: 'Flyer generator', description: 'Select products, build your flyer and export it as a PDF ready to print or share.' },
-      { icon: 'tag', name: 'Promotions', description: 'Create percentage or fixed discounts with visual banners. Only one active promotion at a time.' },
-      { icon: 'star', name: 'Client reviews', description: 'Clients rate their experience with stars and text. The score is shown on your public page.' },
-    ],
-  },
-];
-
-const restaurantTargetEn = ['Restaurants', 'Cafés', 'Food trucks', 'Bars', 'Rotisseries', 'Bakeries'];
-const retailTargetEn     = ['Clothing stores', 'Electronics', 'Hardware stores', 'Pharmacies', 'Gift shops', 'Bookstores'];
-
-const esencialIncludedEn = ['Digital catalog', 'Order management', 'Admin panel', 'POS / Cash register', 'Ticket printing'];
-const esencialExcludedEn = ['Electronic invoice (DNIT)', 'Advanced inventory', 'Advanced metrics', 'Waiter mode', 'Kitchen tickets'];
-const proIncludedEn      = ['Everything in Essential plan', 'Electronic invoice (DNIT)', 'Advanced inventory', 'Advanced metrics', 'Waiter mode', 'Kitchen tickets', 'Automatic printing'];
+const langs = ['es', 'en'] as const;
+const btnPrimary = 'inline-flex items-center justify-center min-h-12 px-7 rounded-full bg-orange-500 hover:bg-orange-400 text-stone-900 font-semibold active:scale-95 transition-colors duration-200 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-orange-600';
+const btnGhost   = 'inline-flex items-center justify-center min-h-12 px-7 rounded-full border-2 border-stone-200 bg-white hover:border-orange-500 text-stone-800 font-semibold active:scale-95 transition-colors duration-200 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-orange-600';
+const iconBox    = 'w-5 h-5 [&>svg]:w-full [&>svg]:h-full';
 ---
 
 <BaseLayout
-  title="VareApp — Catálogo, pedidos y caja | lucassim"
-  description="VareApp: sistema de catálogo digital, pedidos y caja para restaurantes y comercios minoristas en Paraguay."
+  title="VareApp — Menú online, pedidos, caja y factura electrónica | lucassim"
+  description="VareApp: catálogo digital con pedidos por WhatsApp, panel de órdenes, caja y factura electrónica SIFEN para restaurantes y comercios gastronómicos en Paraguay."
   favicon="/vareapp-icono.png"
+  lang="es"
+  bodyClass="bg-stone-50 text-stone-900 font-outfit antialiased"
 >
-  <Navbar showLangToggle={true} />
+  <Fragment slot="head">
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+    <meta name="theme-color" content="#f97316" />
+  </Fragment>
 
-  <div class="relative">
-    <VareappBackground />
+  <Navbar showLangToggle={true} theme="vareapp" />
 
-    <!-- ESPAÑOL -->
-    <div data-lang="es">
-    <!-- HERO -->
-    <section class="relative py-24 text-center px-6">
-      <div class="relative z-10">
-        <p class="text-xs font-bold uppercase tracking-widest text-vareapp mb-4 inline-block px-4 py-1.5 border border-orange-500/30 rounded-full">SaaS · Multi-negocio</p>
+  {langs.map(lang => {
+    const t = copy[lang];
+    return (
+      <main data-lang={lang} lang={lang} class={lang === 'es' ? '' : 'hidden'}>
+        <!-- HERO: banda naranja de marca + vista del catálogo como la ve el cliente -->
+        <section class="relative overflow-hidden bg-orange-500 text-stone-900">
+          <div class="absolute -top-24 right-[8%] w-96 h-96 rounded-full bg-amber-300/40 blur-3xl" aria-hidden="true"></div>
+          <div class="absolute -bottom-40 -left-20 w-[28rem] h-[28rem] rounded-full bg-orange-600/50 blur-3xl" aria-hidden="true"></div>
+          <div class="relative max-w-6xl mx-auto px-5 sm:px-6 py-12 sm:py-16 lg:py-20 grid lg:grid-cols-[1.15fr_0.85fr] gap-10 lg:gap-14 items-center">
+            <div>
+              <img src="/vareapp-claro-transparente.png" alt="VareApp" width="433" height="206" class="h-16 sm:h-20 w-auto mb-6 -ml-2" />
+              <h1 class="text-[2.125rem] min-[380px]:text-[2.5rem] sm:text-5xl lg:text-[3.5rem] font-extrabold leading-[1.05] tracking-tight mb-5 max-w-[17ch]">{t.title}</h1>
+              <p class="text-base sm:text-lg text-stone-900/85 leading-relaxed max-w-[46ch] mb-8">{t.lead}</p>
+              <a href={WHATSAPP} target="_blank" rel="noopener noreferrer"
+                class="inline-flex items-center min-h-12 px-7 rounded-full bg-white text-stone-900 font-semibold shadow-sm hover:bg-orange-50 active:scale-95 transition-colors duration-200 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white">
+                {t.cta}
+              </a>
+            </div>
 
-        <img src="/vareapp-claro-transparente.png" alt="VareApp" class="h-20 lg:h-24 mx-auto mb-4" />
-
-        <h1 class="text-4xl lg:text-5xl xl:text-6xl font-black mb-3 vareapp-gradient-text leading-tight">Catálogo, pedidos y caja para tu negocio</h1>
-
-        <p class="text-sm text-muted max-w-md mx-auto mb-8 leading-relaxed">
-          Sistema de catálogo digital, pedidos y gestión para restaurantes y comercios minoristas en Paraguay.
-        </p>
-
-        <a
-          href={WHATSAPP}
-          target="_blank"
-          rel="noopener noreferrer"
-          class="inline-block px-8 py-3 rounded-lg text-sm font-bold text-white vareapp-cta"
-        >
-          Consultá por una demo
-        </a>
-      </div>
-    </section>
-
-    <div class="max-w-5xl lg:max-w-6xl mx-auto px-6">
-
-      <section class="py-16">
-        <h2 class="text-xl font-black mb-2">¿Qué incluye VareApp?</h2>
-        <p class="text-sm text-muted mb-8">Funcionalidades compartidas y específicas para cada tipo de negocio.</p>
-
-        <div class="grid grid-cols-1 lg:grid-cols-12 gap-4">
-          {featureCategories.map(cat => (
-            <div class={`vareapp-card rounded-2xl p-6 ${cat.isHighlighted
-              ? 'bg-gradient-to-br from-orange-500/10 to-amber-500/5 border border-orange-500/25'
-              : 'bg-white/[0.04] border border-white/[0.08]'
-            } ${spanClasses[cat.span] || 'lg:col-span-1'}`}>
-              <div class="mb-4">
-                <h3 class="text-lg font-bold text-white flex items-center gap-2">
-                  <span class="text-vareapp" set:html={vareappIcons[cat.icon]} style="width:20px;height:20px;display:inline-block;"></span>
-                  {cat.heading}
-                </h3>
-                <p class="text-xs text-subtle mt-1">{cat.description}</p>
+            <div class="relative mx-auto w-full max-w-sm rounded-[2rem] bg-stone-50 p-4 sm:p-5 shadow-[0_12px_32px_rgb(124_45_18/0.30)] ring-1 ring-white/60" role="img" aria-label={t.mock.label}>
+              <div aria-hidden="true">
+                <div class="rounded-xl bg-white border border-stone-100 px-4 py-3 mb-4">
+                  <p class="font-bold">{t.mock.business}</p>
+                  <p class="text-xs text-emerald-700 mt-0.5">{t.mock.open}</p>
+                </div>
+                <p class="text-sm font-bold mb-2.5 px-1">{t.mock.category}</p>
+                <div class="flex flex-col gap-2.5 mb-4">
+                  {t.mock.products.map(p => (
+                    <div class="flex items-center gap-3 rounded-xl bg-white border border-stone-100 p-2.5">
+                      <span class="grid place-items-center w-12 h-12 rounded-lg bg-orange-50 text-orange-500 shrink-0">
+                        <span class={iconBox} set:html={ic.utensilsCrossed}></span>
+                      </span>
+                      <span class="flex-1 min-w-0">
+                        <span class="block text-sm font-semibold truncate">{p.name}</span>
+                        <span class="block text-xs text-stone-500">{p.price}</span>
+                      </span>
+                      <span class="grid place-items-center w-8 h-8 rounded-full bg-orange-500 text-stone-900 font-bold leading-none">+</span>
+                    </div>
+                  ))}
+                </div>
+                <div class="flex items-center justify-between rounded-full bg-orange-500 text-stone-900 font-semibold text-sm pl-2 pr-5 py-2">
+                  <span class="flex items-center gap-2">
+                    <span class="grid place-items-center w-7 h-7 rounded-full bg-white text-xs font-bold">2</span>
+                    {t.mock.cart}
+                  </span>
+                  <span>{t.mock.cartTotal}</span>
+                </div>
               </div>
+            </div>
+          </div>
+        </section>
 
-              <div class={`grid gap-2.5 ${cat.features.length >= 4 ? 'grid-cols-1 md:grid-cols-2' : cat.features.length >= 3 ? 'grid-cols-1 md:grid-cols-3 xl:grid-cols-4' : 'grid-cols-1'}`}>
-                {cat.features.map(f => (
-                  <div class="p-3 rounded-xl bg-white/[0.02] border border-white/[0.04]">
-                    <span class="text-vareapp mb-1.5 block" set:html={vareappIcons[f.icon]} style="width:16px;height:16px;display:block;"></span>
-                    <p class="text-xs font-bold text-white mb-0.5">{f.name}</p>
-                    <p class="text-xs text-subtle leading-relaxed">{f.description}</p>
+        <div class="max-w-6xl mx-auto px-4 sm:px-6">
+          <section class="pt-16 sm:pt-20">
+            <h2 class="text-2xl sm:text-3xl font-bold tracking-tight mb-8 text-center">{t.stepsTitle}</h2>
+            <ol class="grid sm:grid-cols-3 gap-4">
+              {t.steps.map((s, i) => (
+                <li class="rounded-xl bg-white border border-stone-200 p-6">
+                  <div class="flex items-center gap-3 mb-3">
+                    <span class="grid place-items-center w-9 h-9 rounded-full bg-orange-500 text-stone-900 font-bold shrink-0">{i + 1}</span>
+                    <span class={`${iconBox} text-orange-600`} set:html={ic[s.icon]}></span>
                   </div>
-                ))}
-              </div>
-            </div>
-          ))}
-        </div>
-      </section>
-
-      <section class="py-12 border-t border-border">
-        <h2 class="text-xl font-black mb-2">Para dos tipos de negocio</h2>
-        <p class="text-sm text-muted mb-6">VareApp se adapta a restaurantes y comercios minoristas por igual.</p>
-        <div class="grid sm:grid-cols-2 gap-6">
-          <div>
-            <h3 class="text-xs font-bold uppercase tracking-widest text-vareapp mb-3 flex items-center gap-2">
-              <span set:html={vareappIcons.utensilsCrossed} style="width:14px;height:14px;display:inline-block;"></span>
-              Restaurante
-            </h3>
-            <div class="flex flex-wrap gap-2">
-              {restaurantTarget.map(t => (
-                <span class="px-4 py-1.5 rounded-full text-xs font-semibold border border-orange-800/60 text-vareapp bg-orange-950/40">
-                  {t}
-                </span>
-              ))}
-            </div>
-          </div>
-          <div>
-            <h3 class="text-xs font-bold uppercase tracking-widest text-vareapp mb-3 flex items-center gap-2">
-              <span set:html={vareappIcons.store} style="width:14px;height:14px;display:inline-block;"></span>
-              Retail
-            </h3>
-            <div class="flex flex-wrap gap-2">
-              {retailTarget.map(t => (
-                <span class="px-4 py-1.5 rounded-full text-xs font-semibold border border-orange-800/60 text-vareapp bg-orange-950/40">
-                  {t}
-                </span>
-              ))}
-            </div>
-          </div>
-        </div>
-        <div class="flex flex-wrap gap-2 mt-4">
-          <span class="px-4 py-1.5 rounded-full text-xs font-semibold border border-border text-muted">
-            Cualquier negocio con catálogo, pedidos y caja
-          </span>
-        </div>
-      </section>
-
-      <section class="py-12 border-t border-border">
-        <h2 class="text-xl font-black mb-2">Elegí el plan que se ajusta a tu negocio</h2>
-        <p class="text-sm text-muted mb-8">Precios a consultar — sin sorpresas.</p>
-        <div class="grid sm:grid-cols-2 gap-6">
-
-          <div class="bg-white/[0.03] border border-white/[0.06] rounded-2xl p-6 flex flex-col">
-            <p class="text-xs font-bold uppercase tracking-widest text-muted mb-2">Plan</p>
-            <h3 class="text-2xl font-black mb-1">Esencial</h3>
-            <p class="text-xs text-subtle italic mb-6">Consultá por el precio</p>
-            <ul class="flex flex-col gap-2 flex-1 mb-3">
-              {esencialIncluded.map(f => (
-                <li class="text-xs text-muted flex items-center gap-2">
-                  <span class="text-vareapp">✓</span> {f}
+                  <p class="font-semibold mb-1">{s.name}</p>
+                  <p class="text-sm text-stone-600 leading-relaxed">{s.description}</p>
                 </li>
               ))}
-              {esencialExcluded.map(f => (
-                <li class="text-xs text-subtle flex items-center gap-2 opacity-40">
-                  <span>✕</span> <span class="line-through">{f}</span>
-                </li>
-              ))}
-            </ul>
-            <p class="text-xs text-subtle italic mb-4">*El ticket no tiene valor fiscal.</p>
-            <a href={WHATSAPP} target="_blank" rel="noopener noreferrer"
-              class="block text-center py-2 rounded-lg text-xs font-bold border border-white/20 text-white hover:border-white/40 hover:bg-white/5 transition-colors">
-              Consultar
-            </a>
-          </div>
+            </ol>
+          </section>
 
-          <div class="bg-vareapp-dark/50 border border-orange-500/25 rounded-2xl p-6 flex flex-col">
-            <p class="text-xs font-bold uppercase tracking-widest text-vareapp mb-2">⭐ Más completo</p>
-            <h3 class="text-2xl font-black mb-1">Pro</h3>
-            <p class="text-xs text-subtle italic mb-6">Consultá por el precio</p>
-            <ul class="flex flex-col gap-2 flex-1 mb-3">
-              {proIncluded.map((f, i) => (
-                <li class={`text-xs flex items-center gap-2 ${i === 1 ? 'text-vareapp font-semibold' : 'text-muted'}`}>
-                  <span class="text-vareapp">{i === 1 ? '★' : '✓'}</span> {f}
-                </li>
-              ))}
-            </ul>
-            <p class="text-xs text-subtle italic mb-4">La factura electrónica tiene plena validez fiscal habilitada por la DNIT.</p>
-            <a href={WHATSAPP} target="_blank" rel="noopener noreferrer"
-              class="block text-center py-2 rounded-lg text-xs font-bold border border-vareapp text-vareapp hover:bg-vareapp hover:text-white transition-colors">
-              Consultar
-            </a>
-          </div>
+          <section class="pt-20 sm:pt-24">
+            <h2 class="text-2xl sm:text-3xl font-bold tracking-tight mb-2">{t.featuresTitle}</h2>
+            <p class="text-stone-600 mb-8">{t.featuresLead}</p>
 
-        </div>
-      </section>
-
-      <section class="py-16 text-center border-t border-border">
-        <h2 class="text-2xl font-black mb-3">¿Listo para digitalizar tu negocio?</h2>
-        <p class="text-sm text-muted mb-8">Escribime y coordinamos una demo personalizada.</p>
-        <ContactButtons whatsapp={WHATSAPP} email={EMAIL} />
-      </section>
-
-    </div>
-  </div>
-
-    <!-- ENGLISH -->
-    <div data-lang="en" class="hidden">
-
-    <!-- HERO -->
-    <section class="relative py-24 text-center px-6">
-      <div class="relative z-10">
-        <p class="text-xs font-bold uppercase tracking-widest text-vareapp mb-4 inline-block px-4 py-1.5 border border-orange-500/30 rounded-full">SaaS · Multi-business</p>
-
-        <img src="/vareapp-claro-transparente.png" alt="VareApp" class="h-20 lg:h-24 mx-auto mb-4" />
-
-        <h1 class="text-4xl lg:text-5xl xl:text-6xl font-black mb-3 vareapp-gradient-text leading-tight">Catalog, orders &amp; POS for your business</h1>
-
-        <p class="text-sm text-muted max-w-md mx-auto mb-8 leading-relaxed">
-          Digital catalog, order and management system for restaurants and retail businesses in Paraguay.
-        </p>
-
-        <a
-          href={WHATSAPP}
-          target="_blank"
-          rel="noopener noreferrer"
-          class="inline-block px-8 py-3 rounded-lg text-sm font-bold text-white vareapp-cta"
-        >
-          Request a demo
-        </a>
-      </div>
-    </section>
-
-    <div class="max-w-5xl lg:max-w-6xl mx-auto px-6">
-
-      <section class="py-16">
-        <h2 class="text-xl font-black mb-2">What's included in VareApp?</h2>
-        <p class="text-sm text-muted mb-8">Shared and specific features for each business type.</p>
-
-        <div class="grid grid-cols-1 lg:grid-cols-12 gap-4">
-          {featureCategoriesEn.map(cat => (
-            <div class={`vareapp-card rounded-2xl p-6 ${cat.isHighlighted
-              ? 'bg-gradient-to-br from-orange-500/10 to-amber-500/5 border border-orange-500/25'
-              : 'bg-white/[0.04] border border-white/[0.08]'
-            } ${spanClasses[cat.span] || 'lg:col-span-1'}`}>
-              <div class="mb-4">
-                <h3 class="text-lg font-bold text-white flex items-center gap-2">
-                  <span class="text-vareapp" set:html={vareappIcons[cat.icon]} style="width:20px;height:20px;display:inline-block;"></span>
-                  {cat.heading}
-                </h3>
-                <p class="text-xs text-subtle mt-1">{cat.description}</p>
-              </div>
-
-              <div class={`grid gap-2.5 ${cat.features.length >= 4 ? 'grid-cols-1 md:grid-cols-2' : cat.features.length >= 3 ? 'grid-cols-1 md:grid-cols-3 xl:grid-cols-4' : 'grid-cols-1'}`}>
-                {cat.features.map(f => (
-                  <div class="p-3 rounded-xl bg-white/[0.02] border border-white/[0.04]">
-                    <span class="text-vareapp mb-1.5 block" set:html={vareappIcons[f.icon]} style="width:16px;height:16px;display:block;"></span>
-                    <p class="text-xs font-bold text-white mb-0.5">{f.name}</p>
-                    <p class="text-xs text-subtle leading-relaxed">{f.description}</p>
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-4 sm:gap-6">
+              {t.categories.map(cat => (
+                <article class={`rounded-2xl bg-white border p-6 sm:p-8 ${cat.isNew ? 'border-orange-300 ring-1 ring-orange-200' : 'border-stone-200'} ${cat.wide ? 'lg:col-span-2' : ''}`}>
+                  <div class="flex flex-wrap items-center gap-3 mb-2">
+                    <span class="grid place-items-center w-10 h-10 rounded-xl bg-orange-50 text-orange-600 shrink-0">
+                      <span class={iconBox} set:html={ic[cat.icon]}></span>
+                    </span>
+                    <h3 class="text-xl font-bold">{cat.heading}</h3>
+                    <span class="ml-auto flex gap-1.5">
+                      {cat.pro && <span class="rounded-full px-2.5 py-0.5 text-xs font-semibold bg-stone-100 text-stone-700">{t.proLabel}</span>}
+                      {cat.isNew && <span class="rounded-full px-2.5 py-0.5 text-xs font-semibold bg-orange-500 text-stone-900">{t.newLabel}</span>}
+                    </span>
                   </div>
-                ))}
-              </div>
-            </div>
-          ))}
-        </div>
-      </section>
-
-      <section class="py-12 border-t border-border">
-        <h2 class="text-xl font-black mb-2">For two types of business</h2>
-        <p class="text-sm text-muted mb-6">VareApp adapts to restaurants and retail businesses alike.</p>
-        <div class="grid sm:grid-cols-2 gap-6">
-          <div>
-            <h3 class="text-xs font-bold uppercase tracking-widest text-vareapp mb-3 flex items-center gap-2">
-              <span set:html={vareappIcons.utensilsCrossed} style="width:14px;height:14px;display:inline-block;"></span>
-              Restaurant
-            </h3>
-            <div class="flex flex-wrap gap-2">
-              {restaurantTargetEn.map(t => (
-                <span class="px-4 py-1.5 rounded-full text-xs font-semibold border border-orange-800/60 text-vareapp bg-orange-950/40">
-                  {t}
-                </span>
+                  <p class="text-sm text-stone-600">{cat.description}</p>
+                  <ul class={`mt-4 ${cat.wide ? 'lg:grid lg:grid-cols-2 lg:gap-x-10' : ''}`}>
+                    {cat.features.map(f => (
+                      <li class={`flex gap-3 py-4 border-t border-stone-100 first:border-t-0 ${cat.wide ? 'lg:[&:nth-child(2)]:border-t-0' : ''}`}>
+                        <span class="w-[18px] h-[18px] mt-0.5 text-orange-600 shrink-0 [&>svg]:w-full [&>svg]:h-full" set:html={ic[f.icon]}></span>
+                        <div>
+                          <p class="font-semibold mb-1">
+                            {f.name}
+                            {f.pro && <span class="ml-1.5 align-middle rounded-full px-2 py-0.5 text-[11px] font-semibold bg-stone-100 text-stone-700">{t.proLabel}</span>}
+                          </p>
+                          <p class="text-sm text-stone-600 leading-relaxed">{f.description}</p>
+                        </div>
+                      </li>
+                    ))}
+                  </ul>
+                </article>
               ))}
             </div>
-          </div>
-          <div>
-            <h3 class="text-xs font-bold uppercase tracking-widest text-vareapp mb-3 flex items-center gap-2">
-              <span set:html={vareappIcons.store} style="width:14px;height:14px;display:inline-block;"></span>
-              Retail
-            </h3>
-            <div class="flex flex-wrap gap-2">
-              {retailTargetEn.map(t => (
-                <span class="px-4 py-1.5 rounded-full text-xs font-semibold border border-orange-800/60 text-vareapp bg-orange-950/40">
-                  {t}
-                </span>
-              ))}
-            </div>
-          </div>
-        </div>
-        <div class="flex flex-wrap gap-2 mt-4">
-          <span class="px-4 py-1.5 rounded-full text-xs font-semibold border border-border text-muted">
-            Any business with catalog, orders and POS
-          </span>
-        </div>
-      </section>
+          </section>
 
-      <section class="py-12 border-t border-border">
-        <h2 class="text-xl font-black mb-2">Choose the plan that fits your business</h2>
-        <p class="text-sm text-muted mb-8">Pricing on request — no surprises.</p>
-        <div class="grid sm:grid-cols-2 gap-6">
-
-          <div class="bg-white/[0.03] border border-white/[0.06] rounded-2xl p-6 flex flex-col">
-            <p class="text-xs font-bold uppercase tracking-widest text-muted mb-2">Plan</p>
-            <h3 class="text-2xl font-black mb-1">Essential</h3>
-            <p class="text-xs text-subtle italic mb-6">Request pricing</p>
-            <ul class="flex flex-col gap-2 flex-1 mb-3">
-              {esencialIncludedEn.map(f => (
-                <li class="text-xs text-muted flex items-center gap-2">
-                  <span class="text-vareapp">✓</span> {f}
-                </li>
+          <section class="pt-20 sm:pt-24 text-center">
+            <h2 class="text-2xl sm:text-3xl font-bold tracking-tight mb-2">{t.targetTitle}</h2>
+            <p class="text-stone-600 mb-6">{t.targetLead}</p>
+            <ul class="flex flex-wrap justify-center gap-2">
+              {t.target.map(name => (
+                <li class="px-4 py-2 rounded-full bg-orange-50 border border-orange-200 text-orange-800 text-sm font-semibold">{name}</li>
               ))}
-              {esencialExcludedEn.map(f => (
-                <li class="text-xs text-subtle flex items-center gap-2 opacity-40">
-                  <span>✕</span> <span class="line-through">{f}</span>
-                </li>
-              ))}
+              <li class="px-4 py-2 rounded-full border border-stone-300 text-stone-600 text-sm font-semibold">{t.targetAny}</li>
             </ul>
-            <p class="text-xs text-subtle italic mb-4">*The ticket has no fiscal value.</p>
-            <a href={WHATSAPP} target="_blank" rel="noopener noreferrer"
-              class="block text-center py-2 rounded-lg text-xs font-bold border border-white/20 text-white hover:border-white/40 hover:bg-white/5 transition-colors">
-              Request
-            </a>
-          </div>
+          </section>
 
-          <div class="bg-vareapp-dark/50 border border-orange-500/25 rounded-2xl p-6 flex flex-col">
-            <p class="text-xs font-bold uppercase tracking-widest text-vareapp mb-2">⭐ Most complete</p>
-            <h3 class="text-2xl font-black mb-1">Pro</h3>
-            <p class="text-xs text-subtle italic mb-6">Request pricing</p>
-            <ul class="flex flex-col gap-2 flex-1 mb-3">
-              {proIncludedEn.map((f, i) => (
-                <li class={`text-xs flex items-center gap-2 ${i === 1 ? 'text-vareapp font-semibold' : 'text-muted'}`}>
-                  <span class="text-vareapp">{i === 1 ? '★' : '✓'}</span> {f}
-                </li>
+          <section class="pt-20 sm:pt-24">
+            <div class="text-center mb-8">
+              <h2 class="text-2xl sm:text-3xl font-bold tracking-tight mb-2">{t.pricingTitle}</h2>
+              <p class="text-stone-600">{t.pricingLead}</p>
+            </div>
+            <div class="grid sm:grid-cols-2 gap-4 sm:gap-6 max-w-3xl mx-auto">
+              {t.plans.map(plan => (
+                <div class={`relative flex flex-col rounded-2xl bg-white p-6 sm:p-8 ${plan.featured ? 'border-2 border-orange-500' : 'border border-stone-200'}`}>
+                  {plan.featured && (
+                    <span class="absolute -top-3 left-6 rounded-full px-3 py-1 text-xs font-semibold bg-orange-500 text-stone-900">{t.planBadge}</span>
+                  )}
+                  <h3 class="text-2xl font-extrabold mb-5">{plan.name}</h3>
+                  <ul class="flex flex-col gap-2.5 flex-1 mb-5">
+                    {plan.items.map(item => (
+                      <li class="flex items-start gap-2.5 text-sm">
+                        <svg class="w-4 h-4 mt-0.5 text-orange-600 shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>
+                        {item}
+                      </li>
+                    ))}
+                  </ul>
+                  <p class="text-xs text-stone-600 mb-5">{plan.note}</p>
+                  <a href={WHATSAPP} target="_blank" rel="noopener noreferrer" class={plan.featured ? btnPrimary : btnGhost}>
+                    {t.pricingCta}
+                  </a>
+                </div>
               ))}
-            </ul>
-            <p class="text-xs text-subtle italic mb-4">The electronic invoice has full fiscal validity authorized by the DNIT.</p>
-            <a href={WHATSAPP} target="_blank" rel="noopener noreferrer"
-              class="block text-center py-2 rounded-lg text-xs font-bold border border-vareapp text-vareapp hover:bg-vareapp hover:text-white transition-colors">
-              Request
-            </a>
-          </div>
+            </div>
+          </section>
 
+          <section class="mt-20 sm:mt-24 rounded-3xl bg-white border border-stone-200 px-6 py-12 sm:py-16 text-center">
+            <h2 class="text-3xl sm:text-4xl font-bold tracking-tight mb-3">{t.closingTitle}</h2>
+            <p class="text-stone-600 mb-8">{t.closingLead}</p>
+            <div class="flex flex-wrap justify-center gap-3">
+              <a href={WHATSAPP} target="_blank" rel="noopener noreferrer" class={btnPrimary}>WhatsApp</a>
+              <a href={`mailto:${EMAIL}`} class={btnGhost}>Email</a>
+            </div>
+          </section>
         </div>
-      </section>
+      </main>
+    );
+  })}
 
-      <section class="py-16 text-center border-t border-border">
-        <h2 class="text-2xl font-black mb-3">Ready to digitize your business?</h2>
-        <p class="text-sm text-muted mb-8">Message me and let's coordinate a personalized demo.</p>
-        <ContactButtons whatsapp={WHATSAPP} email={EMAIL} />
-      </section>
-
-    </div>
-  </div>
-  </div>
-
-  <!-- Toggle script -->
   <script>
-    (function () {
-      var btns = document.querySelectorAll('[data-lang-btn]');
-      var sections = document.querySelectorAll('[data-lang]');
-
-      function setLang(lang) {
-        sections.forEach(function (el) {
-          if (el instanceof HTMLElement) {
-            el.classList.toggle('hidden', el.dataset.lang !== lang);
-          }
-        });
-        btns.forEach(function (btn) {
-          if (btn instanceof HTMLElement) {
-            var active = btn.dataset.target === lang;
-            btn.setAttribute('aria-pressed', String(active));
-          }
-        });
-      }
-
-      btns.forEach(function (btn) {
-        btn.addEventListener('click', function () {
-          if (btn instanceof HTMLElement && btn.dataset.target) {
-            setLang(btn.dataset.target);
-          }
-        });
-      });
-    })();
+    const btns = document.querySelectorAll<HTMLElement>('[data-lang-btn]');
+    const sections = document.querySelectorAll<HTMLElement>('[data-lang]');
+    btns.forEach(btn => btn.addEventListener('click', () => {
+      const lang = btn.dataset.target;
+      if (!lang) return;
+      sections.forEach(el => el.classList.toggle('hidden', el.dataset.lang !== lang));
+      btns.forEach(b => b.setAttribute('aria-pressed', String(b.dataset.target === lang)));
+      document.documentElement.lang = lang;
+    }));
   </script>
 
-  <Footer />
+  <Footer theme="vareapp" />
 </BaseLayout>

@@ -1,14 +1,17 @@
 ---
 interface Props {
   showHomeLink?: boolean;
-  /** Tema claro (página de Slotr). */
-  light?: boolean;
+  /** Tema claro de la página de producto. */
+  theme?: 'dark' | 'slotr' | 'vareapp';
 }
 
-const { showHomeLink = false, light = false } = Astro.props;
-const border = light ? 'border-md-outline-variant' : 'border-border';
-const link   = light ? 'text-md-on-surface-variant hover:text-md-primary' : 'text-muted hover:text-white';
-const fine   = light ? 'text-md-on-surface-variant' : 'text-subtle';
+const { showHomeLink = false, theme = 'dark' } = Astro.props;
+const themes = {
+  dark:    { border: 'border-border', link: 'text-muted hover:text-white', fine: 'text-subtle' },
+  slotr:   { border: 'border-md-outline-variant', link: 'text-md-on-surface-variant hover:text-md-primary', fine: 'text-md-on-surface-variant' },
+  vareapp: { border: 'border-stone-200', link: 'text-stone-600 hover:text-orange-700', fine: 'text-stone-600' },
+};
+const { border, link, fine } = themes[theme];
 
 const socials = [
   { label: 'GitHub',    href: 'https://github.com/paniagua788' },

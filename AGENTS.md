@@ -22,14 +22,14 @@ src/
     index.astro          # Home — personal intro + product cards
     portfolio.astro      # Portfolio page (separate layout)
     slotr.astro          # Slotr landing page (tema claro de la app Slotr, ES/EN desde un objeto copy)
-    vareapp.astro        # VareApp landing page (bento grid, animated hero)
+    vareapp.astro        # VareApp landing page (tema claro de la app VareApp, ES/EN desde un objeto copy)
   components/
     ProductCard.astro    # Product card on home page
     ContactButtons.astro # WhatsApp + Email buttons
     Navbar.astro         # Fixed top nav
     Footer.astro         # Footer with socials
     icons.ts             # Slotr SVG icons (28 Lucide-style)
-    vareapp-icons.ts     # VareApp SVG icons (11 feature + 5 hero food)
+    vareapp-icons.ts     # VareApp SVG icons (la página los mezcla con icons.ts)
     portfolio/           # Portfolio-specific components
   layouts/BaseLayout.astro  # Shared HTML shell, imports global.css
   styles/global.css      # Theme tokens, animations, utility classes
@@ -57,6 +57,8 @@ Defined in `src/styles/global.css` via Tailwind v4 `@theme`:
 - **Hero animations** use shared `hero-float` keyframes with `.hero-shape`, `.hero-icon-float` classes
 - **`prefers-reduced-motion`** disables all hero animations
 - **Slotr page** copies the app's light purple theme: hero = full-width brand band + booking mock, MD3 cards; logo/favicon in `public/brand/` come from the Slotr repo (`docs/marketing/marca/logo-d/`, `app/static/favicon.svg`). `Navbar`/`Footer` take `light`; `BaseLayout` takes `bodyClass` and a `head` slot (fonts).
+- **VareApp page** copies the app's light theme: `bg-stone-50`, white cards `border-stone-200`, `orange-500` with `text-stone-900` (white on orange-500 fails AA, same rule as the app), font Outfit (`font-outfit`). Hero = orange band + catalog mock. Only list features that exist in the VareApp repo; plan Pro = factura electrónica, métricas, inventario, flyer, usuarios staff.
+- **Navbar/Footer** take `theme` (`dark` | `slotr` | `vareapp`).
 - **Language toggle** buttons carry `aria-pressed`; page scripts only flip that attribute.
 - **Bento grid pages** (vareapp) use `grid-cols-1 lg:grid-cols-12` with span lookup maps
 - **`FeatureCard.astro` is dead code** — removed, do not recreate

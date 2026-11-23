@@ -3,20 +3,30 @@ interface Props {
   showBack?: boolean;
   showHomeLink?: boolean;
   showLangToggle?: boolean;
-  /** Tema claro (página de Slotr). */
-  light?: boolean;
+  /** Tema claro de la página de producto. */
+  theme?: 'dark' | 'slotr' | 'vareapp';
 }
 
-const { showBack = false, showHomeLink = false, showLangToggle = false, light = false } = Astro.props;
+const { showBack = false, showHomeLink = false, showLangToggle = false, theme = 'dark' } = Astro.props;
 
-const navCls  = light ? 'border-md-outline-variant bg-md-background/90' : 'border-border bg-base/90';
-const homeCls = light ? 'hover:text-md-primary' : 'hover:text-muted';
-const linkCls = light ? 'text-md-on-surface-variant hover:text-md-primary' : 'text-muted hover:text-white';
-const pillCls = light ? 'bg-md-surface-container' : 'bg-surface';
 // El botón activo se marca con aria-pressed; el script de la página solo cambia ese atributo.
-const langBtn = light
-  ? 'text-md-on-surface-variant aria-pressed:bg-md-primary aria-pressed:text-white'
-  : 'text-muted aria-pressed:bg-white aria-pressed:text-gray-900';
+const themes = {
+  dark: {
+    nav: 'border-border bg-base/90', home: 'hover:text-muted', link: 'text-muted hover:text-white', pill: 'bg-surface',
+    lang: 'text-muted aria-pressed:bg-white aria-pressed:text-gray-900',
+  },
+  slotr: {
+    nav: 'border-md-outline-variant bg-md-background/90', home: 'hover:text-md-primary',
+    link: 'text-md-on-surface-variant hover:text-md-primary', pill: 'bg-md-surface-container',
+    lang: 'text-md-on-surface-variant aria-pressed:bg-md-primary aria-pressed:text-white',
+  },
+  vareapp: {
+    nav: 'border-stone-200 bg-white/90 text-stone-900', home: 'hover:text-orange-700',
+    link: 'text-stone-600 hover:text-orange-700', pill: 'bg-stone-100',
+    lang: 'text-stone-600 aria-pressed:bg-orange-500 aria-pressed:text-stone-900',
+  },
+};
+const { nav: navCls, home: homeCls, link: linkCls, pill: pillCls, lang: langBtn } = themes[theme];
 ---
 
 <nav class={`fixed top-0 left-0 right-0 z-50 border-b backdrop-blur-sm ${navCls}`}>

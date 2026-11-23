@@ -184,7 +184,7 @@ const langs = ['es', 'en'] as const;
     <meta name="theme-color" content="#6750A4" />
   </Fragment>
 
-  <Navbar showLangToggle={true} light={true} />
+  <Navbar showLangToggle={true} theme="slotr" />
 
   {langs.map(lang => {
     const t = copy[lang];
@@ -334,5 +334,5 @@ const langs = ['es', 'en'] as const;
     }));
   </script>
 
-  <Footer light={true} />
+  <Footer theme="slotr" />
 </BaseLayout>
