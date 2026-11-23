@@ -85,6 +85,8 @@ const copy = {
       { count: '4+', unit: 'recursos', example: 'Clínica con múltiples especialistas', featured: false },
     ],
     pricingCta: 'Consultá',
+    supportTitle: 'Soporte directo y pedidos de mejora, siempre incluidos',
+    supportText: '¿Necesitás una función nueva o que algo funcione distinto? Pedilo. Según la dificultad, lo aplico enseguida o lo sumo a lo próximo. Lo que le resuelve un problema a un negocio casi siempre le sirve a todos, por eso cada pedido cuenta.',
     closingTitle: '¿Querés que tus clientes reserven solos?',
     closingLead: 'Escribime y te muestro cómo funciona.',
   },
@@ -161,6 +163,8 @@ const copy = {
       { count: '4+', unit: 'resources', example: 'Clinic with multiple specialists', featured: false },
     ],
     pricingCta: 'Request',
+    supportTitle: 'Direct support and change requests, always included',
+    supportText: "Need a new feature or something to work differently? Ask for it. Depending on how complex it is, I apply it right away or add it to what comes next. What solves a problem for one business almost always helps all of them, so every request counts.",
     closingTitle: 'Want your clients to book on their own?',
     closingLead: "Message me and I'll show you how it works.",
   },
@@ -300,6 +304,15 @@ const langs = ['es', 'en'] as const;
                   </a>
                 </div>
               ))}
+            </div>
+            <div class="flex gap-4 max-w-2xl mx-auto mt-4 rounded-2xl bg-md-primary-container/60 p-5 sm:p-6">
+              <span class="grid place-items-center w-10 h-10 rounded-full bg-md-background text-md-primary shrink-0">
+                <span class="w-5 h-5 [&>svg]:w-full [&>svg]:h-full" set:html={icons.messageCircle}></span>
+              </span>
+              <div>
+                <h3 class="font-md-display font-semibold mb-1">{t.supportTitle}</h3>
+                <p class="text-sm text-md-on-surface-variant leading-relaxed">{t.supportText}</p>
+              </div>
             </div>
           </section>
 

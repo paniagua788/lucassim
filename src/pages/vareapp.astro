@@ -98,6 +98,8 @@ const copy = {
       ], note: 'Para facturar necesitás tu timbrado electrónico y certificado digital. Te ayudamos con el trámite.' },
     ],
     planBadge: 'Más completo',
+    supportTitle: 'Soporte directo y pedidos de mejora, en los dos planes',
+    supportText: '¿Necesitás una función nueva o que algo funcione distinto? Pedilo. Según la dificultad, lo aplico enseguida o lo sumo a lo próximo. Lo que le resuelve un problema a un comercio casi siempre le sirve a todos, por eso cada pedido cuenta.',
     pricingCta: 'Consultar',
     closingTitle: '¿Listo para recibir pedidos online?',
     closingLead: 'Escribime y te muestro cómo funciona con tu menú.',
@@ -183,6 +185,8 @@ const copy = {
       ], note: 'To invoice you need your electronic timbrado and digital certificate. We help you with the paperwork.' },
     ],
     planBadge: 'Most complete',
+    supportTitle: 'Direct support and change requests, in both plans',
+    supportText: "Need a new feature or something to work differently? Ask for it. Depending on how complex it is, I apply it right away or add it to what comes next. What solves a problem for one business almost always helps all of them, so every request counts.",
     pricingCta: 'Request',
     closingTitle: 'Ready to take orders online?',
     closingLead: "Message me and I'll show you how it works with your menu.",
@@ -353,6 +357,15 @@ const iconBox    = 'w-5 h-5 [&>svg]:w-full [&>svg]:h-full';
                   </a>
                 </div>
               ))}
+            </div>
+            <div class="flex gap-4 max-w-3xl mx-auto mt-4 sm:mt-6 rounded-2xl bg-orange-50 border border-orange-200 p-6 sm:p-8">
+              <span class="grid place-items-center w-10 h-10 rounded-xl bg-white text-orange-600 shrink-0">
+                <span class={iconBox} set:html={ic.messageCircle}></span>
+              </span>
+              <div>
+                <h3 class="font-bold mb-1">{t.supportTitle}</h3>
+                <p class="text-sm text-stone-700 leading-relaxed">{t.supportText}</p>
+              </div>
             </div>
           </section>
 
