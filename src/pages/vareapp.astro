@@ -4,6 +4,7 @@ import Navbar from '../components/Navbar.astro';
 import Footer from '../components/Footer.astro';
 import { icons } from '../components/icons';
 import { vareappIcons } from '../components/vareapp-icons';
+import HeroIcons from '../components/HeroIcons.astro';
 
 // Tema claro de la app VareApp: fondo stone-50, tarjetas blancas, marca orange-500 con texto oscuro
 // (igual que la app: blanco sobre orange-500 no llega a AA) y Outfit.
@@ -221,6 +222,7 @@ const iconBox    = 'w-5 h-5 [&>svg]:w-full [&>svg]:h-full';
         <section class="relative overflow-hidden bg-orange-500 text-stone-900">
           <div class="absolute -top-24 right-[8%] w-96 h-96 rounded-full bg-amber-300/40 blur-3xl" aria-hidden="true"></div>
           <div class="absolute -bottom-40 -left-20 w-[28rem] h-[28rem] rounded-full bg-orange-600/50 blur-3xl" aria-hidden="true"></div>
+          <HeroIcons icons={[ic.chefHat, ic.coffee, ic.flame, ic.utensilsCrossed, ic.receipt, ic.bell]} />
           <div class="relative max-w-6xl mx-auto px-5 sm:px-6 py-12 sm:py-16 lg:py-20 grid lg:grid-cols-[1.15fr_0.85fr] gap-10 lg:gap-14 items-center">
             <div>
               <img src="/vareapp-claro-transparente.png" alt="VareApp" width="433" height="206" class="h-16 sm:h-20 w-auto mb-6 -ml-2" />

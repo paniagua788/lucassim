@@ -54,7 +54,7 @@ Defined in `src/styles/global.css` via Tailwind v4 `@theme`:
 
 - **100% static Astro** — no JS runtime, no backend logic, Cloudflare Pages compatible
 - **No emojis as icons** — use SVG from `icons.ts` or `vareapp-icons.ts`
-- **Hero animations** use shared `hero-float` keyframes with `.hero-shape`, `.hero-icon-float` classes
+- **Hero animations** use shared `hero-float` keyframes with `.hero-shape`, `.hero-icon-float` classes. `HeroIcons.astro` puts up to 6 floating icons in the colored hero band of `/vareapp` and `/slotr` (only the first on mobile)
 - **`prefers-reduced-motion`** disables all hero animations
 - **Slotr page** copies the app's light purple theme: hero = full-width brand band + booking mock, MD3 cards; logo/favicon in `public/brand/` come from the Slotr repo (`docs/marketing/marca/logo-d/`, `app/static/favicon.svg`). `Navbar`/`Footer` take `light`; `BaseLayout` takes `bodyClass` and a `head` slot (fonts).
 - **VareApp page** copies the app's light theme: `bg-stone-50`, white cards `border-stone-200`, `orange-500` with `text-stone-900` (white on orange-500 fails AA, same rule as the app), font Outfit (`font-outfit`). Hero = orange band + catalog mock. Only list features that exist in the VareApp repo; plan Pro = factura electrónica, métricas, inventario, flyer, usuarios staff.

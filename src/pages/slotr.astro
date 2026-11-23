@@ -3,6 +3,7 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 import Navbar from '../components/Navbar.astro';
 import Footer from '../components/Footer.astro';
 import { icons, type IconName } from '../components/icons';
+import HeroIcons from '../components/HeroIcons.astro';
 
 // Página con el tema claro de la app Slotr: tokens md-* (paleta morada MD3), Roboto y JetBrains Mono.
 const WHATSAPP = 'https://wa.me/595993294266';
@@ -198,6 +199,7 @@ const langs = ['es', 'en'] as const;
         <section class="relative overflow-hidden bg-md-primary text-white">
           <div class="absolute -top-24 right-[10%] w-80 h-80 rounded-full bg-white/10 blur-3xl" aria-hidden="true"></div>
           <div class="absolute -bottom-32 -left-16 w-96 h-96 rounded-full bg-md-primary-container/20 blur-3xl" aria-hidden="true"></div>
+          <HeroIcons icons={[icons.calendar, icons.clock, icons.bell, icons.star, icons.calendarPlus, icons.sparkles]} />
           <div class="relative max-w-6xl mx-auto px-5 sm:px-6 py-12 sm:py-16 lg:py-24 grid lg:grid-cols-[1.15fr_0.85fr] gap-10 lg:gap-14 items-center">
 
             <div class="relative">
