@@ -25,13 +25,16 @@ const copy = {
     mock: {
       label: 'Vista del catálogo de VareApp: el cliente elige productos y arma su pedido desde el celular.',
       business: 'La Esquina', open: 'Abierto hasta las 23:30 · Delivery y retiro',
-      category: 'Pizzas',
-      products: [
-        { name: 'Pizza muzzarella', price: 'desde Gs. 45.000' },
-        { name: 'Pizza napolitana', price: 'desde Gs. 52.000' },
-        { name: 'Lomito árabe', price: 'Gs. 38.000' },
-      ],
-      cart: 'Ver pedido', cartTotal: 'Gs. 97.000',
+      sections: [
+        { category: 'Pizzas', icon: 'utensilsCrossed', products: [
+          { name: 'Pizza muzzarella', price: 'desde Gs. 45.000' },
+          { name: 'Pizza napolitana', price: 'desde Gs. 52.000' },
+        ] },
+        { category: 'Bebidas', icon: 'cupSoda', products: [
+          { name: 'Gaseosa 500 ml', price: 'Gs. 10.000' },
+        ] },
+      ] as { category: string; icon: Icon; products: { name: string; price: string }[] }[],
+      cart: 'Ver pedido', cartTotal: 'Gs. 55.000',
     },
     stepsTitle: 'Así funciona',
     steps: [
@@ -112,13 +115,16 @@ const copy = {
     mock: {
       label: "VareApp's catalog: the customer picks products and builds an order from their phone.",
       business: 'La Esquina', open: 'Open until 23:30 · Delivery and pickup',
-      category: 'Pizzas',
-      products: [
-        { name: 'Mozzarella pizza', price: 'from Gs. 45.000' },
-        { name: 'Neapolitan pizza', price: 'from Gs. 52.000' },
-        { name: 'Arabic lomito', price: 'Gs. 38.000' },
-      ],
-      cart: 'View order', cartTotal: 'Gs. 97.000',
+      sections: [
+        { category: 'Pizzas', icon: 'utensilsCrossed', products: [
+          { name: 'Mozzarella pizza', price: 'from Gs. 45.000' },
+          { name: 'Neapolitan pizza', price: 'from Gs. 52.000' },
+        ] },
+        { category: 'Drinks', icon: 'cupSoda', products: [
+          { name: 'Soda 500 ml', price: 'Gs. 10.000' },
+        ] },
+      ] as { category: string; icon: Icon; products: { name: string; price: string }[] }[],
+      cart: 'View order', cartTotal: 'Gs. 55.000',
     },
     stepsTitle: 'How it works',
     steps: [
@@ -240,21 +246,25 @@ const iconBox    = 'w-5 h-5 [&>svg]:w-full [&>svg]:h-full';
                   <p class="font-bold">{t.mock.business}</p>
                   <p class="text-xs text-emerald-700 mt-0.5">{t.mock.open}</p>
                 </div>
-                <p class="text-sm font-bold mb-2.5 px-1">{t.mock.category}</p>
-                <div class="flex flex-col gap-2.5 mb-4">
-                  {t.mock.products.map(p => (
-                    <div class="flex items-center gap-3 rounded-xl bg-white border border-stone-100 p-2.5">
-                      <span class="grid place-items-center w-12 h-12 rounded-lg bg-orange-50 text-orange-500 shrink-0">
-                        <span class={iconBox} set:html={ic.utensilsCrossed}></span>
-                      </span>
-                      <span class="flex-1 min-w-0">
-                        <span class="block text-sm font-semibold truncate">{p.name}</span>
-                        <span class="block text-xs text-stone-500">{p.price}</span>
-                      </span>
-                      <span class="grid place-items-center w-8 h-8 rounded-full bg-orange-500 text-stone-900 font-bold leading-none">+</span>
+                {t.mock.sections.map(sec => (
+                  <>
+                    <p class="text-sm font-bold mb-2.5 px-1">{sec.category}</p>
+                    <div class="flex flex-col gap-2.5 mb-4">
+                      {sec.products.map(p => (
+                        <div class="flex items-center gap-3 rounded-xl bg-white border border-stone-100 p-2.5">
+                          <span class="grid place-items-center w-12 h-12 rounded-lg bg-orange-50 text-orange-500 shrink-0">
+                            <span class={iconBox} set:html={ic[sec.icon]}></span>
+                          </span>
+                          <span class="flex-1 min-w-0">
+                            <span class="block text-sm font-semibold truncate">{p.name}</span>
+                            <span class="block text-xs text-stone-500">{p.price}</span>
+                          </span>
+                          <span class="grid place-items-center w-8 h-8 rounded-full bg-orange-500 text-stone-900 font-bold leading-none">+</span>
+                        </div>
+                      ))}
                     </div>
-                  ))}
-                </div>
+                  </>
+                ))}
                 <div class="flex items-center justify-between rounded-full bg-orange-500 text-stone-900 font-semibold text-sm pl-2 pr-5 py-2">
                   <span class="flex items-center gap-2">
                     <span class="grid place-items-center w-7 h-7 rounded-full bg-white text-xs font-bold">2</span>
