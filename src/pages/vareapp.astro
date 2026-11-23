@@ -88,12 +88,12 @@ const copy = {
     target: ['Pizzerías', 'Hamburgueserías', 'Restaurantes', 'Cafeterías', 'Rotiserías', 'Food trucks', 'Panaderías', 'Bares'],
     targetAny: 'Cualquier negocio con menú y pedidos',
     pricingTitle: 'Elegí tu plan',
-    pricingLead: 'Precios a consultar. Sin sorpresas.',
+    pricingLead: 'Los dos incluyen todo lo necesario para vender online. La diferencia es la factura electrónica y las herramientas de gestión.',
     plans: [
-      { name: 'Esencial', featured: false, items: [
+      { name: 'Esencial', featured: false, why: 'Para vender online, ordenar los pedidos y cobrar en el mostrador.', items: [
         'Catálogo online con tu marca', 'Pedidos por WhatsApp', 'Panel de órdenes con avisos e impresión', 'Caja con ticket y venta directa', 'Modo mozo', 'Ofertas',
       ], note: 'El ticket no tiene valor fiscal.' },
-      { name: 'Pro', featured: true, items: [
+      { name: 'Pro', featured: true, why: 'Cuesta más porque incluye la factura electrónica: el alta de tu negocio ante SIFEN con tu certificado, facturas sin límite y el seguimiento de cada una hasta que queda aprobada.', items: [
         'Todo el plan Esencial', 'Factura electrónica SIFEN', 'Métricas', 'Inventario', 'Generador de flyer', 'Usuarios con permisos',
       ], note: 'Para facturar necesitás tu timbrado electrónico y certificado digital. Te ayudamos con el trámite.' },
     ],
@@ -173,12 +173,12 @@ const copy = {
     target: ['Pizzerias', 'Burger joints', 'Restaurants', 'Cafés', 'Rotisseries', 'Food trucks', 'Bakeries', 'Bars'],
     targetAny: 'Any business with a menu and orders',
     pricingTitle: 'Choose your plan',
-    pricingLead: 'Pricing on request. No surprises.',
+    pricingLead: 'Both include everything you need to sell online. The difference is e-invoicing and the management tools.',
     plans: [
-      { name: 'Essential', featured: false, items: [
+      { name: 'Essential', featured: false, why: 'To sell online, keep orders organized and charge at the counter.', items: [
         'Online catalog with your brand', 'WhatsApp ordering', 'Order panel with alerts and printing', 'Cash register with receipts and direct sales', 'Waiter mode', 'Offers',
       ], note: 'The receipt has no fiscal value.' },
-      { name: 'Pro', featured: true, items: [
+      { name: 'Pro', featured: true, why: 'It costs more because it includes e-invoicing: setting up your business with SIFEN using your certificate, unlimited invoices and tracking each one until it is approved.', items: [
         'Everything in Essential', 'SIFEN e-invoicing', 'Metrics', 'Inventory', 'Flyer generator', 'Users with permissions',
       ], note: 'To invoice you need your electronic timbrado and digital certificate. We help you with the paperwork.' },
     ],
@@ -329,7 +329,7 @@ const iconBox    = 'w-5 h-5 [&>svg]:w-full [&>svg]:h-full';
           <section class="pt-20 sm:pt-24">
             <div class="text-center mb-8">
               <h2 class="text-2xl sm:text-3xl font-bold tracking-tight mb-2">{t.pricingTitle}</h2>
-              <p class="text-stone-600">{t.pricingLead}</p>
+              <p class="text-stone-600 max-w-[52ch] mx-auto">{t.pricingLead}</p>
             </div>
             <div class="grid sm:grid-cols-2 gap-4 sm:gap-6 max-w-3xl mx-auto">
               {t.plans.map(plan => (
@@ -337,7 +337,8 @@ const iconBox    = 'w-5 h-5 [&>svg]:w-full [&>svg]:h-full';
                   {plan.featured && (
                     <span class="absolute -top-3 left-6 rounded-full px-3 py-1 text-xs font-semibold bg-orange-500 text-stone-900">{t.planBadge}</span>
                   )}
-                  <h3 class="text-2xl font-extrabold mb-5">{plan.name}</h3>
+                  <h3 class="text-2xl font-extrabold mb-2">{plan.name}</h3>
+                  <p class="text-sm text-stone-600 leading-relaxed mb-5">{plan.why}</p>
                   <ul class="flex flex-col gap-2.5 flex-1 mb-5">
                     {plan.items.map(item => (
                       <li class="flex items-start gap-2.5 text-sm">
