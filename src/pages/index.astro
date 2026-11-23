@@ -10,17 +10,17 @@ const WHATSAPP = 'https://wa.me/595993294266';
 const EMAIL    = 'lucas_paniagua@hotmail.com';
 
 const vareappFeatures = [
-  'Catálogo digital con variantes y fotos',
-  'Pedidos delivery, pickup y mostrador',
-  'Caja / POS con factura DNIT',
-  'Inventario, clientes y fidelidad',
+  'Menú online con pedidos por WhatsApp',
+  'Panel de órdenes con avisos e impresión automática',
+  'Caja, venta directa y modo mozo',
+  'Factura electrónica SIFEN',
 ];
 
 const slotrFeatures = [
   'Reservas online para tus clientes',
-  'Calendarios por recurso o profesional',
-  'Múltiples servicios configurables',
-  'Panel de administración de agenda',
+  'Agenda por profesional, recurso y sucursal',
+  'Avisos por email, WhatsApp y Telegram',
+  'Libro de caja y factura electrónica SIFEN',
 ];
 ---
 
@@ -42,7 +42,7 @@ const slotrFeatures = [
         </h1>
 
         <p class="text-sm text-muted leading-relaxed max-w-xl mx-auto lg:mx-0 mb-4">
-          Más de <strong class="text-white font-semibold">5 años de experiencia</strong> desarrollando software.
+          Más de <strong class="text-white font-semibold">7 años de experiencia</strong> en tecnología: empecé en redes e infraestructura y hoy desarrollo software.
           Proactivo, orientado al crecimiento y apasionado por construir productos que resuelvan problemas reales.
         </p>
 
@@ -81,17 +81,16 @@ const slotrFeatures = [
     <div class="grid sm:grid-cols-2 gap-6">
       <ProductCard
         name="VareApp"
-        eyebrow="SaaS · Multi-negocio"
-        tagline="Catálogo, pedidos y caja para restaurantes y comercios minoristas."
+        eyebrow="SaaS · Gastronomía"
+        tagline="Menú online, pedidos, caja y factura electrónica para restaurantes y comercios gastronómicos."
         accent="vareapp"
         features={vareappFeatures}
-        businessTypes={['Restaurante', 'Retail']}
         href="/vareapp"
       />
       <ProductCard
         name="Slotr"
-        eyebrow="SaaS · Agendamiento"
-        tagline="Sistema de turnos online para clínicas, peluquerías, consultoras y canchas deportivas."
+        eyebrow="SaaS · Turnos online"
+        tagline="Reservas, agenda, caja y factura electrónica para clínicas, peluquerías, consultoras y canchas deportivas."
         accent="slotr"
         features={slotrFeatures}
         href="/slotr"
