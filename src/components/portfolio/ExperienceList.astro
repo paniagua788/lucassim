@@ -2,6 +2,7 @@
 // src/components/portfolio/ExperienceList.astro
 // Timeline de experiencia profesional (cronológico inverso). Bilingüe.
 // En lg+ la fecha pasa a una columna fija a la izquierda y se oculta la línea de tiempo.
+// Fechas y cargos alineados con LinkedIn (ver docs/linkedin/2026-10-26-auditoria-perfil.md).
 ---
 
 <!-- ESPAÑOL -->
@@ -10,6 +11,29 @@
 
   <div class="relative pl-6 lg:pl-0 border-l-2 lg:border-l-0 border-border flex flex-col lg:gap-8 gap-10">
 
+    <!-- AVALX -->
+    <div class="relative lg:grid lg:grid-cols-[120px_1fr] lg:gap-8">
+      <div class="absolute -left-[29px] top-1 w-3.5 h-3.5 rounded-full bg-brand border-2 border-base lg:hidden"></div>
+      <span class="hidden lg:block text-xs text-subtle whitespace-nowrap text-right pt-1">Ago 2026 – Presente</span>
+      <div>
+        <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-1 mb-2">
+          <div>
+            <p class="font-bold text-white">Ingeniero de Software</p>
+            <p class="text-sm text-brand font-medium">AVALX <span class="text-subtle">· fintech regulada de USDT para empresas</span></p>
+          </div>
+          <span class="text-xs text-subtle whitespace-nowrap lg:hidden">Ago 2026 – Presente</span>
+        </div>
+        <ul class="text-sm text-muted flex flex-col gap-1.5 list-disc list-inside">
+          <li>Desarrollo de los flujos de cobro en USDT sobre TRON para puntos de venta y e-commerce: sesiones de pago, códigos QR, pagos parciales, estados y vencimientos.</li>
+          <li>APIs de cobro para POS y e-commerce con validación de importes, separación por comercio, idempotencia y webhooks para los comercios.</li>
+          <li>Lector de blockchain, worker y supervisor que confirman las transacciones; conciliación fail-closed y cajas compartidas para los cajeros.</li>
+          <li>Mejoras al backoffice financiero sobre un libro contable de partida doble, con controles que muestran diferencias contables a los operadores.</li>
+          <li>Infraestructura y despliegues en AWS con Terraform: 7 servicios en ECS Fargate, RDS PostgreSQL Multi-AZ, ALB y CodeBuild, con ambiente de pruebas y gates de CI antes de publicar.</li>
+          <li>Sitio institucional trilingüe (ES/EN/PT-BR) con la documentación pública de las APIs.</li>
+        </ul>
+      </div>
+    </div>
+
     <!-- Parque Tecnológico Itaipú -->
     <div class="relative lg:grid lg:grid-cols-[120px_1fr] lg:gap-8">
       <div class="absolute -left-[29px] top-1 w-3.5 h-3.5 rounded-full bg-brand border-2 border-base lg:hidden"></div>
@@ -17,22 +41,22 @@
       <div>
         <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-1 mb-2">
           <div>
-            <p class="font-bold text-white">Full-Stack Python Developer</p>
-            <p class="text-sm text-brand font-medium">Parque Tecnológico Itaipú</p>
+            <p class="font-bold text-white">Desarrollador Python</p>
+            <p class="text-sm text-brand font-medium">Parque Tecnológico Itaipú <span class="text-subtle">· DigTem</span></p>
           </div>
           <span class="text-xs text-subtle whitespace-nowrap lg:hidden">Feb 2025 – Presente</span>
         </div>
         <ul class="text-sm text-muted flex flex-col gap-1.5 list-disc list-inside">
-          <li>Desarrollo de aplicaciones de escritorio especializadas en Python con PySide6/Qt Framework para sistemas de subestaciones eléctricas bajo el estándar IEC 61850.</li>
-          <li>Implementación de arquitectura desacoplada con principios SOLID y capa de servicios (AppService) con patrón facade para comunicación Frontend/Backend.</li>
-          <li>Construcción de interfaces visuales interactivas con validación de datos en tiempo real para entornos industriales de alta disponibilidad.</li>
-          <li>Desarrollo de funcionalidades para configuración de IEDs (Intelligent Electronic Devices) garantizando interoperabilidad en ecosistemas de subestaciones.</li>
-          <li>Colaboración ágil en equipo multidisciplinario; documentación técnica de decisiones de arquitectura (ADRs) y procesos de calidad.</li>
+          <li>Desarrollo de DigTem, suite de escritorio para ingeniería de subestaciones eléctricas bajo IEC 61850: edición, simulación, transferencia y gestión de archivos SCL (CID/ICD/SCD) y descubrimiento de IEDs en la red.</li>
+          <li>Interfaces en Python y PySide6/Qt conectadas al motor de simulación de MMS, GOOSE y Sampled Values, con controles de operación y configuración visual de suscripciones.</li>
+          <li>Componentes nativos en C sobre libiec61850 para la publicación periódica de Sampled Values, generación de señales y simulación de pérdida de muestras.</li>
+          <li>Licenciamiento (versión de evaluación y comercial con llave USB), instaladores para Windows y reducción del tiempo de arranque de ~9,5 s a menos de 6 s.</li>
+          <li>Escenarios de prueba de laboratorio, manual de usuario, análisis competitivo y documentación técnica de la arquitectura (facade, SOLID).</li>
         </ul>
       </div>
     </div>
 
-    <!-- Itaipú Binacional - Mesa de Servicios -->
+    <!-- Itaipú Binacional - Mesa de Servicios (Datapar / STI) -->
     <div class="relative lg:grid lg:grid-cols-[120px_1fr] lg:gap-8">
       <div class="absolute -left-[29px] top-1 w-3.5 h-3.5 rounded-full bg-subtle border-2 border-base lg:hidden"></div>
       <span class="hidden lg:block text-xs text-subtle whitespace-nowrap text-right pt-1">Sep 2023 – Feb 2025</span>
@@ -40,19 +64,17 @@
         <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-1 mb-2">
           <div>
             <p class="font-bold text-white">Analista de Soporte Remoto – Mesa de Servicios</p>
-            <p class="text-sm text-muted font-medium">Itaipú Binacional <span class="text-subtle">(vía Datapar / STI S.A.)</span></p>
+            <p class="text-sm text-muted font-medium">Servicio tercerizado para Itaipú Binacional</p>
+            <p class="text-xs text-subtle">Datapar S.A. (Sep 2023 – Jun 2024) · STI S.A. (Ago 2024 – Feb 2025)</p>
           </div>
           <span class="text-xs text-subtle whitespace-nowrap lg:hidden">Sep 2023 – Feb 2025</span>
         </div>
         <ul class="text-sm text-muted flex flex-col gap-1.5 list-disc list-inside">
-          <li>Gestión intensiva de ServiceNow como usuario avanzado: ciclo completo de incidentes, problemas, cambios y solicitudes para 500+ usuarios empresariales.</li>
-          <li>Desarrollo de scripts PowerShell para consultas automatizadas en Active Directory, reduciendo tiempos de resolución en un 40%.</li>
-          <li>Diagnóstico y resolución de problemas de conectividad remota y VPN para usuarios distribuidos; análisis de rendimiento de red y troubleshooting de enlaces de comunicación.</li>
-          <li>Generación de reportes operativos con KPIs y análisis de SLAs; identificación de tendencias y propuesta de mejoras al equipo de administración ITSM.</li>
-          <li>Colaboración estrecha con el equipo de desarrollo ITSM: levantamiento de requerimientos funcionales, UAT de nuevas funcionalidades y validación de cambios antes de producción.</li>
-          <li>Resolución del 99%+ de tickets sin necesidad de escalación a Tier 2/3 mediante troubleshooting sistemático.</li>
-          <li>Capacitación a usuarios finales en la plataforma ServiceNow; documentación de procedimientos de soporte y guías de troubleshooting.</li>
-          <li>Monitoreo proactivo de sistemas para detección temprana de incidentes antes de impacto a usuarios.</li>
+          <li>Mismo servicio y funciones con dos contratistas: STI S.A. continuó el servicio tras ganar una nueva licitación.</li>
+          <li>Gestión de incidentes y solicitudes en ServiceNow para usuarios internos de distintas áreas, con comunicación clara y procedimientos establecidos.</li>
+          <li>Diagnóstico de conectividad remota y VPN para usuarios distribuidos.</li>
+          <li>Script en PowerShell para consultar usuarios y equipos en Active Directory, que agilizó el diagnóstico.</li>
+          <li>Elaboración y actualización de procedimientos de soporte y guías de troubleshooting.</li>
         </ul>
       </div>
     </div>
@@ -60,47 +82,43 @@
     <!-- Itaipú Binacional - Analista TI -->
     <div class="relative lg:grid lg:grid-cols-[120px_1fr] lg:gap-8">
       <div class="absolute -left-[29px] top-1 w-3.5 h-3.5 rounded-full bg-subtle border-2 border-base lg:hidden"></div>
-      <span class="hidden lg:block text-xs text-subtle whitespace-nowrap text-right pt-1">Ene 2020 – Sep 2023</span>
+      <span class="hidden lg:block text-xs text-subtle whitespace-nowrap text-right pt-1">Ene 2020 – Ene 2023</span>
       <div>
         <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-1 mb-2">
           <div>
             <p class="font-bold text-white">Analista de Soporte TI</p>
             <p class="text-sm text-muted font-medium">Itaipú Binacional</p>
           </div>
-          <span class="text-xs text-subtle whitespace-nowrap lg:hidden">Ene 2020 – Sep 2023</span>
+          <span class="text-xs text-subtle whitespace-nowrap lg:hidden">Ene 2020 – Ene 2023</span>
         </div>
         <ul class="text-sm text-muted flex flex-col gap-1.5 list-disc list-inside">
-          <li>Soporte técnico de hardware, software y redes para división de microinformática (500+ usuarios) con uptime sostenido &gt;99.5%.</li>
-          <li>Diagnóstico y resolución de problemas de conectividad de red en sitio: cableado estructurado, switches, puntos de acceso y enlaces de comunicación; colaboración con el equipo de redes para escalación y seguimiento de incidencias.</li>
+          <li>Soporte de hardware, software y redes para la división de microinformática (500+ usuarios).</li>
+          <li>Diagnóstico de conectividad en sitio: cableado estructurado, switches, puntos de acceso y enlaces; escalación y seguimiento con el equipo de redes.</li>
           <li>Administración de Windows Server: Active Directory, GPOs, políticas de seguridad, servidor de impresión centralizado (Equitrac) y servicios de dominio.</li>
-          <li>Gestión de virtualización empresarial con Hyper-V y VMware (100+ VMs); creación y distribución de imágenes de sistema con Sysprep y PXE.</li>
-          <li>Administración de Microsoft Endpoint Configuration Manager (MECM): despliegue automatizado de sistemas operativos y aplicaciones corporativas.</li>
-          <li>Gestión de inventario de activos TI (hardware, software y licencias); coordinación con proveedores para compras tecnológicas, cotizaciones y seguimiento presupuestario.</li>
-          <li>Administración de sistemas de almacenamiento y backup empresarial; implementación de políticas de respaldo y recuperación de datos críticos.</li>
-          <li>Prospección tecnológica, elaboración de especificaciones técnicas y pareceres técnicos para procesos de adquisición de equipos informáticos (notebooks, AIOs, proyectores, entre otros); participación en migraciones de servicios legacy a arquitecturas virtualizadas.</li>
-          <li>Colaboración en auditorías internas de infraestructura y actualización de documentación técnica.</li>
+          <li>Virtualización con Hyper-V y VMware; creación y distribución de imágenes con Sysprep y PXE.</li>
+          <li>Microsoft Endpoint Configuration Manager (MECM): despliegue automatizado de sistemas operativos y aplicaciones.</li>
+          <li>Inventario de activos TI (hardware, software y licencias); especificaciones técnicas y pareceres para la adquisición de equipos.</li>
+          <li>Almacenamiento y backup; participación en migraciones de servicios legacy a infraestructura virtualizada y en auditorías internas.</li>
         </ul>
       </div>
     </div>
 
-    <!-- Técnico de Redes -->
+    <!-- Pasante de Redes -->
     <div class="relative lg:grid lg:grid-cols-[120px_1fr] lg:gap-8">
       <div class="absolute -left-[29px] top-1 w-3.5 h-3.5 rounded-full bg-border border-2 border-base lg:hidden"></div>
-      <span class="hidden lg:block text-xs text-subtle whitespace-nowrap text-right pt-1">Mar 2019 – Ene 2020</span>
+      <span class="hidden lg:block text-xs text-subtle whitespace-nowrap text-right pt-1">Mar 2019 – May 2019</span>
       <div>
         <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-1 mb-2">
           <div>
-            <p class="font-bold text-white">Técnico de Redes</p>
+            <p class="font-bold text-white">Pasante de Redes</p>
             <p class="text-sm text-muted font-medium">Itaipú Binacional</p>
           </div>
-          <span class="text-xs text-subtle whitespace-nowrap lg:hidden">Mar 2019 – Ene 2020</span>
+          <span class="text-xs text-subtle whitespace-nowrap lg:hidden">Mar 2019 – May 2019</span>
         </div>
         <ul class="text-sm text-muted flex flex-col gap-1.5 list-disc list-inside">
-          <li>Diseño y planificación de topologías de red, segmentación mediante VLANs y plan de direccionamiento IP (subnetting) para optimizar el tráfico y la seguridad de la infraestructura.</li>
-          <li>Diagnóstico y resolución avanzada de problemas de conectividad a nivel físico y lógico: TCP/IP, VLANs, STP, routing estático y dinámico (OSPF), switches, routers y firewalls.</li>
-          <li>Configuración y mantenimiento de dispositivos de red (switches gestionables, routers, firewalls) para garantizar la disponibilidad y seguridad de la red corporativa &gt;99%.</li>
-          <li>Monitoreo proactivo de infraestructura crítica de red; implementación de mantenimiento preventivo y planes de mejora continua.</li>
-          <li>Documentación técnica de incidencias, procedimientos de resolución, diagramas de red y registros de cambios en la infraestructura.</li>
+          <li>Apoyo en el diagnóstico de conectividad física y lógica: TCP/IP, VLANs, switches y routers.</li>
+          <li>Configuración y mantenimiento de dispositivos de red de la red corporativa.</li>
+          <li>Documentación de incidencias, diagramas de red y registros de cambios.</li>
         </ul>
       </div>
     </div>
@@ -114,6 +132,29 @@
 
   <div class="relative pl-6 lg:pl-0 border-l-2 lg:border-l-0 border-border flex flex-col lg:gap-8 gap-10">
 
+    <!-- AVALX -->
+    <div class="relative lg:grid lg:grid-cols-[120px_1fr] lg:gap-8">
+      <div class="absolute -left-[29px] top-1 w-3.5 h-3.5 rounded-full bg-brand border-2 border-base lg:hidden"></div>
+      <span class="hidden lg:block text-xs text-subtle whitespace-nowrap text-right pt-1">Aug 2026 – Present</span>
+      <div>
+        <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-1 mb-2">
+          <div>
+            <p class="font-bold text-white">Software Engineer</p>
+            <p class="text-sm text-brand font-medium">AVALX <span class="text-subtle">· regulated USDT fintech for businesses</span></p>
+          </div>
+          <span class="text-xs text-subtle whitespace-nowrap lg:hidden">Aug 2026 – Present</span>
+        </div>
+        <ul class="text-sm text-muted flex flex-col gap-1.5 list-disc list-inside">
+          <li>Built USDT-on-TRON payment flows for points of sale and e-commerce: payment sessions, QR codes, partial payments, statuses and expirations.</li>
+          <li>POS and e-commerce payment APIs with amount validation, per-merchant isolation, idempotency and merchant webhooks.</li>
+          <li>Blockchain reader, worker and supervisor that confirm transactions; fail-closed reconciliation and shared cash boxes for cashiers.</li>
+          <li>Improvements to the financial back office on a double-entry ledger, with checks that surface accounting differences to operators.</li>
+          <li>AWS infrastructure and deployments with Terraform: 7 services on ECS Fargate, Multi-AZ RDS PostgreSQL, ALB and CodeBuild, with a staging environment and CI gates before release.</li>
+          <li>Trilingual company website (ES/EN/PT-BR) with the public API documentation.</li>
+        </ul>
+      </div>
+    </div>
+
     <!-- Parque Tecnológico Itaipú -->
     <div class="relative lg:grid lg:grid-cols-[120px_1fr] lg:gap-8">
       <div class="absolute -left-[29px] top-1 w-3.5 h-3.5 rounded-full bg-brand border-2 border-base lg:hidden"></div>
@@ -121,22 +162,22 @@
       <div>
         <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-1 mb-2">
           <div>
-            <p class="font-bold text-white">Full-Stack Python Developer</p>
-            <p class="text-sm text-brand font-medium">Parque Tecnológico Itaipú</p>
+            <p class="font-bold text-white">Python Developer</p>
+            <p class="text-sm text-brand font-medium">Parque Tecnológico Itaipú <span class="text-subtle">· DigTem</span></p>
           </div>
           <span class="text-xs text-subtle whitespace-nowrap lg:hidden">Feb 2025 – Present</span>
         </div>
         <ul class="text-sm text-muted flex flex-col gap-1.5 list-disc list-inside">
-          <li>Development of specialized desktop applications in Python with PySide6/Qt Framework for electrical substation systems under the IEC 61850 standard.</li>
-          <li>Implementation of decoupled architecture with SOLID principles and a service layer (AppService) with facade pattern for Frontend/Backend communication.</li>
-          <li>Construction of interactive visual interfaces with real-time data validation for high-availability industrial environments.</li>
-          <li>Development of features for IED (Intelligent Electronic Devices) configuration ensuring interoperability in substation ecosystems.</li>
-          <li>Agile collaboration in a multidisciplinary team; technical documentation of architecture decisions (ADRs) and quality processes.</li>
+          <li>Development of DigTem, a desktop suite for IEC 61850 substation engineering: editing, simulating, transferring and managing SCL files (CID/ICD/SCD) and discovering IEDs on the network.</li>
+          <li>Python and PySide6/Qt interfaces wired to the MMS, GOOSE and Sampled Values simulation engine, with operation controls and visual subscription setup.</li>
+          <li>Native C components on libiec61850 for periodic Sampled Values publishing, signal generation and sample-loss simulation.</li>
+          <li>Licensing (evaluation and commercial builds with a USB dongle), Windows installers, and startup time cut from ~9.5 s to under 6 s.</li>
+          <li>Lab test scenarios, user manual, competitive analysis and architecture documentation (facade, SOLID).</li>
         </ul>
       </div>
     </div>
 
-    <!-- Itaipú Binacional - Service Desk -->
+    <!-- Itaipú Binacional - Service Desk (Datapar / STI) -->
     <div class="relative lg:grid lg:grid-cols-[120px_1fr] lg:gap-8">
       <div class="absolute -left-[29px] top-1 w-3.5 h-3.5 rounded-full bg-subtle border-2 border-base lg:hidden"></div>
       <span class="hidden lg:block text-xs text-subtle whitespace-nowrap text-right pt-1">Sep 2023 – Feb 2025</span>
@@ -144,19 +185,17 @@
         <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-1 mb-2">
           <div>
             <p class="font-bold text-white">Remote Support Analyst – Service Desk</p>
-            <p class="text-sm text-muted font-medium">Itaipú Binacional <span class="text-subtle">(via Datapar / STI S.A.)</span></p>
+            <p class="text-sm text-muted font-medium">Outsourced service for Itaipú Binacional</p>
+            <p class="text-xs text-subtle">Datapar S.A. (Sep 2023 – Jun 2024) · STI S.A. (Aug 2024 – Feb 2025)</p>
           </div>
           <span class="text-xs text-subtle whitespace-nowrap lg:hidden">Sep 2023 – Feb 2025</span>
         </div>
         <ul class="text-sm text-muted flex flex-col gap-1.5 list-disc list-inside">
-          <li>Intensive ServiceNow management as an advanced user: full lifecycle of incidents, problems, changes, and requests for 500+ enterprise users.</li>
-          <li>Development of PowerShell scripts for automated Active Directory queries, reducing resolution times by 40%.</li>
-          <li>Remote connectivity and VPN troubleshooting for distributed users; network performance analysis and communication link troubleshooting.</li>
-          <li>Generation of operational reports with KPIs and SLA analysis; trend identification and process improvement proposals to the ITSM administration team.</li>
-          <li>Close collaboration with the ITSM development team: functional requirements gathering, UAT of new features, and change validation before production.</li>
-          <li>Resolution of 99%+ of tickets without Tier 2/3 escalation through systematic troubleshooting.</li>
-          <li>End-user training on the ServiceNow platform; authoring of support procedure documentation and troubleshooting guides.</li>
-          <li>Proactive system monitoring for early incident detection before user impact.</li>
+          <li>Same service and duties under two contractors: STI S.A. took over the service after winning a new tender.</li>
+          <li>Incident and service request management in ServiceNow for internal users across departments, following established procedures.</li>
+          <li>Remote connectivity and VPN troubleshooting for distributed users.</li>
+          <li>PowerShell script to look up users and computers in Active Directory, speeding up diagnosis.</li>
+          <li>Authoring and updating support procedures and troubleshooting guides.</li>
         </ul>
       </div>
     </div>
@@ -164,47 +203,43 @@
     <!-- Itaipú Binacional - IT Support Analyst -->
     <div class="relative lg:grid lg:grid-cols-[120px_1fr] lg:gap-8">
       <div class="absolute -left-[29px] top-1 w-3.5 h-3.5 rounded-full bg-subtle border-2 border-base lg:hidden"></div>
-      <span class="hidden lg:block text-xs text-subtle whitespace-nowrap text-right pt-1">Jan 2020 – Sep 2023</span>
+      <span class="hidden lg:block text-xs text-subtle whitespace-nowrap text-right pt-1">Jan 2020 – Jan 2023</span>
       <div>
         <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-1 mb-2">
           <div>
             <p class="font-bold text-white">IT Support Analyst</p>
             <p class="text-sm text-muted font-medium">Itaipú Binacional</p>
           </div>
-          <span class="text-xs text-subtle whitespace-nowrap lg:hidden">Jan 2020 – Sep 2023</span>
+          <span class="text-xs text-subtle whitespace-nowrap lg:hidden">Jan 2020 – Jan 2023</span>
         </div>
         <ul class="text-sm text-muted flex flex-col gap-1.5 list-disc list-inside">
-          <li>Hardware, software, and network technical support for the microcomputing division (500+ users) with sustained uptime &gt;99.5%.</li>
-          <li>On-site network connectivity diagnosis and resolution: structured cabling, switches, access points, and communication links; collaboration with the network team for escalation and incident follow-up.</li>
-          <li>Windows Server administration: Active Directory, GPOs, security policies, centralized print server (Equitrac), and domain services.</li>
-          <li>Enterprise virtualization management with Hyper-V and VMware (100+ VMs); OS image creation and distribution with Sysprep and PXE.</li>
-          <li>Microsoft Endpoint Configuration Manager (MECM) administration: automated deployment of operating systems and corporate applications.</li>
-          <li>IT asset inventory management (hardware, software, and licenses); vendor coordination for technology procurement, quotes, and budget tracking.</li>
-          <li>Enterprise storage and backup systems administration; implementation of backup policies and critical data recovery.</li>
-          <li>Technology prospecting, technical specification drafting, and technical assessments for IT equipment acquisition processes (notebooks, AIOs, projectors, among others); participation in legacy service migration to virtualized architectures.</li>
-          <li>Collaboration in internal infrastructure audits and technical documentation updates.</li>
+          <li>Hardware, software and network support for the microcomputing division (500+ users).</li>
+          <li>On-site connectivity diagnosis: structured cabling, switches, access points and links; escalation and follow-up with the network team.</li>
+          <li>Windows Server administration: Active Directory, GPOs, security policies, centralized print server (Equitrac) and domain services.</li>
+          <li>Virtualization with Hyper-V and VMware; OS image creation and distribution with Sysprep and PXE.</li>
+          <li>Microsoft Endpoint Configuration Manager (MECM): automated OS and application deployment.</li>
+          <li>IT asset inventory (hardware, software and licenses); technical specifications and assessments for equipment procurement.</li>
+          <li>Storage and backup; took part in migrating legacy services to virtualized infrastructure and in internal audits.</li>
         </ul>
       </div>
     </div>
 
-    <!-- Network Technician -->
+    <!-- Network Intern -->
     <div class="relative lg:grid lg:grid-cols-[120px_1fr] lg:gap-8">
       <div class="absolute -left-[29px] top-1 w-3.5 h-3.5 rounded-full bg-border border-2 border-base lg:hidden"></div>
-      <span class="hidden lg:block text-xs text-subtle whitespace-nowrap text-right pt-1">Mar 2019 – Jan 2020</span>
+      <span class="hidden lg:block text-xs text-subtle whitespace-nowrap text-right pt-1">Mar 2019 – May 2019</span>
       <div>
         <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-1 mb-2">
           <div>
-            <p class="font-bold text-white">Network Technician</p>
+            <p class="font-bold text-white">Network Intern</p>
             <p class="text-sm text-muted font-medium">Itaipú Binacional</p>
           </div>
-          <span class="text-xs text-subtle whitespace-nowrap lg:hidden">Mar 2019 – Jan 2020</span>
+          <span class="text-xs text-subtle whitespace-nowrap lg:hidden">Mar 2019 – May 2019</span>
         </div>
         <ul class="text-sm text-muted flex flex-col gap-1.5 list-disc list-inside">
-          <li>Network topology design and planning, VLAN segmentation, and IP addressing planning (subnetting) to optimize traffic flow and infrastructure security.</li>
-          <li>Advanced diagnosis and resolution of connectivity issues at physical and logical layers: TCP/IP, VLANs, STP, static and dynamic routing (OSPF), switches, routers, and firewalls.</li>
-          <li>Configuration and maintenance of network devices (managed switches, routers, firewalls) to ensure corporate network availability and security &gt;99%.</li>
-          <li>Proactive critical network infrastructure monitoring; preventive maintenance implementation and continuous improvement plans.</li>
-          <li>Technical incident documentation, resolution procedures, network diagrams, and infrastructure change records.</li>
+          <li>Assisted with physical and logical connectivity diagnosis: TCP/IP, VLANs, switches and routers.</li>
+          <li>Configuration and maintenance of corporate network devices.</li>
+          <li>Documentation of incidents, network diagrams and change records.</li>
         </ul>
       </div>
     </div>
